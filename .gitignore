@@ -1,0 +1,54 @@
+.vscode/settings.json
+__pycache__/*
+*.pyc
+
+HELP.md
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**
+!**/src/test/**
+venv/
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+
+### VS Code ###
+.vscode/
+
+### NodeJs / NPM ###
+app/*/node_modules/
+.npm
+/jspm_packages/
+
+.env
+.env.test
+.next
+
+.pyc
+
+### Fichier production ###
+/out/production/*
+
+### JavaDoc ###
+/doc/*
+
+/src/META-INF/MANIFEST.MF
