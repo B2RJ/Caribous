@@ -26,11 +26,10 @@
       "translate(" + margin.left + "," + margin.top + ")");
 
   //Read the data
-  // TODO : UPDATE LINK
-  d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/temperature/data/ourdata/british_columbia_temperatures_light.csv",
+  d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/british_columbia_temperatures_light.csv",
 
     // When reading the csv, I must format variables:
-    function (d) {
+    function (d) {https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/british_columbia_temperatures_light.csv
       return { date: d3.timeParse("%Y-%m-%d")(d.date), value: d.value }
     },
 
