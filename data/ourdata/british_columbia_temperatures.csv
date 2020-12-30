@@ -1,4 +1,4 @@
-,dt,AverageTemperature,AverageTemperatureUncertainty,State,Country
+id,dt,AverageTemperature,AverageTemperatureUncertainty,State,Country
 63272,1828-01-01,-15.524,3.0580000000000003,British Columbia,Canada
 63273,1828-02-01,-10.472,2.647,British Columbia,Canada
 63274,1828-03-01,-4.559,2.4330000000000003,British Columbia,Canada
