@@ -1,15 +1,141 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Trajectory</title>
+
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
 </head>
+
 <body>
-    <div id=trajectoryMap></div>
+    <H1>Trajectory</H1>
+    <div id="trajectory"></div>
     <script>
-        
+        /*_____ INITIALISATION & CONFIGURATION _____*/
+
+        const width = 600
+        const height = 250
+        const zoomValue = 1 << 13 // Zoom dans l'image
+        const initialScale = zoomValue
+        const initialCenter = [-122.567179, 56.074159]
+        // const initialCenter = [-98 - 35 / 60, 39 + 50 / 60]
+
+        // Initialisation de la vue
+        const svg = d3
+            .select("#trajectory")
+            .append("svg")
+            .attr("viewBox", [0, 0, width, height])
+
+        // Définition de la projection (mercator)
+        // Passage de coordonnées polaires en coordonnées cartésiennes
+        const projection = d3.geoMercator()
+            .scale(1 / (2 * Math.PI))
+            .translate([0, 0])
+
+        // Affichage de la carte en fonction d'une projection
+        const render = d3.geoPath(projection)
+
+        // Setup du nombre de pavé present dans l'image et leur taille
+        const tile = d3.tile()
+            .extent([[0, 0], [width, height]])
+            .tileSize(200)
+
+        // Définition de l'échelle de zoom (min/max), de sa taille et de l'event associé
+        const zoom = d3.zoom()
+            .scaleExtent([zoomValue, zoomValue])
+            .extent([[0, 0], [width, height]])
+            .on("zoom", ({ transform }) => zoomed(transform))
+
+        // Création d'un graphique dans le svg
+        let image = svg.append("g")
+            .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
+            .selectAll("image") // Setup les image mais pas encore créées
+
+        // Pour l'exemple de dessin sur une carte 
+        /*const path = svg.append("path")
+            .attr("pointer-events", "none")
+            .attr("fill", "none")
+            .attr("stroke", "red")
+            .attr("stroke-linecap", "round")
+            .attr("stroke-linejoin", "round")*/
+
+        svg
+            .call(zoom) // Setup de l'event de gestion du zoom
+            .call(zoom.transform, d3.zoomIdentity
+                .translate(width / 2, height / 2)
+                .scale(-initialScale)
+                .translate(...projection(initialCenter))
+                .scale(-1)) // Placement de la vue aux coordonnées choisies
+
+        async function zoomed(transform) {
+            // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
+            const tiles = tile(transform)
+
+            // On crée/actualise les images présentes dans le graphique
+            // Chaque image représente une portion de carte et chaque image est un pavé
+            image = image.data(tiles, d => d).join("image")
+                .attr("xlink:href", d => url(...d))
+                .attr("x", ([x]) => (x + tiles.translate[0]) * tiles.scale)
+                .attr("y", ([, y]) => (y + tiles.translate[1]) * tiles.scale)
+                .attr("width", tiles.scale)
+                .attr("height", tiles.scale)
+
+            projection
+                .scale(transform.k / (2 * Math.PI))
+                .translate([transform.x, transform.y])
+
+            //path.attr("d", render(await data))
+        }
+
+        function url(x, y, z) {
+            return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
+        }
+
+
+        /*_____ DATA LOADING & HANDLING _____*/
+
+        let herdName = "Hart Ranges"
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
+            .then(arrangeData)
+            .then(drawTrajectory)
+
+        function arrangeData(data) {
+            return getFirstAndLastCoords(selectOneHerd(herdName, data))
+        }
+
+        function drawTrajectory(data) {
+            console.log(data)
+
+            svg.append("path")
+                .datum(data)
+                //.attr("class", "line")
+                .attr("stroke", "red")
+                .attr("d", d3.line()
+                    .x(d => projection(d)[0])
+                    .y(d => projection(d)[1]))
+
+            svg.selectAll("circle")
+                .data(data)
+                .enter()
+                .append("circle")
+                .attr("fill", "green")
+                .attr("cx", d => projection(d)[0])
+                .attr("cy", d => projection(d)[1])
+                .attr("r", 5)
+        }
+
+        function selectOneHerd(herdName, data) {
+            return data.filter(elem => elem.study_site === herdName)
+        }
+
+        function getFirstAndLastCoords(data) {
+            const first = [data[0].longitude, data[0].latitude]
+            const second = [data[data.length - 1].longitude, data[data.length - 1].latitude]
+            return [first.map(elem => parseFloat(elem)), second.map(elem => parseFloat(elem))]
+        }
     </script>
 </body>
+
 </html>
