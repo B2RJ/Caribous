@@ -33,12 +33,12 @@
   var startYear = moment().subtract(50, 'year').toDate()
   
   //Read the data
-  d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/temperature/data/ourdata/british_columbia_temperatures_edit.csv", 
+  d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/british_columbia_temperatures.csv", 
   
   //When reading the csv, I must format variables:
   function (d) {
     //console.log(d.dt)
-    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y")(d.dt), AverageTemperature: d.AverageTemperature, Season: d.Season }
+    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y-%m-%d")(d.dt), AverageTemperature: d.AverageTemperature, Season: d.Season }
   },
   
   function (data) {
