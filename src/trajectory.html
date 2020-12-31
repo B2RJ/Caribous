@@ -15,15 +15,14 @@
     <script>
         /*_____ INITIALISATION & CONFIGURATION _____*/
 
-        let alreadyInitZoomed = false
-        let fetchedData = []
-
         const width = 600
         const height = 250
         const zoomValue = 1 << 13 // Zoom dans l'image
         const initialScale = zoomValue
         const initialCenter = [-122.567179, 56.074159]
-        // const initialCenter = [-98 - 35 / 60, 39 + 50 / 60]
+
+        const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
+        const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
 
         // Initialisation de la vue
         const svg = d3
@@ -62,28 +61,21 @@
 
         /*_____ DATA LOADING & HANDLING _____*/
 
+        let alreadyInitZoomed = false
+        let fetchedData = []
+        let dates = []
+        let herdNames = []
+
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
             .then(function (data) {
                 fetchedData = data
+                herdNames = getHerdNames(data)
+                dates = getDates(data)
+
                 svg
                     .call(zoom) // Setup de l'event de gestion du zoom
                     .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
             })
-
-        function arrangeData(herdName, data) {
-            return getFirstAndLastCoords(selectOneHerd(herdName, data))
-        }
-
-        function selectOneHerd(herdName, data) {
-            return data.filter(elem => elem.study_site === herdName)
-        }
-
-        function getFirstAndLastCoords(data) {
-            console.log(data)
-            const first = [data[0].longitude, data[0].latitude]
-            const second = [data[data.length - 1].longitude, data[data.length - 1].latitude]
-            return [first.map(elem => parseFloat(elem)), second.map(elem => parseFloat(elem))]
-        }
 
         function zoomed(transform) {
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
@@ -102,46 +94,94 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            data = arrangeData("Moberly", fetchedData)
+            // TODO: check the anteriority between two dates
+            herdName = "Hart Ranges"
+            dateRange = ["1988-03-05", "2007-02-12"]
+
+            data = getUsefulData(fetchedData, herdName, dateRange)
             const lines = svg.selectAll("path").data([data])
             const points = svg.selectAll("circle").data(data)
 
-            if (alreadyInitZoomed) {
-                console.log("UPDATE")
-
+            if (alreadyInitZoomed) { //UPDATES
                 lines
                     .attr("d", d3.line()
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
 
-                points
+                /*points
                     .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
-            } else {
+                    .attr("cy", d => projection(d)[1])*/
+            } else { // INIT
                 alreadyInitZoomed = true
-                console.log("INIT")
 
                 lines
                     .enter()
                     .append("path")
-                    .attr("stroke", "red")
+                    .attr("marker-end", "url(#arrow)")
                     .attr("d", d3.line()
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
+                    .style("stroke", "red")
+                    .style("stroke-linecap", "round")
 
-                points
+                svg
+                    .append("defs")
+                    .append("marker")
+                    .attr("id", "arrow")
+                    .attr("viewBox", [0, 0, arrowHeadWidth, arrowHeadHeight])
+                    .attr("refX", arrowHeadWidth / 2)
+                    .attr("refY", arrowHeadHeight / 2)
+                    .attr("markerWidth", arrowHeadWidth)
+                    .attr("markerHeight", arrowHeadHeight)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", d3.line()(arrowPoints))
+                    .style("fill", "red")
+
+                /*points
                     .enter()
                     .append("circle")
                     .attr("fill", "green")
+                    .attr("r", 2.5)
                     .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
-                    .attr("r", 5)
+                    .attr("cy", d => projection(d)[1])*/
             }
+        }
+
+
+        /*_____ UTILS FUNCTIONS _____*/
+
+        Array.prototype.distinct = function () {
+            return this.filter((elem, index, self) => self.indexOf(elem) === index)
+        }
+
+        function getHerdNames(data) {
+            return data.map(elem => elem.study_site).distinct()
+        }
+
+        function getDates(data) {
+            return data.map(elem => elem.date).distinct()
+        }
+
+        function getOneHerd(data, herdName) {
+            return data.filter(elem => elem.study_site === herdName)
+        }
+
+        function getRangedCoords(data, dateRange) {
+            return dateRange.map(date => {
+                const row = data.find(row => row.date === date)
+                return [parseFloat(row.longitude), parseFloat(row.latitude)]
+            })
+        }
+
+        function getUsefulData(data, herdName, dateRange) {
+            return getRangedCoords(getOneHerd(data, herdName), dateRange)
         }
 
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
         }
+
     </script>
 </body>
 
