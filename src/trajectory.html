@@ -15,6 +15,10 @@
     <script>
         /*_____ INITIALISATION & CONFIGURATION _____*/
 
+        let alreadyInitZoomed = false
+        let fetchedData = []
+        let herdName = "Hart Ranges"
+
         const width = 600
         const height = 250
         const zoomValue = 1 << 13 // Zoom dans l'image
@@ -53,23 +57,38 @@
             .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
             .selectAll("image") // Setup les image mais pas encore créées
 
-        // Pour l'exemple de dessin sur une carte 
-        /*const path = svg.append("path")
-            .attr("pointer-events", "none")
-            .attr("fill", "none")
-            .attr("stroke", "red")
-            .attr("stroke-linecap", "round")
-            .attr("stroke-linejoin", "round")*/
+        const zoomTransform = d3.zoomIdentity // Appel à l'évenement
+            .translate(width / 2, height / 2)
+            .scale(-initialScale)
+            .translate(...projection(initialCenter))
+            .scale(-1)
 
-        svg
-            .call(zoom) // Setup de l'event de gestion du zoom
-            .call(zoom.transform, d3.zoomIdentity
-                .translate(width / 2, height / 2)
-                .scale(-initialScale)
-                .translate(...projection(initialCenter))
-                .scale(-1)) // Placement de la vue aux coordonnées choisies
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
+            .then(arrangeData)
+            .then(function (data) {
+                fetchedData = data
+                svg
+                    .call(zoom) // Setup de l'event de gestion du zoom
+                    .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+            })
 
-        async function zoomed(transform) {
+        /*_____ DATA LOADING & HANDLING _____*/
+
+        function arrangeData(data) {
+            return getFirstAndLastCoords(selectOneHerd(herdName, data))
+        }
+
+        function selectOneHerd(herdName, data) {
+            return data.filter(elem => elem.study_site === herdName)
+        }
+
+        function getFirstAndLastCoords(data) {
+            const first = [data[0].longitude, data[0].latitude]
+            const second = [data[data.length - 1].longitude, data[data.length - 1].latitude]
+            return [first.map(elem => parseFloat(elem)), second.map(elem => parseFloat(elem))]
+        }
+
+        function zoomed(transform) {
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
             const tiles = tile(transform)
 
@@ -86,54 +105,34 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            //path.attr("d", render(await data))
+            if (alreadyInitZoomed) {
+                console.log("UPDATE")
+            } else {
+                alreadyInitZoomed = true
+                console.log("INIT")
+
+                console.log(fetchedData)
+
+                svg.append("path")
+                    .datum(fetchedData)
+                    .attr("stroke", "red")
+                    .attr("d", d3.line()
+                        .x(d => projection(d)[0])
+                        .y(d => projection(d)[1]))
+
+                svg.selectAll("circle")
+                    .data(fetchedData)
+                    .enter()
+                    .append("circle")
+                    .attr("fill", "green")
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
+                    .attr("r", 5)
+            }
         }
 
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
-        }
-
-
-        /*_____ DATA LOADING & HANDLING _____*/
-
-        let herdName = "Hart Ranges"
-        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
-            .then(arrangeData)
-            .then(drawTrajectory)
-
-        function arrangeData(data) {
-            return getFirstAndLastCoords(selectOneHerd(herdName, data))
-        }
-
-        function drawTrajectory(data) {
-            console.log(data)
-
-            svg.append("path")
-                .datum(data)
-                //.attr("class", "line")
-                .attr("stroke", "red")
-                .attr("d", d3.line()
-                    .x(d => projection(d)[0])
-                    .y(d => projection(d)[1]))
-
-            svg.selectAll("circle")
-                .data(data)
-                .enter()
-                .append("circle")
-                .attr("fill", "green")
-                .attr("cx", d => projection(d)[0])
-                .attr("cy", d => projection(d)[1])
-                .attr("r", 5)
-        }
-
-        function selectOneHerd(herdName, data) {
-            return data.filter(elem => elem.study_site === herdName)
-        }
-
-        function getFirstAndLastCoords(data) {
-            const first = [data[0].longitude, data[0].latitude]
-            const second = [data[data.length - 1].longitude, data[data.length - 1].latitude]
-            return [first.map(elem => parseFloat(elem)), second.map(elem => parseFloat(elem))]
         }
     </script>
 </body>
