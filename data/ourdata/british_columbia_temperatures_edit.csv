@@ -1,4 +1,4 @@
-year,n,AverageTemperatureUncertainty,State,Country,name
+dt,n,AverageTemperatureUncertainty,State,Country,name
 1970,-14.313,0.218,British Columbia,Canada,Winter
 1970,-5.636,0.248,British Columbia,Canada,Winter
 1970,-3.378,0.182,British Columbia,Canada,Winter
