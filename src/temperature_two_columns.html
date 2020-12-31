@@ -38,7 +38,7 @@
   //When reading the csv, I must format variables:
   function (d) {
     //console.log(d.dt)
-    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y")(d.dt), n: d.n, name: d.name }
+    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y")(d.dt), AverageTemperature: d.AverageTemperature, name: d.name }
   },
   
   function (data) {
@@ -70,7 +70,7 @@
     
     // Add Y axis
     var y = d3.scaleLinear()
-    .domain([-20, d3.max(data, function(d) { return +d.n; })])
+    .domain([-20, d3.max(data, function(d) { return +d.AverageTemperature; })])
     .range([ height, 0 ]);
     svg.append("g")
     .call(d3.axisLeft(y));
@@ -82,7 +82,7 @@
     .datum(data.filter(function(d){return d.name==allGroup[0]}))
     .attr("d", d3.line()
     .x(function(d) { return x(d.dt) })
-    .y(function(d) { return y(+d.n) })
+    .y(function(d) { return y(+d.AverageTemperature) })
     )
     .attr("stroke", function(d){ return myColor("valueA") })
     .style("stroke-width", 4)
@@ -101,7 +101,7 @@
       .duration(1000)
       .attr("d", d3.line()
       .x(function(d) { return x(d.dt) })
-      .y(function(d) { return y(+d.n) })
+      .y(function(d) { return y(+d.AverageTemperature) })
       )
       .attr("stroke", function(d){ return myColor(selectedGroup) })
     }
