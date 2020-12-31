@@ -1,4 +1,4 @@
-dt,n,AverageTemperatureUncertainty,State,Country,name
+year,n,AverageTemperatureUncertainty,State,Country,name
 1828-01-01,-15.524,3.058,British Columbia,Canada,Winter
 1828-02-01,-10.472,2.647,British Columbia,Canada,Winter
 1828-03-01,-4.559,2.433,British Columbia,Canada,Winter
