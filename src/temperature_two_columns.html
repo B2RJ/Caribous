@@ -18,8 +18,8 @@
   
   // set the dimensions and margins of the graph
   var margin = {top: 10, right: 30, bottom: 30, left: 60},
-  width = 460 - margin.left - margin.right,
-  height = 400 - margin.top - margin.bottom;
+  width = 1080 - margin.left - margin.right,
+  height = 720 - margin.top - margin.bottom;
   
   // append the svg object to the body of the page
   var svg = d3.select("#my_dataviz")
@@ -38,13 +38,13 @@
   //When reading the csv, I must format variables:
   function (d) {
     //console.log(d.dt)
-    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y")(d.dt), AverageTemperature: d.AverageTemperature, name: d.name }
+    if (new Date(d.dt) > startYear) return { dt: d3.timeParse("%Y")(d.dt), AverageTemperature: d.AverageTemperature, Season: d.Season }
   },
   
   function (data) {
     console.log(data)
     // List of groups (here I have one group per column)
-    var allGroup = d3.map(data, function(d){return(d.name)}).keys()
+    var allGroup = d3.map(data, function(d){return(d.Season)}).keys()
     
     // add the options to the button
     d3.select("#selectButton")
@@ -79,7 +79,7 @@
     var line = svg
     .append('g')
     .append("path")
-    .datum(data.filter(function(d){return d.name==allGroup[0]}))
+    .datum(data.filter(function(d){return d.Season==allGroup[0]}))
     .attr("d", d3.line()
     .x(function(d) { return x(d.dt) })
     .y(function(d) { return y(+d.AverageTemperature) })
@@ -92,7 +92,7 @@
     function update(selectedGroup) {
       
       // Create new data with the selection?
-      var dataFilter = data.filter(function(d){return d.name==selectedGroup})
+      var dataFilter = data.filter(function(d){return d.Season==selectedGroup})
       
       // Give these new data to update line
       line
