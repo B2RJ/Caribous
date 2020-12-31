@@ -17,7 +17,6 @@
 
         let alreadyInitZoomed = false
         let fetchedData = []
-        let herdName = "Hart Ranges"
 
         const width = 600
         const height = 250
@@ -37,9 +36,6 @@
         const projection = d3.geoMercator()
             .scale(1 / (2 * Math.PI))
             .translate([0, 0])
-
-        // Affichage de la carte en fonction d'une projection
-        const render = d3.geoPath(projection)
 
         // Setup du nombre de pavé present dans l'image et leur taille
         const tile = d3.tile()
@@ -63,8 +59,10 @@
             .translate(...projection(initialCenter))
             .scale(-1)
 
+
+        /*_____ DATA LOADING & HANDLING _____*/
+
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
-            .then(arrangeData)
             .then(function (data) {
                 fetchedData = data
                 svg
@@ -72,9 +70,7 @@
                     .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
             })
 
-        /*_____ DATA LOADING & HANDLING _____*/
-
-        function arrangeData(data) {
+        function arrangeData(herdName, data) {
             return getFirstAndLastCoords(selectOneHerd(herdName, data))
         }
 
@@ -83,6 +79,7 @@
         }
 
         function getFirstAndLastCoords(data) {
+            console.log(data)
             const first = [data[0].longitude, data[0].latitude]
             const second = [data[data.length - 1].longitude, data[data.length - 1].latitude]
             return [first.map(elem => parseFloat(elem)), second.map(elem => parseFloat(elem))]
@@ -105,23 +102,34 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
+            data = arrangeData("Moberly", fetchedData)
+            const lines = svg.selectAll("path").data([data])
+            const points = svg.selectAll("circle").data(data)
+
             if (alreadyInitZoomed) {
                 console.log("UPDATE")
+
+                lines
+                    .attr("d", d3.line()
+                        .x(d => projection(d)[0])
+                        .y(d => projection(d)[1]))
+
+                points
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
             } else {
                 alreadyInitZoomed = true
                 console.log("INIT")
 
-                console.log(fetchedData)
-
-                svg.append("path")
-                    .datum(fetchedData)
+                lines
+                    .enter()
+                    .append("path")
                     .attr("stroke", "red")
                     .attr("d", d3.line()
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
 
-                svg.selectAll("circle")
-                    .data(fetchedData)
+                points
                     .enter()
                     .append("circle")
                     .attr("fill", "green")
