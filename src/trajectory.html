@@ -107,6 +107,11 @@
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
+                .on("dblclick.zoom", null)
+                .on("mousedown.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("touchmove.zoom", null)
+                .on("touchend.zoom", null)
                 .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
         })
 
