@@ -21,9 +21,6 @@
         const initialScale = zoomValue
         const initialCenter = [-122.567179, 56.074159]
 
-        const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
-        const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
-
         // Initialisation de la vue
         const svg = d3
             .select("#trajectory")
@@ -63,14 +60,18 @@
 
         let alreadyInitZoomed = false
         let fetchedData = []
-        let dates = []
-        let herdNames = []
+
+        const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
+        const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
+
+        const herdListId = "herd-names"
+        const dateListId = "dates"
 
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
             .then(function (data) {
                 fetchedData = data
-                herdNames = getHerdNames(data)
-                dates = getDates(data)
+
+                createSelectList(getHerdNames(data), herdListId)
 
                 svg
                     .call(zoom) // Setup de l'event de gestion du zoom
@@ -94,24 +95,21 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
+            herdName = document.getElementById(herdListId).value
+            dates = getDatesByHerdName(fetchedData, herdName)
             // TODO: check the anteriority between two dates
-            herdName = "Hart Ranges"
-            dateRange = ["1988-03-05", "2007-02-12"]
+            dateRange = [dates[0], dates[dates.length - 1]]
 
             data = getUsefulData(fetchedData, herdName, dateRange)
             const lines = svg.selectAll("path").data([data])
             const points = svg.selectAll("circle").data(data)
 
-            if (alreadyInitZoomed) { //UPDATES
+            if (alreadyInitZoomed) { // UPDATES
                 lines
                     .attr("d", d3.line()
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
-
-                /*points
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])*/
-            } else { // INIT
+            } else { // INITIALIZATION
                 alreadyInitZoomed = true
 
                 lines
@@ -137,14 +135,6 @@
                     .append("path")
                     .attr("d", d3.line()(arrowPoints))
                     .style("fill", "red")
-
-                /*points
-                    .enter()
-                    .append("circle")
-                    .attr("fill", "green")
-                    .attr("r", 2.5)
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])*/
             }
         }
 
@@ -159,8 +149,8 @@
             return data.map(elem => elem.study_site).distinct()
         }
 
-        function getDates(data) {
-            return data.map(elem => elem.date).distinct()
+        function getDatesByHerdName(data, herdName) {
+            return getOneHerd(data, herdName).map(elem => elem.date).distinct()
         }
 
         function getOneHerd(data, herdName) {
@@ -180,6 +170,19 @@
 
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
+        }
+
+        function createSelectList(data, listName) {
+            let selectList = document.createElement("select")
+            selectList.id = listName
+            document.body.appendChild(selectList)
+
+            data.forEach(elem => {
+                let option = document.createElement("option")
+                option.value = elem
+                option.text = elem
+                selectList.appendChild(option)
+            })
         }
 
     </script>
