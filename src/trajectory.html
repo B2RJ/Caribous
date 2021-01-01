@@ -111,6 +111,7 @@
 
         // Initialize or update the map when zooming/moving on map
         function zoomed(transform) {
+            console.log("zoomed!")
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
             const tiles = tile(transform)
 
@@ -131,9 +132,8 @@
             const dates = getDatesByHerdName(fetchedData, herdName)
             updateSlider(dates, alreadyInitZoomed)
 
-            data = getUsefulData(fetchedData, herdName, getRangedDates())
+            const data = getUsefulData(fetchedData, herdName, getRangedDates())
             const lines = svg.selectAll("path").data([data])
-            const points = svg.selectAll("circle").data(data)
 
             if (alreadyInitZoomed) { // UPDATES
                 lines
@@ -210,6 +210,8 @@
                 .append("option")
                 .attr("value", d => d)
                 .text(d => d)
+
+            herdList.on("change", () => svg.call(zoom.transform, zoomTransform))
         }
 
 
