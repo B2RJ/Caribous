@@ -103,6 +103,7 @@
             fetchedData = data
 
             createSelectList(getHerdNames(data))
+            updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -128,11 +129,7 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const herdName = herdList.node().value
-            const dates = getDatesByHerdName(fetchedData, herdName)
-            updateSlider(dates, alreadyInitZoomed)
-
-            const data = getUsefulData(fetchedData, herdName, getRangedDates())
+            const data = getUsefulData(fetchedData, herdList.node().value, getRangedDates())
             const lines = svg.selectAll("path").data([data])
 
             if (alreadyInitZoomed) { // UPDATES
@@ -170,7 +167,7 @@
         }
 
         // Initialize or update the slider when zooming/moving on map
-        function updateSlider(dates, alreadyInitZoomed) {
+        function updateSlider(dates) {
             firstDateRows = getFirstOfEachYear(dates)
 
             const firstJanuaryDates = firstDateRows.map(row => row[0])
@@ -195,6 +192,9 @@
                     .tickFormat(d3.timeFormat('%Y'))
                     .fill("red")
                     .value([minDate, maxDate])
+                    .on("end", (dates) => {
+                        svg.call(zoom.transform, zoomTransform)
+                    })
 
                 sliderSvg
                     .call(slider)
@@ -211,7 +211,10 @@
                 .attr("value", d => d)
                 .text(d => d)
 
-            herdList.on("change", () => svg.call(zoom.transform, zoomTransform))
+            herdList.on("change", () => {
+                updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
+                svg.call(zoom.transform, zoomTransform)
+            })
         }
 
 
@@ -244,7 +247,7 @@
 
         function getRangedDates() {
             return firstDateRows
-                .filter(row => slider.value().find(value => value.getTime() === row[0].getTime()))
+                .filter(row => slider.value().find(value => new Date(value).getTime() === row[0].getTime()))
                 .map(row => row[1])
         }
 
