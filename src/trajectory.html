@@ -7,11 +7,19 @@
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+
+    <style>
+        body {
+            background-color: #666
+        }
+    </style>
 </head>
 
 <body>
     <H1>Trajectory</H1>
     <div id="trajectory"></div>
+    <div id="slider"></div>
     <script>
         /*_____ INITIALISATION & CONFIGURATION _____*/
 
@@ -26,6 +34,14 @@
             .select("#trajectory")
             .append("svg")
             .attr("viewBox", [0, 0, width, height])
+        const sliderSvg = d3
+            .select("#slider")
+            .append('svg')
+            .attr('width', 700)
+            .attr('height', 100)
+            .append('g')
+            .attr('transform', 'translate(20,20)')
+        let slider
 
         // Définition de la projection (mercator)
         // Passage de coordonnées polaires en coordonnées cartésiennes
@@ -60,18 +76,16 @@
 
         let alreadyInitZoomed = false
         let fetchedData = []
+        let firstDateRows = []
 
         const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
         const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
-
-        const herdListId = "herd-names"
-        const dateListId = "dates"
 
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
             .then(function (data) {
                 fetchedData = data
 
-                createSelectList(getHerdNames(data), herdListId)
+                createSelectList(getHerdNames(data), "herd-names")
 
                 svg
                     .call(zoom) // Setup de l'event de gestion du zoom
@@ -95,12 +109,11 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            herdName = document.getElementById(herdListId).value
-            dates = getDatesByHerdName(fetchedData, herdName)
-            // TODO: check the anteriority between two dates
-            dateRange = [dates[0], dates[dates.length - 1]]
+            const herdName = document.getElementById("herd-names").value //get herdname from html list
+            const dates = getDatesByHerdName(fetchedData, herdName)
+            updateSlider(dates, alreadyInitZoomed)
 
-            data = getUsefulData(fetchedData, herdName, dateRange)
+            data = getUsefulData(fetchedData, herdName, getRangedDates())
             const lines = svg.selectAll("path").data([data])
             const points = svg.selectAll("circle").data(data)
 
@@ -110,8 +123,6 @@
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
             } else { // INITIALIZATION
-                alreadyInitZoomed = true
-
                 lines
                     .enter()
                     .append("path")
@@ -135,6 +146,39 @@
                     .append("path")
                     .attr("d", d3.line()(arrowPoints))
                     .style("fill", "red")
+
+                alreadyInitZoomed = true
+            }
+        }
+
+        function updateSlider(dates, alreadyInitZoomed) {
+            firstDateRows = getFirstOfEachYear(dates)
+
+            const firstJanuaryDates = firstDateRows.map(row => row[0])
+            const minDate = firstJanuaryDates[0]
+            const maxDate = firstJanuaryDates[firstJanuaryDates.length - 1]
+
+            if (alreadyInitZoomed) {
+                sliderSvg
+                    .call(slider
+                        .domain([minDate, maxDate])
+                        .tickValues(firstJanuaryDates)
+                        .marks(firstJanuaryDates)
+                        .value([minDate, maxDate])
+                    )
+            } else {
+                slider = d3
+                    .sliderBottom()
+                    .domain([minDate, maxDate])
+                    .width(650)
+                    .tickValues(firstJanuaryDates)
+                    .marks(firstJanuaryDates)
+                    .tickFormat(d3.timeFormat('%Y'))
+                    .fill("red")
+                    .value([minDate, maxDate])
+
+                sliderSvg
+                    .call(slider)
             }
         }
 
@@ -150,16 +194,30 @@
         }
 
         function getDatesByHerdName(data, herdName) {
-            return getOneHerd(data, herdName).map(elem => elem.date).distinct()
+            return getOneHerd(data, herdName).map(elem => new Date(elem.date)).distinct()
         }
 
         function getOneHerd(data, herdName) {
             return data.filter(elem => elem.study_site === herdName)
         }
 
+        function getYears(data) {
+            return data.map(elem => elem.getFullYear()).distinct()
+        }
+
+        function getFirstOfEachYear(data) {
+            return getYears(data).map(year => [new Date(year, 0, 1), data.find(elem => elem.getFullYear() === year)])
+        }
+
+        function getRangedDates() {
+            return firstDateRows
+                .filter(row => slider.value().find(value => value.getTime() === row[0].getTime()))
+                .map(row => row[1])
+        }
+
         function getRangedCoords(data, dateRange) {
             return dateRange.map(date => {
-                const row = data.find(row => row.date === date)
+                const row = data.find(row => new Date(row.date).getTime() === date.getTime())
                 return [parseFloat(row.longitude), parseFloat(row.latitude)]
             })
         }
@@ -184,7 +242,6 @@
                 selectList.appendChild(option)
             })
         }
-
     </script>
 </body>
 
