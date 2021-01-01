@@ -7,7 +7,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1828-07-01,13.763,3.027,British Columbia,Canada,Summer
 1828-08-01,10.383,3.043,British Columbia,Canada,Summer
 1828-09-01,4.402,2.576,British Columbia,Canada,Summer
-1828-10-01,-0.250,2.643,British Columbia,Canada,Winter
+1828-10-01,-0.250,2.643,British Columbia,Canada,Summer
 1828-11-01,-7.223,3.326,British Columbia,Canada,Winter
 1828-12-01,-13.852,4.974,British Columbia,Canada,Winter
 1829-01-01,-13.683,2.953,British Columbia,Canada,Winter
@@ -18,7 +18,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1829-06-01,11.026,3.184,British Columbia,Canada,Summer
 1829-07-01,13.357,2.985,British Columbia,Canada,Summer
 1829-08-01,11.817,2.840,British Columbia,Canada,Summer
-1829-10-01,0.651,2.528,British Columbia,Canada,Winter
+1829-10-01,0.651,2.528,British Columbia,Canada,Summer
 1829-11-01,-8.814,3.474,British Columbia,Canada,Winter
 1829-12-01,-15.647,5.152,British Columbia,Canada,Winter
 1832-01-01,-12.587,2.307,British Columbia,Canada,Winter
@@ -26,7 +26,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1832-03-01,-5.841,2.179,British Columbia,Canada,Winter
 1832-04-01,-1.125,3.517,British Columbia,Canada,Summer
 1832-05-01,5.383,2.434,British Columbia,Canada,Summer
-1832-10-01,-0.453,2.791,British Columbia,Canada,Winter
+1832-10-01,-0.453,2.791,British Columbia,Canada,Summer
 1832-11-01,-6.125,3.224,British Columbia,Canada,Winter
 1832-12-01,-11.965,4.331,British Columbia,Canada,Winter
 1833-01-01,-11.868,3.049,British Columbia,Canada,Winter
@@ -38,7 +38,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1833-07-01,12.031,2.445,British Columbia,Canada,Summer
 1833-08-01,11.700,2.940,British Columbia,Canada,Summer
 1833-09-01,7.317,2.826,British Columbia,Canada,Summer
-1833-10-01,0.299,2.946,British Columbia,Canada,Winter
+1833-10-01,0.299,2.946,British Columbia,Canada,Summer
 1833-11-01,-4.699,2.403,British Columbia,Canada,Winter
 1833-12-01,-11.888,3.059,British Columbia,Canada,Winter
 1834-01-01,-15.454,3.137,British Columbia,Canada,Winter
@@ -50,7 +50,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1834-07-01,11.280,2.903,British Columbia,Canada,Summer
 1834-08-01,10.013,2.974,British Columbia,Canada,Summer
 1834-09-01,6.008,3.228,British Columbia,Canada,Summer
-1834-10-01,0.406,2.412,British Columbia,Canada,Winter
+1834-10-01,0.406,2.412,British Columbia,Canada,Summer
 1834-11-01,-4.921,2.738,British Columbia,Canada,Winter
 1834-12-01,-10.944,2.566,British Columbia,Canada,Winter
 1835-01-01,-11.655,2.648,British Columbia,Canada,Winter
@@ -61,7 +61,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1835-06-01,8.659,2.714,British Columbia,Canada,Summer
 1835-07-01,10.354,2.820,British Columbia,Canada,Summer
 1835-09-01,5.526,2.738,British Columbia,Canada,Summer
-1835-10-01,-1.811,2.820,British Columbia,Canada,Winter
+1835-10-01,-1.811,2.820,British Columbia,Canada,Summer
 1835-11-01,-7.762,2.438,British Columbia,Canada,Winter
 1835-12-01,-14.334,3.087,British Columbia,Canada,Winter
 1836-01-01,-14.764,3.438,British Columbia,Canada,Winter
@@ -73,7 +73,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1836-07-01,11.281,2.604,British Columbia,Canada,Summer
 1836-08-01,10.594,2.633,British Columbia,Canada,Summer
 1836-09-01,5.931,2.782,British Columbia,Canada,Summer
-1836-10-01,0.639,4.623,British Columbia,Canada,Winter
+1836-10-01,0.639,4.623,British Columbia,Canada,Summer
 1836-11-01,-6.683,2.803,British Columbia,Canada,Winter
 1836-12-01,-13.309,3.550,British Columbia,Canada,Winter
 1837-01-01,-11.248,3.110,British Columbia,Canada,Winter
@@ -85,7 +85,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1837-07-01,11.176,2.617,British Columbia,Canada,Summer
 1837-08-01,10.797,2.419,British Columbia,Canada,Summer
 1837-09-01,5.762,2.586,British Columbia,Canada,Summer
-1837-10-01,-1.060,2.912,British Columbia,Canada,Winter
+1837-10-01,-1.060,2.912,British Columbia,Canada,Summer
 1837-11-01,-7.747,3.035,British Columbia,Canada,Winter
 1837-12-01,-12.206,3.766,British Columbia,Canada,Winter
 1838-01-01,-15.407,3.107,British Columbia,Canada,Winter
@@ -97,7 +97,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1838-07-01,12.031,3.499,British Columbia,Canada,Summer
 1838-08-01,10.887,3.090,British Columbia,Canada,Summer
 1838-09-01,6.263,2.212,British Columbia,Canada,Summer
-1838-10-01,0.388,3.642,British Columbia,Canada,Winter
+1838-10-01,0.388,3.642,British Columbia,Canada,Summer
 1838-11-01,-6.974,3.073,British Columbia,Canada,Winter
 1838-12-01,-11.228,3.573,British Columbia,Canada,Winter
 1839-01-01,-14.606,3.325,British Columbia,Canada,Winter
@@ -109,7 +109,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1839-07-01,12.872,3.414,British Columbia,Canada,Summer
 1839-08-01,12.559,2.980,British Columbia,Canada,Summer
 1839-09-01,6.448,2.656,British Columbia,Canada,Summer
-1839-10-01,-0.778,2.478,British Columbia,Canada,Winter
+1839-10-01,-0.778,2.478,British Columbia,Canada,Summer
 1839-11-01,-5.751,3.924,British Columbia,Canada,Winter
 1839-12-01,-11.397,3.915,British Columbia,Canada,Winter
 1840-01-01,-10.013,4.307,British Columbia,Canada,Winter
@@ -121,7 +121,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1840-07-01,12.272,2.554,British Columbia,Canada,Summer
 1840-08-01,10.562,2.570,British Columbia,Canada,Summer
 1840-09-01,6.563,2.267,British Columbia,Canada,Summer
-1840-10-01,-0.934,2.671,British Columbia,Canada,Winter
+1840-10-01,-0.934,2.671,British Columbia,Canada,Summer
 1840-11-01,-8.294,4.023,British Columbia,Canada,Winter
 1840-12-01,-13.392,3.125,British Columbia,Canada,Winter
 1841-01-01,-14.320,2.640,British Columbia,Canada,Winter
@@ -133,7 +133,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1841-07-01,12.599,2.330,British Columbia,Canada,Summer
 1841-08-01,11.278,2.223,British Columbia,Canada,Summer
 1841-09-01,5.202,2.321,British Columbia,Canada,Summer
-1841-10-01,0.115,2.262,British Columbia,Canada,Winter
+1841-10-01,0.115,2.262,British Columbia,Canada,Summer
 1841-11-01,-5.796,2.326,British Columbia,Canada,Winter
 1841-12-01,-12.166,3.162,British Columbia,Canada,Winter
 1842-01-01,-12.760,2.540,British Columbia,Canada,Winter
@@ -145,7 +145,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1842-07-01,11.037,2.526,British Columbia,Canada,Summer
 1842-08-01,10.688,2.570,British Columbia,Canada,Summer
 1842-09-01,5.807,2.255,British Columbia,Canada,Summer
-1842-10-01,-0.491,2.471,British Columbia,Canada,Winter
+1842-10-01,-0.491,2.471,British Columbia,Canada,Summer
 1842-11-01,-7.155,2.386,British Columbia,Canada,Winter
 1842-12-01,-10.046,2.393,British Columbia,Canada,Winter
 1843-01-01,-12.877,3.466,British Columbia,Canada,Winter
@@ -157,7 +157,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1843-07-01,11.145,2.593,British Columbia,Canada,Summer
 1843-08-01,10.321,2.350,British Columbia,Canada,Summer
 1843-09-01,5.410,2.327,British Columbia,Canada,Summer
-1843-10-01,-0.638,2.509,British Columbia,Canada,Winter
+1843-10-01,-0.638,2.509,British Columbia,Canada,Summer
 1843-11-01,-7.368,2.658,British Columbia,Canada,Winter
 1843-12-01,-10.632,2.708,British Columbia,Canada,Winter
 1844-01-01,-15.320,3.542,British Columbia,Canada,Winter
@@ -169,7 +169,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1844-07-01,11.595,2.228,British Columbia,Canada,Summer
 1844-08-01,10.249,2.816,British Columbia,Canada,Summer
 1844-09-01,5.425,2.109,British Columbia,Canada,Summer
-1844-10-01,-0.669,2.599,British Columbia,Canada,Winter
+1844-10-01,-0.669,2.599,British Columbia,Canada,Summer
 1844-11-01,-8.865,2.512,British Columbia,Canada,Winter
 1844-12-01,-12.287,2.494,British Columbia,Canada,Winter
 1845-01-01,-12.656,2.755,British Columbia,Canada,Winter
@@ -181,11 +181,11 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1845-07-01,11.786,2.261,British Columbia,Canada,Summer
 1845-08-01,11.423,2.142,British Columbia,Canada,Summer
 1845-09-01,5.722,2.527,British Columbia,Canada,Summer
-1845-10-01,-1.083,2.491,British Columbia,Canada,Winter
+1845-10-01,-1.083,2.491,British Columbia,Canada,Summer
 1845-11-01,-7.639,2.573,British Columbia,Canada,Winter
 1845-12-01,-10.843,4.458,British Columbia,Canada,Winter
 1846-09-01,6.303,3.400,British Columbia,Canada,Summer
-1846-10-01,-0.218,3.360,British Columbia,Canada,Winter
+1846-10-01,-0.218,3.360,British Columbia,Canada,Summer
 1846-11-01,-6.053,3.429,British Columbia,Canada,Winter
 1846-12-01,-10.950,3.323,British Columbia,Canada,Winter
 1847-05-01,5.001,2.337,British Columbia,Canada,Summer
@@ -193,7 +193,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1847-07-01,11.668,2.631,British Columbia,Canada,Summer
 1847-08-01,10.973,2.502,British Columbia,Canada,Summer
 1847-09-01,5.852,2.563,British Columbia,Canada,Summer
-1847-10-01,-0.162,2.424,British Columbia,Canada,Winter
+1847-10-01,-0.162,2.424,British Columbia,Canada,Summer
 1847-11-01,-6.933,2.648,British Columbia,Canada,Winter
 1847-12-01,-12.089,3.088,British Columbia,Canada,Winter
 1848-01-01,-15.360,2.685,British Columbia,Canada,Winter
@@ -205,7 +205,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1848-07-01,12.537,2.862,British Columbia,Canada,Summer
 1848-08-01,9.836,2.310,British Columbia,Canada,Summer
 1848-09-01,5.735,2.315,British Columbia,Canada,Summer
-1848-10-01,-0.103,2.259,British Columbia,Canada,Winter
+1848-10-01,-0.103,2.259,British Columbia,Canada,Summer
 1848-11-01,-5.926,2.640,British Columbia,Canada,Winter
 1848-12-01,-13.557,2.444,British Columbia,Canada,Winter
 1849-01-01,-14.575,3.789,British Columbia,Canada,Winter
@@ -217,7 +217,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1849-07-01,12.212,2.116,British Columbia,Canada,Summer
 1849-08-01,10.538,2.040,British Columbia,Canada,Summer
 1849-09-01,5.935,1.890,British Columbia,Canada,Summer
-1849-10-01,0.729,2.153,British Columbia,Canada,Winter
+1849-10-01,0.729,2.153,British Columbia,Canada,Summer
 1849-11-01,-5.143,2.122,British Columbia,Canada,Winter
 1849-12-01,-13.534,1.626,British Columbia,Canada,Winter
 1850-01-01,-15.656,3.070,British Columbia,Canada,Winter
@@ -229,7 +229,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1850-07-01,12.249,1.669,British Columbia,Canada,Summer
 1850-08-01,11.022,2.070,British Columbia,Canada,Summer
 1850-09-01,6.075,2.073,British Columbia,Canada,Summer
-1850-10-01,0.163,1.565,British Columbia,Canada,Winter
+1850-10-01,0.163,1.565,British Columbia,Canada,Summer
 1850-11-01,-5.954,2.179,British Columbia,Canada,Winter
 1850-12-01,-11.781,2.203,British Columbia,Canada,Winter
 1851-01-01,-12.811,1.456,British Columbia,Canada,Winter
@@ -241,7 +241,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1851-07-01,12.578,2.320,British Columbia,Canada,Summer
 1851-08-01,11.820,2.626,British Columbia,Canada,Summer
 1851-09-01,7.029,1.725,British Columbia,Canada,Summer
-1851-10-01,1.775,3.024,British Columbia,Canada,Winter
+1851-10-01,1.775,3.024,British Columbia,Canada,Summer
 1851-11-01,-5.009,2.969,British Columbia,Canada,Winter
 1851-12-01,-12.861,4.056,British Columbia,Canada,Winter
 1852-01-01,-9.930,4.994,British Columbia,Canada,Winter
@@ -253,7 +253,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1852-07-01,12.540,1.961,British Columbia,Canada,Summer
 1852-08-01,11.151,2.212,British Columbia,Canada,Summer
 1852-09-01,5.938,2.206,British Columbia,Canada,Summer
-1852-10-01,0.892,2.581,British Columbia,Canada,Winter
+1852-10-01,0.892,2.581,British Columbia,Canada,Summer
 1852-11-01,-6.924,2.233,British Columbia,Canada,Winter
 1852-12-01,-15.036,5.596,British Columbia,Canada,Winter
 1853-01-01,-13.103,2.260,British Columbia,Canada,Winter
@@ -265,7 +265,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1853-07-01,12.297,1.816,British Columbia,Canada,Summer
 1853-08-01,10.021,2.342,British Columbia,Canada,Summer
 1853-09-01,6.173,2.408,British Columbia,Canada,Summer
-1853-10-01,-0.174,1.959,British Columbia,Canada,Winter
+1853-10-01,-0.174,1.959,British Columbia,Canada,Summer
 1853-11-01,-6.713,3.268,British Columbia,Canada,Winter
 1853-12-01,-10.883,2.324,British Columbia,Canada,Winter
 1854-01-01,-14.958,2.296,British Columbia,Canada,Winter
@@ -277,7 +277,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1854-07-01,12.086,2.133,British Columbia,Canada,Summer
 1854-08-01,10.820,2.453,British Columbia,Canada,Summer
 1854-09-01,6.176,1.865,British Columbia,Canada,Summer
-1854-10-01,-0.232,2.485,British Columbia,Canada,Winter
+1854-10-01,-0.232,2.485,British Columbia,Canada,Summer
 1854-11-01,-3.475,4.727,British Columbia,Canada,Winter
 1854-12-01,-11.777,3.061,British Columbia,Canada,Winter
 1855-01-01,-11.911,3.758,British Columbia,Canada,Winter
@@ -289,7 +289,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1855-07-01,11.837,2.211,British Columbia,Canada,Summer
 1855-08-01,10.979,2.930,British Columbia,Canada,Summer
 1855-09-01,6.276,2.902,British Columbia,Canada,Summer
-1855-10-01,0.260,2.726,British Columbia,Canada,Winter
+1855-10-01,0.260,2.726,British Columbia,Canada,Summer
 1855-11-01,-7.439,2.567,British Columbia,Canada,Winter
 1855-12-01,-16.001,5.156,British Columbia,Canada,Winter
 1856-01-01,-11.064,2.063,British Columbia,Canada,Winter
@@ -301,7 +301,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1856-07-01,11.017,2.048,British Columbia,Canada,Summer
 1856-08-01,10.098,2.264,British Columbia,Canada,Summer
 1856-09-01,6.453,2.016,British Columbia,Canada,Summer
-1856-10-01,-0.829,1.748,British Columbia,Canada,Winter
+1856-10-01,-0.829,1.748,British Columbia,Canada,Summer
 1856-11-01,-6.073,1.838,British Columbia,Canada,Winter
 1856-12-01,-12.130,2.257,British Columbia,Canada,Winter
 1857-01-01,-14.874,1.746,British Columbia,Canada,Winter
@@ -313,7 +313,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1857-07-01,11.764,1.580,British Columbia,Canada,Summer
 1857-08-01,10.508,1.828,British Columbia,Canada,Summer
 1857-09-01,5.914,1.545,British Columbia,Canada,Summer
-1857-10-01,0.441,1.619,British Columbia,Canada,Winter
+1857-10-01,0.441,1.619,British Columbia,Canada,Summer
 1857-11-01,-5.530,2.225,British Columbia,Canada,Winter
 1857-12-01,-9.999,2.473,British Columbia,Canada,Winter
 1858-01-01,-13.854,1.848,British Columbia,Canada,Winter
@@ -325,7 +325,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1858-07-01,11.064,1.920,British Columbia,Canada,Summer
 1858-08-01,10.264,1.716,British Columbia,Canada,Summer
 1858-09-01,6.091,1.696,British Columbia,Canada,Summer
-1858-10-01,-0.871,1.757,British Columbia,Canada,Winter
+1858-10-01,-0.871,1.757,British Columbia,Canada,Summer
 1858-11-01,-5.477,2.522,British Columbia,Canada,Winter
 1858-12-01,-13.509,2.022,British Columbia,Canada,Winter
 1859-01-01,-13.048,1.560,British Columbia,Canada,Winter
@@ -337,7 +337,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1859-07-01,11.137,1.901,British Columbia,Canada,Summer
 1859-08-01,9.919,1.878,British Columbia,Canada,Summer
 1859-09-01,6.080,1.895,British Columbia,Canada,Summer
-1859-10-01,-1.052,2.742,British Columbia,Canada,Winter
+1859-10-01,-1.052,2.742,British Columbia,Canada,Summer
 1859-11-01,-9.658,5.808,British Columbia,Canada,Winter
 1859-12-01,-12.332,3.327,British Columbia,Canada,Winter
 1860-01-01,-12.611,2.424,British Columbia,Canada,Winter
@@ -349,7 +349,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1860-07-01,13.079,1.958,British Columbia,Canada,Summer
 1860-08-01,12.001,1.984,British Columbia,Canada,Summer
 1860-09-01,6.752,1.651,British Columbia,Canada,Summer
-1860-10-01,0.707,1.710,British Columbia,Canada,Winter
+1860-10-01,0.707,1.710,British Columbia,Canada,Summer
 1860-11-01,-5.050,2.090,British Columbia,Canada,Winter
 1860-12-01,-12.120,1.668,British Columbia,Canada,Winter
 1861-01-01,-14.225,2.463,British Columbia,Canada,Winter
@@ -361,7 +361,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1861-07-01,12.692,1.663,British Columbia,Canada,Summer
 1861-08-01,10.876,1.785,British Columbia,Canada,Summer
 1861-09-01,6.452,3.536,British Columbia,Canada,Summer
-1861-10-01,-0.572,1.961,British Columbia,Canada,Winter
+1861-10-01,-0.572,1.961,British Columbia,Canada,Summer
 1861-11-01,-7.296,2.073,British Columbia,Canada,Winter
 1861-12-01,-14.131,3.801,British Columbia,Canada,Winter
 1862-01-01,-16.083,2.634,British Columbia,Canada,Winter
@@ -373,7 +373,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1862-07-01,11.734,1.748,British Columbia,Canada,Summer
 1862-08-01,10.727,1.688,British Columbia,Canada,Summer
 1862-09-01,5.492,2.630,British Columbia,Canada,Summer
-1862-10-01,-1.112,1.832,British Columbia,Canada,Winter
+1862-10-01,-1.112,1.832,British Columbia,Canada,Summer
 1862-11-01,-6.854,3.153,British Columbia,Canada,Winter
 1862-12-01,-11.160,4.168,British Columbia,Canada,Winter
 1863-01-01,-13.161,2.694,British Columbia,Canada,Winter
@@ -385,7 +385,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1863-07-01,13.386,1.828,British Columbia,Canada,Summer
 1863-08-01,10.324,2.921,British Columbia,Canada,Summer
 1863-09-01,6.854,3.413,British Columbia,Canada,Summer
-1863-10-01,-0.188,1.661,British Columbia,Canada,Winter
+1863-10-01,-0.188,1.661,British Columbia,Canada,Summer
 1863-11-01,-7.178,2.298,British Columbia,Canada,Winter
 1863-12-01,-12.230,2.035,British Columbia,Canada,Winter
 1864-01-01,-14.097,3.615,British Columbia,Canada,Winter
@@ -397,7 +397,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1864-07-01,12.913,2.359,British Columbia,Canada,Summer
 1864-08-01,10.601,2.137,British Columbia,Canada,Summer
 1864-09-01,6.454,2.073,British Columbia,Canada,Summer
-1864-10-01,-0.074,2.705,British Columbia,Canada,Winter
+1864-10-01,-0.074,2.705,British Columbia,Canada,Summer
 1864-11-01,-6.697,2.855,British Columbia,Canada,Winter
 1864-12-01,-13.535,2.026,British Columbia,Canada,Winter
 1865-01-01,-13.075,1.842,British Columbia,Canada,Winter
@@ -409,7 +409,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1865-07-01,12.525,2.260,British Columbia,Canada,Summer
 1865-08-01,11.062,2.338,British Columbia,Canada,Summer
 1865-09-01,6.036,2.750,British Columbia,Canada,Summer
-1865-10-01,0.604,2.401,British Columbia,Canada,Winter
+1865-10-01,0.604,2.401,British Columbia,Canada,Summer
 1865-11-01,-4.880,2.123,British Columbia,Canada,Winter
 1865-12-01,-13.799,1.848,British Columbia,Canada,Winter
 1866-01-01,-14.579,2.628,British Columbia,Canada,Winter
@@ -421,7 +421,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1866-07-01,11.947,1.862,British Columbia,Canada,Summer
 1866-08-01,10.253,2.025,British Columbia,Canada,Summer
 1866-09-01,5.962,2.078,British Columbia,Canada,Summer
-1866-10-01,-0.939,2.217,British Columbia,Canada,Winter
+1866-10-01,-0.939,2.217,British Columbia,Canada,Summer
 1866-11-01,-4.705,1.996,British Columbia,Canada,Winter
 1866-12-01,-10.315,1.878,British Columbia,Canada,Winter
 1867-01-01,-13.564,2.087,British Columbia,Canada,Winter
@@ -433,7 +433,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1867-07-01,11.587,1.682,British Columbia,Canada,Summer
 1867-08-01,10.444,3.443,British Columbia,Canada,Summer
 1867-09-01,6.226,2.237,British Columbia,Canada,Summer
-1867-10-01,-0.454,1.770,British Columbia,Canada,Winter
+1867-10-01,-0.454,1.770,British Columbia,Canada,Summer
 1867-11-01,-5.427,2.183,British Columbia,Canada,Winter
 1867-12-01,-12.471,2.365,British Columbia,Canada,Winter
 1868-01-01,-17.145,2.590,British Columbia,Canada,Winter
@@ -445,7 +445,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1868-07-01,12.440,1.477,British Columbia,Canada,Summer
 1868-08-01,11.117,2.034,British Columbia,Canada,Summer
 1868-09-01,5.177,2.241,British Columbia,Canada,Summer
-1868-10-01,1.212,2.856,British Columbia,Canada,Winter
+1868-10-01,1.212,2.856,British Columbia,Canada,Summer
 1868-11-01,-5.727,2.748,British Columbia,Canada,Winter
 1868-12-01,-9.576,2.447,British Columbia,Canada,Winter
 1869-01-01,-12.429,4.229,British Columbia,Canada,Winter
@@ -457,7 +457,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1869-07-01,12.801,1.825,British Columbia,Canada,Summer
 1869-08-01,10.625,2.345,British Columbia,Canada,Summer
 1869-09-01,6.445,1.853,British Columbia,Canada,Summer
-1869-10-01,0.788,1.854,British Columbia,Canada,Winter
+1869-10-01,0.788,1.854,British Columbia,Canada,Summer
 1869-11-01,-4.957,2.121,British Columbia,Canada,Winter
 1869-12-01,-8.917,1.970,British Columbia,Canada,Winter
 1870-01-01,-13.494,2.158,British Columbia,Canada,Winter
@@ -469,7 +469,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1870-07-01,13.182,1.774,British Columbia,Canada,Summer
 1870-08-01,12.005,1.539,British Columbia,Canada,Summer
 1870-09-01,7.757,1.601,British Columbia,Canada,Summer
-1870-10-01,1.066,1.687,British Columbia,Canada,Winter
+1870-10-01,1.066,1.687,British Columbia,Canada,Summer
 1870-11-01,-5.117,2.114,British Columbia,Canada,Winter
 1870-12-01,-10.745,2.642,British Columbia,Canada,Winter
 1871-01-01,-12.944,2.754,British Columbia,Canada,Winter
@@ -481,7 +481,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1871-07-01,12.210,2.067,British Columbia,Canada,Summer
 1871-08-01,10.651,1.947,British Columbia,Canada,Summer
 1871-09-01,7.183,1.913,British Columbia,Canada,Summer
-1871-10-01,1.316,1.614,British Columbia,Canada,Winter
+1871-10-01,1.316,1.614,British Columbia,Canada,Summer
 1871-11-01,-7.657,3.242,British Columbia,Canada,Winter
 1871-12-01,-12.943,1.752,British Columbia,Canada,Winter
 1872-01-01,-12.408,3.239,British Columbia,Canada,Winter
@@ -493,7 +493,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1872-07-01,13.034,1.873,British Columbia,Canada,Summer
 1872-08-01,11.420,2.104,British Columbia,Canada,Summer
 1872-09-01,6.513,2.175,British Columbia,Canada,Summer
-1872-10-01,1.374,1.959,British Columbia,Canada,Winter
+1872-10-01,1.374,1.959,British Columbia,Canada,Summer
 1872-11-01,-8.039,1.956,British Columbia,Canada,Winter
 1872-12-01,-12.191,2.224,British Columbia,Canada,Winter
 1873-01-01,-12.969,1.835,British Columbia,Canada,Winter
@@ -505,7 +505,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1873-07-01,12.763,2.023,British Columbia,Canada,Summer
 1873-08-01,11.224,1.845,British Columbia,Canada,Summer
 1873-09-01,7.572,2.403,British Columbia,Canada,Summer
-1873-10-01,0.868,1.614,British Columbia,Canada,Winter
+1873-10-01,0.868,1.614,British Columbia,Canada,Summer
 1873-11-01,-5.662,1.530,British Columbia,Canada,Winter
 1873-12-01,-13.557,2.548,British Columbia,Canada,Winter
 1874-01-01,-15.449,4.412,British Columbia,Canada,Winter
@@ -517,7 +517,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1874-07-01,12.451,1.617,British Columbia,Canada,Summer
 1874-08-01,11.747,2.538,British Columbia,Canada,Summer
 1874-09-01,6.773,1.672,British Columbia,Canada,Summer
-1874-10-01,1.430,1.826,British Columbia,Canada,Winter
+1874-10-01,1.430,1.826,British Columbia,Canada,Summer
 1874-11-01,-9.492,2.965,British Columbia,Canada,Winter
 1874-12-01,-10.188,1.550,British Columbia,Canada,Winter
 1875-01-01,-19.051,2.450,British Columbia,Canada,Winter
@@ -529,7 +529,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1875-07-01,13.340,1.345,British Columbia,Canada,Summer
 1875-08-01,11.062,1.175,British Columbia,Canada,Summer
 1875-09-01,7.270,1.366,British Columbia,Canada,Summer
-1875-10-01,2.462,1.290,British Columbia,Canada,Winter
+1875-10-01,2.462,1.290,British Columbia,Canada,Summer
 1875-11-01,-10.784,2.897,British Columbia,Canada,Winter
 1875-12-01,-12.146,1.727,British Columbia,Canada,Winter
 1876-01-01,-16.816,1.753,British Columbia,Canada,Winter
@@ -541,7 +541,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1876-07-01,11.671,1.234,British Columbia,Canada,Summer
 1876-08-01,9.654,1.470,British Columbia,Canada,Summer
 1876-09-01,6.799,1.169,British Columbia,Canada,Summer
-1876-10-01,1.715,1.465,British Columbia,Canada,Winter
+1876-10-01,1.715,1.465,British Columbia,Canada,Summer
 1876-11-01,-7.797,1.694,British Columbia,Canada,Winter
 1876-12-01,-9.682,2.490,British Columbia,Canada,Winter
 1877-01-01,-11.419,2.033,British Columbia,Canada,Winter
@@ -553,7 +553,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1877-07-01,12.701,2.057,British Columbia,Canada,Summer
 1877-08-01,11.370,2.092,British Columbia,Canada,Summer
 1877-09-01,6.639,2.023,British Columbia,Canada,Summer
-1877-10-01,0.703,1.936,British Columbia,Canada,Winter
+1877-10-01,0.703,1.936,British Columbia,Canada,Summer
 1877-11-01,-5.043,2.003,British Columbia,Canada,Winter
 1877-12-01,-9.680,3.063,British Columbia,Canada,Winter
 1878-01-01,-10.747,2.240,British Columbia,Canada,Winter
@@ -565,7 +565,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1878-07-01,12.003,2.180,British Columbia,Canada,Summer
 1878-08-01,11.706,2.100,British Columbia,Canada,Summer
 1878-09-01,5.760,2.102,British Columbia,Canada,Summer
-1878-10-01,-0.115,2.171,British Columbia,Canada,Winter
+1878-10-01,-0.115,2.171,British Columbia,Canada,Summer
 1878-11-01,-4.633,1.985,British Columbia,Canada,Winter
 1878-12-01,-11.838,2.044,British Columbia,Canada,Winter
 1879-01-01,-14.148,2.239,British Columbia,Canada,Winter
@@ -577,7 +577,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1879-07-01,11.322,2.249,British Columbia,Canada,Summer
 1879-08-01,10.347,2.343,British Columbia,Canada,Summer
 1879-09-01,6.973,2.294,British Columbia,Canada,Summer
-1879-10-01,-0.614,2.095,British Columbia,Canada,Winter
+1879-10-01,-0.614,2.095,British Columbia,Canada,Summer
 1879-11-01,-6.542,2.121,British Columbia,Canada,Winter
 1879-12-01,-14.095,2.434,British Columbia,Canada,Winter
 1880-01-01,-15.127,2.306,British Columbia,Canada,Winter
@@ -589,7 +589,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1880-07-01,12.613,2.031,British Columbia,Canada,Summer
 1880-08-01,10.309,1.847,British Columbia,Canada,Summer
 1880-09-01,6.279,2.270,British Columbia,Canada,Summer
-1880-10-01,1.173,2.172,British Columbia,Canada,Winter
+1880-10-01,1.173,2.172,British Columbia,Canada,Summer
 1880-11-01,-7.120,1.745,British Columbia,Canada,Winter
 1880-12-01,-15.326,2.153,British Columbia,Canada,Winter
 1881-01-01,-16.220,3.933,British Columbia,Canada,Winter
@@ -601,7 +601,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1881-07-01,11.496,1.335,British Columbia,Canada,Summer
 1881-08-01,10.560,1.242,British Columbia,Canada,Summer
 1881-09-01,6.085,1.060,British Columbia,Canada,Summer
-1881-10-01,-1.186,1.321,British Columbia,Canada,Winter
+1881-10-01,-1.186,1.321,British Columbia,Canada,Summer
 1881-11-01,-7.194,1.277,British Columbia,Canada,Winter
 1881-12-01,-11.380,1.502,British Columbia,Canada,Winter
 1882-01-01,-13.770,1.618,British Columbia,Canada,Winter
@@ -613,7 +613,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1882-07-01,11.750,1.477,British Columbia,Canada,Summer
 1882-08-01,11.695,1.400,British Columbia,Canada,Summer
 1882-09-01,6.546,1.273,British Columbia,Canada,Summer
-1882-10-01,-0.123,1.093,British Columbia,Canada,Winter
+1882-10-01,-0.123,1.093,British Columbia,Canada,Summer
 1882-11-01,-7.224,1.193,British Columbia,Canada,Winter
 1882-12-01,-12.247,2.101,British Columbia,Canada,Winter
 1883-01-01,-14.918,1.297,British Columbia,Canada,Winter
@@ -625,7 +625,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1883-07-01,11.757,1.675,British Columbia,Canada,Summer
 1883-08-01,10.936,1.732,British Columbia,Canada,Summer
 1883-09-01,7.369,1.560,British Columbia,Canada,Summer
-1883-10-01,0.475,1.746,British Columbia,Canada,Winter
+1883-10-01,0.475,1.746,British Columbia,Canada,Summer
 1883-11-01,-10.084,1.052,British Columbia,Canada,Winter
 1883-12-01,-11.825,1.694,British Columbia,Canada,Winter
 1884-01-01,-12.698,1.587,British Columbia,Canada,Winter
@@ -637,7 +637,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1884-07-01,11.584,1.102,British Columbia,Canada,Summer
 1884-08-01,11.381,0.968,British Columbia,Canada,Summer
 1884-09-01,4.987,1.077,British Columbia,Canada,Summer
-1884-10-01,-1.242,1.263,British Columbia,Canada,Winter
+1884-10-01,-1.242,1.263,British Columbia,Canada,Summer
 1884-11-01,-4.782,0.969,British Columbia,Canada,Winter
 1884-12-01,-15.530,2.207,British Columbia,Canada,Winter
 1885-01-01,-14.870,1.465,British Columbia,Canada,Winter
@@ -649,7 +649,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1885-07-01,12.428,0.988,British Columbia,Canada,Summer
 1885-08-01,11.855,1.118,British Columbia,Canada,Summer
 1885-09-01,7.184,0.937,British Columbia,Canada,Summer
-1885-10-01,1.396,0.986,British Columbia,Canada,Winter
+1885-10-01,1.396,0.986,British Columbia,Canada,Summer
 1885-11-01,-4.622,1.377,British Columbia,Canada,Winter
 1885-12-01,-9.693,1.300,British Columbia,Canada,Winter
 1886-01-01,-18.512,1.815,British Columbia,Canada,Winter
@@ -661,7 +661,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1886-07-01,13.164,0.823,British Columbia,Canada,Summer
 1886-08-01,11.427,1.215,British Columbia,Canada,Summer
 1886-09-01,6.312,1.030,British Columbia,Canada,Summer
-1886-10-01,0.630,0.969,British Columbia,Canada,Winter
+1886-10-01,0.630,0.969,British Columbia,Canada,Summer
 1886-11-01,-6.846,0.884,British Columbia,Canada,Winter
 1886-12-01,-11.227,1.327,British Columbia,Canada,Winter
 1887-01-01,-15.990,0.980,British Columbia,Canada,Winter
@@ -673,7 +673,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1887-07-01,11.018,1.245,British Columbia,Canada,Summer
 1887-08-01,10.349,0.880,British Columbia,Canada,Summer
 1887-09-01,6.178,0.938,British Columbia,Canada,Summer
-1887-10-01,0.017,1.405,British Columbia,Canada,Winter
+1887-10-01,0.017,1.405,British Columbia,Canada,Summer
 1887-11-01,-7.064,0.964,British Columbia,Canada,Winter
 1887-12-01,-14.120,1.462,British Columbia,Canada,Winter
 1888-01-01,-17.550,4.139,British Columbia,Canada,Winter
@@ -685,7 +685,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1888-07-01,11.659,1.086,British Columbia,Canada,Summer
 1888-08-01,11.684,1.550,British Columbia,Canada,Summer
 1888-09-01,8.724,1.085,British Columbia,Canada,Summer
-1888-10-01,1.309,1.073,British Columbia,Canada,Winter
+1888-10-01,1.309,1.073,British Columbia,Canada,Summer
 1888-11-01,-7.081,1.019,British Columbia,Canada,Winter
 1888-12-01,-10.011,1.217,British Columbia,Canada,Winter
 1889-01-01,-12.012,1.810,British Columbia,Canada,Winter
@@ -697,7 +697,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1889-07-01,12.156,1.218,British Columbia,Canada,Summer
 1889-08-01,10.719,0.973,British Columbia,Canada,Summer
 1889-09-01,5.679,1.080,British Columbia,Canada,Summer
-1889-10-01,2.493,1.148,British Columbia,Canada,Winter
+1889-10-01,2.493,1.148,British Columbia,Canada,Summer
 1889-11-01,-5.394,1.342,British Columbia,Canada,Winter
 1889-12-01,-13.523,1.143,British Columbia,Canada,Winter
 1890-01-01,-18.284,1.752,British Columbia,Canada,Winter
@@ -709,7 +709,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1890-07-01,11.471,0.794,British Columbia,Canada,Summer
 1890-08-01,10.993,0.979,British Columbia,Canada,Summer
 1890-09-01,6.589,0.829,British Columbia,Canada,Summer
-1890-10-01,0.361,0.951,British Columbia,Canada,Winter
+1890-10-01,0.361,0.951,British Columbia,Canada,Summer
 1890-11-01,-3.397,0.793,British Columbia,Canada,Winter
 1890-12-01,-9.730,1.029,British Columbia,Canada,Winter
 1891-01-01,-9.175,0.719,British Columbia,Canada,Winter
@@ -721,7 +721,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1891-07-01,12.708,0.961,British Columbia,Canada,Summer
 1891-08-01,11.569,1.103,British Columbia,Canada,Summer
 1891-09-01,6.471,1.366,British Columbia,Canada,Summer
-1891-10-01,1.510,1.113,British Columbia,Canada,Winter
+1891-10-01,1.510,1.113,British Columbia,Canada,Summer
 1891-11-01,-6.476,1.030,British Columbia,Canada,Winter
 1891-12-01,-11.233,1.756,British Columbia,Canada,Winter
 1892-01-01,-13.117,1.022,British Columbia,Canada,Winter
@@ -733,7 +733,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1892-07-01,11.387,1.494,British Columbia,Canada,Summer
 1892-08-01,11.065,1.388,British Columbia,Canada,Summer
 1892-09-01,7.192,1.382,British Columbia,Canada,Summer
-1892-10-01,2.028,0.945,British Columbia,Canada,Winter
+1892-10-01,2.028,0.945,British Columbia,Canada,Summer
 1892-11-01,-8.559,1.911,British Columbia,Canada,Winter
 1892-12-01,-11.533,1.726,British Columbia,Canada,Winter
 1893-01-01,-13.655,0.772,British Columbia,Canada,Winter
@@ -745,7 +745,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1893-07-01,11.983,0.573,British Columbia,Canada,Summer
 1893-08-01,11.289,0.874,British Columbia,Canada,Summer
 1893-09-01,6.457,0.876,British Columbia,Canada,Summer
-1893-10-01,-0.810,0.771,British Columbia,Canada,Winter
+1893-10-01,-0.810,0.771,British Columbia,Canada,Summer
 1893-11-01,-9.723,0.581,British Columbia,Canada,Winter
 1893-12-01,-12.133,1.231,British Columbia,Canada,Winter
 1894-01-01,-15.885,1.187,British Columbia,Canada,Winter
@@ -757,7 +757,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1894-07-01,12.309,0.534,British Columbia,Canada,Summer
 1894-08-01,12.446,0.844,British Columbia,Canada,Summer
 1894-09-01,5.751,0.904,British Columbia,Canada,Summer
-1894-10-01,-0.149,0.566,British Columbia,Canada,Winter
+1894-10-01,-0.149,0.566,British Columbia,Canada,Summer
 1894-11-01,-6.237,1.097,British Columbia,Canada,Winter
 1894-12-01,-12.254,0.568,British Columbia,Canada,Winter
 1895-01-01,-15.791,0.632,British Columbia,Canada,Winter
@@ -769,7 +769,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1895-07-01,11.606,0.727,British Columbia,Canada,Summer
 1895-08-01,10.087,0.707,British Columbia,Canada,Summer
 1895-09-01,4.134,0.659,British Columbia,Canada,Summer
-1895-10-01,1.539,0.709,British Columbia,Canada,Winter
+1895-10-01,1.539,0.709,British Columbia,Canada,Summer
 1895-11-01,-5.864,0.823,British Columbia,Canada,Winter
 1895-12-01,-11.877,1.006,British Columbia,Canada,Winter
 1896-01-01,-16.656,0.981,British Columbia,Canada,Winter
@@ -781,7 +781,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1896-07-01,12.733,0.586,British Columbia,Canada,Summer
 1896-08-01,11.389,0.583,British Columbia,Canada,Summer
 1896-09-01,6.419,0.599,British Columbia,Canada,Summer
-1896-10-01,1.047,0.689,British Columbia,Canada,Winter
+1896-10-01,1.047,0.689,British Columbia,Canada,Summer
 1896-11-01,-11.125,1.090,British Columbia,Canada,Winter
 1896-12-01,-8.780,0.680,British Columbia,Canada,Winter
 1897-01-01,-12.778,1.375,British Columbia,Canada,Winter
@@ -793,7 +793,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1897-07-01,11.105,0.555,British Columbia,Canada,Summer
 1897-08-01,12.436,0.527,British Columbia,Canada,Summer
 1897-09-01,6.003,0.676,British Columbia,Canada,Summer
-1897-10-01,0.379,1.017,British Columbia,Canada,Winter
+1897-10-01,0.379,1.017,British Columbia,Canada,Summer
 1897-11-01,-9.942,1.459,British Columbia,Canada,Winter
 1897-12-01,-10.524,1.308,British Columbia,Canada,Winter
 1898-01-01,-11.763,1.445,British Columbia,Canada,Winter
@@ -805,7 +805,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1898-07-01,12.003,0.832,British Columbia,Canada,Summer
 1898-08-01,12.774,0.782,British Columbia,Canada,Summer
 1898-09-01,7.484,0.450,British Columbia,Canada,Summer
-1898-10-01,-0.553,0.462,British Columbia,Canada,Winter
+1898-10-01,-0.553,0.462,British Columbia,Canada,Summer
 1898-11-01,-8.843,0.668,British Columbia,Canada,Winter
 1898-12-01,-10.947,1.053,British Columbia,Canada,Winter
 1899-01-01,-12.815,0.919,British Columbia,Canada,Winter
@@ -817,7 +817,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1899-07-01,12.819,0.385,British Columbia,Canada,Summer
 1899-08-01,9.871,0.447,British Columbia,Canada,Summer
 1899-09-01,6.756,0.601,British Columbia,Canada,Summer
-1899-10-01,-1.061,0.538,British Columbia,Canada,Winter
+1899-10-01,-1.061,0.538,British Columbia,Canada,Summer
 1899-11-01,-2.821,0.563,British Columbia,Canada,Winter
 1899-12-01,-10.929,0.596,British Columbia,Canada,Winter
 1900-01-01,-11.555,0.949,British Columbia,Canada,Winter
@@ -829,7 +829,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1900-07-01,11.731,0.710,British Columbia,Canada,Summer
 1900-08-01,9.703,0.502,British Columbia,Canada,Summer
 1900-09-01,6.395,0.524,British Columbia,Canada,Summer
-1900-10-01,-0.170,0.788,British Columbia,Canada,Winter
+1900-10-01,-0.170,0.788,British Columbia,Canada,Summer
 1900-11-01,-8.238,0.710,British Columbia,Canada,Winter
 1900-12-01,-8.635,0.677,British Columbia,Canada,Winter
 1901-01-01,-13.398,0.664,British Columbia,Canada,Winter
@@ -841,7 +841,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1901-07-01,11.256,0.187,British Columbia,Canada,Summer
 1901-08-01,11.199,0.414,British Columbia,Canada,Summer
 1901-09-01,5.833,0.734,British Columbia,Canada,Summer
-1901-10-01,2.578,0.743,British Columbia,Canada,Winter
+1901-10-01,2.578,0.743,British Columbia,Canada,Summer
 1901-11-01,-6.107,0.708,British Columbia,Canada,Winter
 1901-12-01,-9.722,0.628,British Columbia,Canada,Winter
 1902-01-01,-12.201,0.978,British Columbia,Canada,Winter
@@ -853,7 +853,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1902-07-01,11.151,0.651,British Columbia,Canada,Summer
 1902-08-01,10.309,0.884,British Columbia,Canada,Summer
 1902-09-01,5.829,0.473,British Columbia,Canada,Summer
-1902-10-01,2.217,0.455,British Columbia,Canada,Winter
+1902-10-01,2.217,0.455,British Columbia,Canada,Summer
 1902-11-01,-8.081,0.303,British Columbia,Canada,Winter
 1902-12-01,-13.816,0.830,British Columbia,Canada,Winter
 1903-01-01,-12.039,0.660,British Columbia,Canada,Winter
@@ -865,7 +865,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1903-07-01,11.579,0.795,British Columbia,Canada,Summer
 1903-08-01,11.111,0.561,British Columbia,Canada,Summer
 1903-09-01,5.126,0.594,British Columbia,Canada,Summer
-1903-10-01,0.549,0.789,British Columbia,Canada,Winter
+1903-10-01,0.549,0.789,British Columbia,Canada,Summer
 1903-11-01,-7.172,0.566,British Columbia,Canada,Winter
 1903-12-01,-8.479,0.661,British Columbia,Canada,Winter
 1904-01-01,-12.831,0.866,British Columbia,Canada,Winter
@@ -877,7 +877,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1904-07-01,11.333,0.583,British Columbia,Canada,Summer
 1904-08-01,11.018,0.521,British Columbia,Canada,Summer
 1904-09-01,6.561,0.330,British Columbia,Canada,Summer
-1904-10-01,2.292,0.425,British Columbia,Canada,Winter
+1904-10-01,2.292,0.425,British Columbia,Canada,Summer
 1904-11-01,-3.123,0.564,British Columbia,Canada,Winter
 1904-12-01,-9.176,0.501,British Columbia,Canada,Winter
 1905-01-01,-13.026,0.503,British Columbia,Canada,Winter
@@ -889,7 +889,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1905-07-01,13.135,0.405,British Columbia,Canada,Summer
 1905-08-01,10.931,0.424,British Columbia,Canada,Summer
 1905-09-01,6.177,0.290,British Columbia,Canada,Summer
-1905-10-01,-0.960,0.570,British Columbia,Canada,Winter
+1905-10-01,-0.960,0.570,British Columbia,Canada,Summer
 1905-11-01,-4.116,0.448,British Columbia,Canada,Winter
 1905-12-01,-9.229,0.781,British Columbia,Canada,Winter
 1906-01-01,-13.433,1.078,British Columbia,Canada,Winter
@@ -901,7 +901,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1906-07-01,14.031,0.529,British Columbia,Canada,Summer
 1906-08-01,10.855,0.396,British Columbia,Canada,Summer
 1906-09-01,6.081,0.380,British Columbia,Canada,Summer
-1906-10-01,2.051,0.293,British Columbia,Canada,Winter
+1906-10-01,2.051,0.293,British Columbia,Canada,Summer
 1906-11-01,-5.710,0.413,British Columbia,Canada,Winter
 1906-12-01,-13.786,1.026,British Columbia,Canada,Winter
 1907-01-01,-19.730,1.247,British Columbia,Canada,Winter
@@ -913,7 +913,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1907-07-01,12.391,0.454,British Columbia,Canada,Summer
 1907-08-01,9.930,0.464,British Columbia,Canada,Summer
 1907-09-01,6.859,0.319,British Columbia,Canada,Summer
-1907-10-01,2.415,0.415,British Columbia,Canada,Winter
+1907-10-01,2.415,0.415,British Columbia,Canada,Summer
 1907-11-01,-4.327,0.380,British Columbia,Canada,Winter
 1907-12-01,-9.620,0.489,British Columbia,Canada,Winter
 1908-01-01,-10.761,0.767,British Columbia,Canada,Winter
@@ -925,7 +925,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1908-07-01,12.201,0.449,British Columbia,Canada,Summer
 1908-08-01,10.883,0.634,British Columbia,Canada,Summer
 1908-09-01,5.709,0.300,British Columbia,Canada,Summer
-1908-10-01,-0.237,0.422,British Columbia,Canada,Winter
+1908-10-01,-0.237,0.422,British Columbia,Canada,Summer
 1908-11-01,-5.221,0.443,British Columbia,Canada,Winter
 1908-12-01,-11.723,0.885,British Columbia,Canada,Winter
 1909-01-01,-20.224,0.986,British Columbia,Canada,Winter
@@ -937,7 +937,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1909-07-01,11.620,0.286,British Columbia,Canada,Summer
 1909-08-01,9.816,0.350,British Columbia,Canada,Summer
 1909-09-01,7.411,0.418,British Columbia,Canada,Summer
-1909-10-01,0.921,0.397,British Columbia,Canada,Winter
+1909-10-01,0.921,0.397,British Columbia,Canada,Summer
 1909-11-01,-9.362,0.286,British Columbia,Canada,Winter
 1909-12-01,-13.871,0.268,British Columbia,Canada,Winter
 1910-01-01,-12.220,0.684,British Columbia,Canada,Winter
@@ -949,7 +949,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1910-07-01,11.724,0.267,British Columbia,Canada,Summer
 1910-08-01,9.656,0.635,British Columbia,Canada,Summer
 1910-09-01,6.792,0.499,British Columbia,Canada,Summer
-1910-10-01,0.983,0.318,British Columbia,Canada,Winter
+1910-10-01,0.983,0.318,British Columbia,Canada,Summer
 1910-11-01,-6.921,0.535,British Columbia,Canada,Winter
 1910-12-01,-9.896,0.652,British Columbia,Canada,Winter
 1911-01-01,-18.793,0.447,British Columbia,Canada,Winter
@@ -961,7 +961,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1911-07-01,12.004,0.230,British Columbia,Canada,Summer
 1911-08-01,10.750,0.469,British Columbia,Canada,Summer
 1911-09-01,6.420,0.417,British Columbia,Canada,Summer
-1911-10-01,1.452,0.249,British Columbia,Canada,Winter
+1911-10-01,1.452,0.249,British Columbia,Canada,Summer
 1911-11-01,-9.083,0.333,British Columbia,Canada,Winter
 1911-12-01,-10.430,0.578,British Columbia,Canada,Winter
 1912-01-01,-14.585,0.646,British Columbia,Canada,Winter
@@ -973,7 +973,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1912-07-01,11.370,0.208,British Columbia,Canada,Summer
 1912-08-01,10.334,0.318,British Columbia,Canada,Summer
 1912-09-01,6.510,0.396,British Columbia,Canada,Summer
-1912-10-01,0.722,0.389,British Columbia,Canada,Winter
+1912-10-01,0.722,0.389,British Columbia,Canada,Summer
 1912-11-01,-4.915,0.230,British Columbia,Canada,Winter
 1912-12-01,-9.298,0.434,British Columbia,Canada,Winter
 1913-01-01,-17.108,0.398,British Columbia,Canada,Winter
@@ -985,7 +985,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1913-07-01,11.270,0.172,British Columbia,Canada,Summer
 1913-08-01,10.989,0.349,British Columbia,Canada,Summer
 1913-09-01,6.003,0.328,British Columbia,Canada,Summer
-1913-10-01,-0.649,0.233,British Columbia,Canada,Winter
+1913-10-01,-0.649,0.233,British Columbia,Canada,Summer
 1913-11-01,-5.465,0.453,British Columbia,Canada,Winter
 1913-12-01,-8.853,0.716,British Columbia,Canada,Winter
 1914-01-01,-12.986,0.638,British Columbia,Canada,Winter
@@ -997,7 +997,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1914-07-01,11.037,0.413,British Columbia,Canada,Summer
 1914-08-01,10.870,0.500,British Columbia,Canada,Summer
 1914-09-01,5.912,0.348,British Columbia,Canada,Summer
-1914-10-01,2.667,0.579,British Columbia,Canada,Winter
+1914-10-01,2.667,0.579,British Columbia,Canada,Summer
 1914-11-01,-5.287,0.451,British Columbia,Canada,Winter
 1914-12-01,-14.144,0.755,British Columbia,Canada,Winter
 1915-01-01,-11.601,0.583,British Columbia,Canada,Winter
@@ -1009,7 +1009,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1915-07-01,12.784,0.291,British Columbia,Canada,Summer
 1915-08-01,12.726,0.394,British Columbia,Canada,Summer
 1915-09-01,6.611,0.318,British Columbia,Canada,Summer
-1915-10-01,0.797,0.245,British Columbia,Canada,Winter
+1915-10-01,0.797,0.245,British Columbia,Canada,Summer
 1915-11-01,-6.965,0.562,British Columbia,Canada,Winter
 1915-12-01,-10.035,0.333,British Columbia,Canada,Winter
 1916-01-01,-20.908,0.699,British Columbia,Canada,Winter
@@ -1021,7 +1021,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1916-07-01,10.648,0.249,British Columbia,Canada,Summer
 1916-08-01,10.939,0.274,British Columbia,Canada,Summer
 1916-09-01,6.817,0.287,British Columbia,Canada,Summer
-1916-10-01,0.991,0.328,British Columbia,Canada,Winter
+1916-10-01,0.991,0.328,British Columbia,Canada,Summer
 1916-11-01,-6.510,0.238,British Columbia,Canada,Winter
 1916-12-01,-14.699,0.370,British Columbia,Canada,Winter
 1917-01-01,-14.934,0.659,British Columbia,Canada,Winter
@@ -1033,7 +1033,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1917-07-01,11.312,0.377,British Columbia,Canada,Summer
 1917-08-01,11.103,0.245,British Columbia,Canada,Summer
 1917-09-01,7.127,0.333,British Columbia,Canada,Summer
-1917-10-01,0.928,0.240,British Columbia,Canada,Winter
+1917-10-01,0.928,0.240,British Columbia,Canada,Summer
 1917-11-01,-1.838,0.548,British Columbia,Canada,Winter
 1917-12-01,-16.881,0.446,British Columbia,Canada,Winter
 1918-01-01,-11.876,0.718,British Columbia,Canada,Winter
@@ -1045,7 +1045,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1918-07-01,12.299,0.221,British Columbia,Canada,Summer
 1918-08-01,10.632,0.200,British Columbia,Canada,Summer
 1918-09-01,8.806,0.260,British Columbia,Canada,Summer
-1918-10-01,1.181,0.363,British Columbia,Canada,Winter
+1918-10-01,1.181,0.363,British Columbia,Canada,Summer
 1918-11-01,-5.157,0.436,British Columbia,Canada,Winter
 1918-12-01,-10.053,0.250,British Columbia,Canada,Winter
 1919-01-01,-9.376,0.487,British Columbia,Canada,Winter
@@ -1057,7 +1057,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1919-07-01,11.641,0.361,British Columbia,Canada,Summer
 1919-08-01,11.557,0.354,British Columbia,Canada,Summer
 1919-09-01,7.716,0.266,British Columbia,Canada,Summer
-1919-10-01,-1.577,0.299,British Columbia,Canada,Winter
+1919-10-01,-1.577,0.299,British Columbia,Canada,Summer
 1919-11-01,-9.277,0.287,British Columbia,Canada,Winter
 1919-12-01,-12.926,0.593,British Columbia,Canada,Winter
 1920-01-01,-14.661,0.271,British Columbia,Canada,Winter
@@ -1069,7 +1069,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1920-07-01,13.550,0.505,British Columbia,Canada,Summer
 1920-08-01,11.092,0.389,British Columbia,Canada,Summer
 1920-09-01,6.079,0.468,British Columbia,Canada,Summer
-1920-10-01,-0.278,0.493,British Columbia,Canada,Winter
+1920-10-01,-0.278,0.493,British Columbia,Canada,Summer
 1920-11-01,-5.190,0.371,British Columbia,Canada,Winter
 1920-12-01,-10.631,0.833,British Columbia,Canada,Winter
 1921-01-01,-13.314,0.470,British Columbia,Canada,Winter
@@ -1081,7 +1081,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1921-07-01,11.345,0.378,British Columbia,Canada,Summer
 1921-08-01,10.640,0.261,British Columbia,Canada,Summer
 1921-09-01,5.925,0.248,British Columbia,Canada,Summer
-1921-10-01,2.373,0.448,British Columbia,Canada,Winter
+1921-10-01,2.373,0.448,British Columbia,Canada,Summer
 1921-11-01,-8.043,0.496,British Columbia,Canada,Winter
 1921-12-01,-11.978,0.748,British Columbia,Canada,Winter
 1922-01-01,-12.716,0.681,British Columbia,Canada,Winter
@@ -1093,7 +1093,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1922-07-01,12.183,0.292,British Columbia,Canada,Summer
 1922-08-01,11.823,0.379,British Columbia,Canada,Summer
 1922-09-01,7.100,0.378,British Columbia,Canada,Summer
-1922-10-01,1.874,0.309,British Columbia,Canada,Winter
+1922-10-01,1.874,0.309,British Columbia,Canada,Summer
 1922-11-01,-4.978,0.597,British Columbia,Canada,Winter
 1922-12-01,-14.340,0.325,British Columbia,Canada,Winter
 1923-01-01,-13.983,0.506,British Columbia,Canada,Winter
@@ -1105,7 +1105,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1923-07-01,13.087,0.252,British Columbia,Canada,Summer
 1923-08-01,12.399,0.240,British Columbia,Canada,Summer
 1923-09-01,7.656,0.390,British Columbia,Canada,Summer
-1923-10-01,2.596,0.587,British Columbia,Canada,Winter
+1923-10-01,2.596,0.587,British Columbia,Canada,Summer
 1923-11-01,-3.119,0.498,British Columbia,Canada,Winter
 1923-12-01,-10.157,0.255,British Columbia,Canada,Winter
 1924-01-01,-12.774,0.364,British Columbia,Canada,Winter
@@ -1117,7 +1117,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1924-07-01,12.418,0.303,British Columbia,Canada,Summer
 1924-08-01,10.963,0.346,British Columbia,Canada,Summer
 1924-09-01,6.960,0.331,British Columbia,Canada,Summer
-1924-10-01,1.627,0.256,British Columbia,Canada,Winter
+1924-10-01,1.627,0.256,British Columbia,Canada,Summer
 1924-11-01,-6.363,0.374,British Columbia,Canada,Winter
 1924-12-01,-15.158,0.516,British Columbia,Canada,Winter
 1925-01-01,-14.232,0.385,British Columbia,Canada,Winter
@@ -1129,7 +1129,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1925-07-01,12.833,0.364,British Columbia,Canada,Summer
 1925-08-01,11.028,0.292,British Columbia,Canada,Summer
 1925-09-01,6.838,0.376,British Columbia,Canada,Summer
-1925-10-01,0.280,0.319,British Columbia,Canada,Winter
+1925-10-01,0.280,0.319,British Columbia,Canada,Summer
 1925-11-01,-5.203,0.230,British Columbia,Canada,Winter
 1925-12-01,-6.352,0.425,British Columbia,Canada,Winter
 1926-01-01,-7.025,0.462,British Columbia,Canada,Winter
@@ -1141,7 +1141,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1926-07-01,12.906,0.225,British Columbia,Canada,Summer
 1926-08-01,11.349,0.373,British Columbia,Canada,Summer
 1926-09-01,5.010,0.281,British Columbia,Canada,Summer
-1926-10-01,1.807,0.293,British Columbia,Canada,Winter
+1926-10-01,1.807,0.293,British Columbia,Canada,Summer
 1926-11-01,-5.253,0.353,British Columbia,Canada,Winter
 1926-12-01,-10.791,0.425,British Columbia,Canada,Winter
 1927-01-01,-13.508,0.390,British Columbia,Canada,Winter
@@ -1153,7 +1153,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1927-07-01,13.116,0.312,British Columbia,Canada,Summer
 1927-08-01,13.000,0.290,British Columbia,Canada,Summer
 1927-09-01,6.889,0.217,British Columbia,Canada,Summer
-1927-10-01,0.882,0.166,British Columbia,Canada,Winter
+1927-10-01,0.882,0.166,British Columbia,Canada,Summer
 1927-11-01,-10.651,0.495,British Columbia,Canada,Winter
 1927-12-01,-16.970,0.509,British Columbia,Canada,Winter
 1928-01-01,-10.642,0.457,British Columbia,Canada,Winter
@@ -1165,7 +1165,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1928-07-01,13.162,0.395,British Columbia,Canada,Summer
 1928-08-01,10.677,0.317,British Columbia,Canada,Summer
 1928-09-01,7.477,0.305,British Columbia,Canada,Summer
-1928-10-01,0.531,0.247,British Columbia,Canada,Winter
+1928-10-01,0.531,0.247,British Columbia,Canada,Summer
 1928-11-01,-3.586,0.303,British Columbia,Canada,Winter
 1928-12-01,-8.981,0.434,British Columbia,Canada,Winter
 1929-01-01,-14.594,0.388,British Columbia,Canada,Winter
@@ -1177,7 +1177,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1929-07-01,11.483,0.252,British Columbia,Canada,Summer
 1929-08-01,11.459,0.261,British Columbia,Canada,Summer
 1929-09-01,7.790,0.200,British Columbia,Canada,Summer
-1929-10-01,3.029,0.288,British Columbia,Canada,Winter
+1929-10-01,3.029,0.288,British Columbia,Canada,Summer
 1929-11-01,-3.860,0.355,British Columbia,Canada,Winter
 1929-12-01,-12.109,0.256,British Columbia,Canada,Winter
 1930-01-01,-18.287,1.018,British Columbia,Canada,Winter
@@ -1189,7 +1189,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1930-07-01,12.131,0.270,British Columbia,Canada,Summer
 1930-08-01,12.489,0.192,British Columbia,Canada,Summer
 1930-09-01,7.328,0.229,British Columbia,Canada,Summer
-1930-10-01,-0.266,0.260,British Columbia,Canada,Winter
+1930-10-01,-0.266,0.260,British Columbia,Canada,Summer
 1930-11-01,-4.750,0.332,British Columbia,Canada,Winter
 1930-12-01,-5.343,0.343,British Columbia,Canada,Winter
 1931-01-01,-6.995,0.299,British Columbia,Canada,Winter
@@ -1201,7 +1201,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1931-07-01,12.441,0.355,British Columbia,Canada,Summer
 1931-08-01,11.581,0.222,British Columbia,Canada,Summer
 1931-09-01,6.837,0.197,British Columbia,Canada,Summer
-1931-10-01,1.470,0.192,British Columbia,Canada,Winter
+1931-10-01,1.470,0.192,British Columbia,Canada,Summer
 1931-11-01,-7.742,0.387,British Columbia,Canada,Winter
 1931-12-01,-10.378,0.367,British Columbia,Canada,Winter
 1932-01-01,-13.278,0.464,British Columbia,Canada,Winter
@@ -1213,7 +1213,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1932-07-01,10.755,0.271,British Columbia,Canada,Summer
 1932-08-01,12.305,0.222,British Columbia,Canada,Summer
 1932-09-01,6.854,0.150,British Columbia,Canada,Summer
-1932-10-01,0.963,0.256,British Columbia,Canada,Winter
+1932-10-01,0.963,0.256,British Columbia,Canada,Summer
 1932-11-01,-7.041,0.179,British Columbia,Canada,Winter
 1932-12-01,-13.432,0.257,British Columbia,Canada,Winter
 1933-01-01,-13.550,0.477,British Columbia,Canada,Winter
@@ -1225,7 +1225,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1933-07-01,10.670,0.291,British Columbia,Canada,Summer
 1933-08-01,12.567,0.133,British Columbia,Canada,Summer
 1933-09-01,5.729,0.205,British Columbia,Canada,Summer
-1933-10-01,-0.559,0.213,British Columbia,Canada,Winter
+1933-10-01,-0.559,0.213,British Columbia,Canada,Summer
 1933-11-01,-3.148,0.246,British Columbia,Canada,Winter
 1933-12-01,-17.329,0.623,British Columbia,Canada,Winter
 1934-01-01,-10.502,0.353,British Columbia,Canada,Winter
@@ -1237,7 +1237,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1934-07-01,11.856,0.241,British Columbia,Canada,Summer
 1934-08-01,11.575,0.218,British Columbia,Canada,Summer
 1934-09-01,5.918,0.192,British Columbia,Canada,Summer
-1934-10-01,1.749,0.211,British Columbia,Canada,Winter
+1934-10-01,1.749,0.211,British Columbia,Canada,Summer
 1934-11-01,-4.296,0.370,British Columbia,Canada,Winter
 1934-12-01,-11.812,0.212,British Columbia,Canada,Winter
 1935-01-01,-16.358,0.322,British Columbia,Canada,Winter
@@ -1249,7 +1249,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1935-07-01,12.357,0.162,British Columbia,Canada,Summer
 1935-08-01,10.236,0.207,British Columbia,Canada,Summer
 1935-09-01,7.681,0.146,British Columbia,Canada,Summer
-1935-10-01,-0.148,0.202,British Columbia,Canada,Winter
+1935-10-01,-0.148,0.202,British Columbia,Canada,Summer
 1935-11-01,-7.548,0.254,British Columbia,Canada,Winter
 1935-12-01,-7.873,0.273,British Columbia,Canada,Winter
 1936-01-01,-14.115,0.393,British Columbia,Canada,Winter
@@ -1261,7 +1261,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1936-07-01,12.253,0.212,British Columbia,Canada,Summer
 1936-08-01,12.193,0.214,British Columbia,Canada,Summer
 1936-09-01,6.149,0.205,British Columbia,Canada,Summer
-1936-10-01,2.887,0.167,British Columbia,Canada,Winter
+1936-10-01,2.887,0.167,British Columbia,Canada,Summer
 1936-11-01,-3.418,0.233,British Columbia,Canada,Winter
 1936-12-01,-12.018,0.275,British Columbia,Canada,Winter
 1937-01-01,-17.508,1.060,British Columbia,Canada,Winter
@@ -1273,7 +1273,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1937-07-01,12.076,0.301,British Columbia,Canada,Summer
 1937-08-01,9.754,0.297,British Columbia,Canada,Summer
 1937-09-01,8.209,0.171,British Columbia,Canada,Summer
-1937-10-01,2.879,0.177,British Columbia,Canada,Winter
+1937-10-01,2.879,0.177,British Columbia,Canada,Summer
 1937-11-01,-6.517,0.303,British Columbia,Canada,Winter
 1937-12-01,-12.281,0.395,British Columbia,Canada,Winter
 1938-01-01,-10.852,0.237,British Columbia,Canada,Winter
@@ -1285,7 +1285,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1938-07-01,12.995,0.159,British Columbia,Canada,Summer
 1938-08-01,10.853,0.153,British Columbia,Canada,Summer
 1938-09-01,10.169,0.158,British Columbia,Canada,Summer
-1938-10-01,2.971,0.227,British Columbia,Canada,Winter
+1938-10-01,2.971,0.227,British Columbia,Canada,Summer
 1938-11-01,-6.014,0.275,British Columbia,Canada,Winter
 1938-12-01,-10.410,0.299,British Columbia,Canada,Winter
 1939-01-01,-9.106,0.568,British Columbia,Canada,Winter
@@ -1297,7 +1297,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1939-07-01,12.044,0.204,British Columbia,Canada,Summer
 1939-08-01,11.506,0.276,British Columbia,Canada,Summer
 1939-09-01,6.831,0.239,British Columbia,Canada,Summer
-1939-10-01,0.133,0.161,British Columbia,Canada,Winter
+1939-10-01,0.133,0.161,British Columbia,Canada,Summer
 1939-11-01,-2.927,0.388,British Columbia,Canada,Winter
 1939-12-01,-6.246,0.567,British Columbia,Canada,Winter
 1940-01-01,-11.369,0.419,British Columbia,Canada,Winter
@@ -1309,7 +1309,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1940-07-01,12.852,0.185,British Columbia,Canada,Summer
 1940-08-01,11.511,0.203,British Columbia,Canada,Summer
 1940-09-01,9.351,0.333,British Columbia,Canada,Summer
-1940-10-01,2.488,0.210,British Columbia,Canada,Winter
+1940-10-01,2.488,0.210,British Columbia,Canada,Summer
 1940-11-01,-8.648,0.266,British Columbia,Canada,Winter
 1940-12-01,-9.295,0.332,British Columbia,Canada,Winter
 1941-01-01,-11.197,0.407,British Columbia,Canada,Winter
@@ -1321,7 +1321,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1941-07-01,13.994,0.202,British Columbia,Canada,Summer
 1941-08-01,12.114,0.264,British Columbia,Canada,Summer
 1941-09-01,5.606,0.305,British Columbia,Canada,Summer
-1941-10-01,1.892,0.252,British Columbia,Canada,Winter
+1941-10-01,1.892,0.252,British Columbia,Canada,Summer
 1941-11-01,-4.900,0.508,British Columbia,Canada,Winter
 1941-12-01,-11.752,0.318,British Columbia,Canada,Winter
 1942-01-01,-8.507,0.616,British Columbia,Canada,Winter
@@ -1333,7 +1333,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1942-07-01,13.279,0.259,British Columbia,Canada,Summer
 1942-08-01,12.530,0.221,British Columbia,Canada,Summer
 1942-09-01,8.022,0.218,British Columbia,Canada,Summer
-1942-10-01,2.451,0.159,British Columbia,Canada,Winter
+1942-10-01,2.451,0.159,British Columbia,Canada,Summer
 1942-11-01,-8.695,0.305,British Columbia,Canada,Winter
 1942-12-01,-12.792,0.532,British Columbia,Canada,Winter
 1943-01-01,-16.800,0.227,British Columbia,Canada,Winter
@@ -1345,7 +1345,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1943-07-01,11.811,0.188,British Columbia,Canada,Summer
 1943-08-01,10.750,0.180,British Columbia,Canada,Summer
 1943-09-01,7.810,0.205,British Columbia,Canada,Summer
-1943-10-01,2.080,0.198,British Columbia,Canada,Winter
+1943-10-01,2.080,0.198,British Columbia,Canada,Summer
 1943-11-01,-2.536,0.164,British Columbia,Canada,Winter
 1943-12-01,-6.881,0.252,British Columbia,Canada,Winter
 1944-01-01,-8.709,0.359,British Columbia,Canada,Winter
@@ -1357,7 +1357,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1944-07-01,12.520,0.203,British Columbia,Canada,Summer
 1944-08-01,10.957,0.174,British Columbia,Canada,Summer
 1944-09-01,8.033,0.151,British Columbia,Canada,Summer
-1944-10-01,3.396,0.236,British Columbia,Canada,Winter
+1944-10-01,3.396,0.236,British Columbia,Canada,Summer
 1944-11-01,-4.748,0.317,British Columbia,Canada,Winter
 1944-12-01,-10.151,0.329,British Columbia,Canada,Winter
 1945-01-01,-9.563,0.360,British Columbia,Canada,Winter
@@ -1369,7 +1369,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1945-07-01,11.991,0.158,British Columbia,Canada,Summer
 1945-08-01,12.105,0.239,British Columbia,Canada,Summer
 1945-09-01,6.272,0.198,British Columbia,Canada,Summer
-1945-10-01,1.900,0.263,British Columbia,Canada,Winter
+1945-10-01,1.900,0.263,British Columbia,Canada,Summer
 1945-11-01,-9.896,0.325,British Columbia,Canada,Winter
 1945-12-01,-11.795,0.373,British Columbia,Canada,Winter
 1946-01-01,-10.578,0.419,British Columbia,Canada,Winter
@@ -1381,7 +1381,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1946-07-01,11.639,0.245,British Columbia,Canada,Summer
 1946-08-01,11.525,0.233,British Columbia,Canada,Summer
 1946-09-01,7.315,0.184,British Columbia,Canada,Summer
-1946-10-01,0.271,0.153,British Columbia,Canada,Winter
+1946-10-01,0.271,0.153,British Columbia,Canada,Summer
 1946-11-01,-8.745,0.243,British Columbia,Canada,Winter
 1946-12-01,-13.364,0.266,British Columbia,Canada,Winter
 1947-01-01,-13.773,0.520,British Columbia,Canada,Winter
@@ -1393,7 +1393,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1947-07-01,11.992,0.262,British Columbia,Canada,Summer
 1947-08-01,10.193,0.159,British Columbia,Canada,Summer
 1947-09-01,7.432,0.201,British Columbia,Canada,Summer
-1947-10-01,1.891,0.170,British Columbia,Canada,Winter
+1947-10-01,1.891,0.170,British Columbia,Canada,Summer
 1947-11-01,-4.979,0.144,British Columbia,Canada,Winter
 1947-12-01,-8.128,0.194,British Columbia,Canada,Winter
 1948-01-01,-9.067,0.369,British Columbia,Canada,Winter
@@ -1405,7 +1405,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1948-07-01,12.127,0.193,British Columbia,Canada,Summer
 1948-08-01,10.997,0.192,British Columbia,Canada,Summer
 1948-09-01,6.665,0.218,British Columbia,Canada,Summer
-1948-10-01,1.412,0.228,British Columbia,Canada,Winter
+1948-10-01,1.412,0.228,British Columbia,Canada,Summer
 1948-11-01,-5.793,0.234,British Columbia,Canada,Winter
 1948-12-01,-15.531,0.362,British Columbia,Canada,Winter
 1949-01-01,-14.691,0.320,British Columbia,Canada,Winter
@@ -1417,7 +1417,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1949-07-01,11.465,0.159,British Columbia,Canada,Summer
 1949-08-01,10.890,0.205,British Columbia,Canada,Summer
 1949-09-01,8.187,0.222,British Columbia,Canada,Summer
-1949-10-01,0.364,0.142,British Columbia,Canada,Winter
+1949-10-01,0.364,0.142,British Columbia,Canada,Summer
 1949-11-01,-1.241,0.280,British Columbia,Canada,Winter
 1949-12-01,-14.875,0.571,British Columbia,Canada,Winter
 1950-01-01,-21.621,1.352,British Columbia,Canada,Winter
@@ -1429,7 +1429,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1950-07-01,12.125,0.205,British Columbia,Canada,Summer
 1950-08-01,10.796,0.188,British Columbia,Canada,Summer
 1950-09-01,8.183,0.153,British Columbia,Canada,Summer
-1950-10-01,-0.583,0.132,British Columbia,Canada,Winter
+1950-10-01,-0.583,0.132,British Columbia,Canada,Summer
 1950-11-01,-10.700,0.406,British Columbia,Canada,Winter
 1950-12-01,-10.107,0.245,British Columbia,Canada,Winter
 1951-01-01,-15.774,0.227,British Columbia,Canada,Winter
@@ -1441,7 +1441,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1951-07-01,13.053,0.244,British Columbia,Canada,Summer
 1951-08-01,11.276,0.211,British Columbia,Canada,Summer
 1951-09-01,7.620,0.278,British Columbia,Canada,Summer
-1951-10-01,-1.024,0.167,British Columbia,Canada,Winter
+1951-10-01,-1.024,0.167,British Columbia,Canada,Summer
 1951-11-01,-6.483,0.238,British Columbia,Canada,Winter
 1951-12-01,-15.128,0.269,British Columbia,Canada,Winter
 1952-01-01,-16.610,0.284,British Columbia,Canada,Winter
@@ -1453,7 +1453,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1952-07-01,12.253,0.162,British Columbia,Canada,Summer
 1952-08-01,11.604,0.220,British Columbia,Canada,Summer
 1952-09-01,7.848,0.169,British Columbia,Canada,Summer
-1952-10-01,3.529,0.204,British Columbia,Canada,Winter
+1952-10-01,3.529,0.204,British Columbia,Canada,Summer
 1952-11-01,-3.791,0.195,British Columbia,Canada,Winter
 1952-12-01,-9.006,0.298,British Columbia,Canada,Winter
 1953-01-01,-15.133,0.322,British Columbia,Canada,Winter
@@ -1465,7 +1465,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1953-07-01,12.064,0.159,British Columbia,Canada,Summer
 1953-08-01,11.728,0.165,British Columbia,Canada,Summer
 1953-09-01,7.101,0.141,British Columbia,Canada,Summer
-1953-10-01,2.582,0.330,British Columbia,Canada,Winter
+1953-10-01,2.582,0.330,British Columbia,Canada,Summer
 1953-11-01,-3.774,0.190,British Columbia,Canada,Winter
 1953-12-01,-7.988,0.322,British Columbia,Canada,Winter
 1954-01-01,-18.010,0.559,British Columbia,Canada,Winter
@@ -1477,7 +1477,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1954-07-01,10.890,0.238,British Columbia,Canada,Summer
 1954-08-01,11.416,0.123,British Columbia,Canada,Summer
 1954-09-01,7.259,0.215,British Columbia,Canada,Summer
-1954-10-01,1.189,0.235,British Columbia,Canada,Winter
+1954-10-01,1.189,0.235,British Columbia,Canada,Summer
 1954-11-01,-1.635,0.234,British Columbia,Canada,Winter
 1954-12-01,-8.737,0.386,British Columbia,Canada,Winter
 1955-01-01,-9.988,0.279,British Columbia,Canada,Winter
@@ -1489,7 +1489,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1955-07-01,11.939,0.205,British Columbia,Canada,Summer
 1955-08-01,10.198,0.250,British Columbia,Canada,Summer
 1955-09-01,6.672,0.192,British Columbia,Canada,Summer
-1955-10-01,0.510,0.228,British Columbia,Canada,Winter
+1955-10-01,0.510,0.228,British Columbia,Canada,Summer
 1955-11-01,-13.270,0.602,British Columbia,Canada,Winter
 1955-12-01,-16.393,0.371,British Columbia,Canada,Winter
 1956-01-01,-15.888,0.295,British Columbia,Canada,Winter
@@ -1501,7 +1501,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1956-07-01,12.854,0.136,British Columbia,Canada,Summer
 1956-08-01,11.926,0.289,British Columbia,Canada,Summer
 1956-09-01,6.710,0.248,British Columbia,Canada,Summer
-1956-10-01,-0.947,0.384,British Columbia,Canada,Winter
+1956-10-01,-0.947,0.384,British Columbia,Canada,Summer
 1956-11-01,-4.511,0.515,British Columbia,Canada,Winter
 1956-12-01,-11.622,0.404,British Columbia,Canada,Winter
 1957-01-01,-17.434,0.513,British Columbia,Canada,Winter
@@ -1513,7 +1513,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1957-07-01,10.973,0.551,British Columbia,Canada,Summer
 1957-08-01,11.104,0.739,British Columbia,Canada,Summer
 1957-09-01,9.523,0.495,British Columbia,Canada,Summer
-1957-10-01,0.240,0.372,British Columbia,Canada,Winter
+1957-10-01,0.240,0.372,British Columbia,Canada,Summer
 1957-11-01,-3.752,0.297,British Columbia,Canada,Winter
 1957-12-01,-9.893,0.295,British Columbia,Canada,Winter
 1958-01-01,-7.856,0.454,British Columbia,Canada,Winter
@@ -1525,7 +1525,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1958-07-01,14.665,0.363,British Columbia,Canada,Summer
 1958-08-01,12.157,0.319,British Columbia,Canada,Summer
 1958-09-01,6.578,0.179,British Columbia,Canada,Summer
-1958-10-01,1.993,0.193,British Columbia,Canada,Winter
+1958-10-01,1.993,0.193,British Columbia,Canada,Summer
 1958-11-01,-6.869,0.187,British Columbia,Canada,Winter
 1958-12-01,-10.267,0.203,British Columbia,Canada,Winter
 1959-01-01,-15.406,0.585,British Columbia,Canada,Winter
@@ -1537,7 +1537,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1959-07-01,12.560,0.266,British Columbia,Canada,Summer
 1959-08-01,9.440,0.136,British Columbia,Canada,Summer
 1959-09-01,6.424,0.277,British Columbia,Canada,Summer
-1959-10-01,0.500,0.225,British Columbia,Canada,Winter
+1959-10-01,0.500,0.225,British Columbia,Canada,Summer
 1959-11-01,-7.356,0.196,British Columbia,Canada,Winter
 1959-12-01,-6.992,0.331,British Columbia,Canada,Winter
 1960-01-01,-12.941,0.250,British Columbia,Canada,Winter
@@ -1549,7 +1549,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1960-07-01,13.080,0.253,British Columbia,Canada,Summer
 1960-08-01,10.956,0.319,British Columbia,Canada,Summer
 1960-09-01,7.055,0.187,British Columbia,Canada,Summer
-1960-10-01,2.247,0.251,British Columbia,Canada,Winter
+1960-10-01,2.247,0.251,British Columbia,Canada,Summer
 1960-11-01,-6.278,0.398,British Columbia,Canada,Winter
 1960-12-01,-8.855,0.154,British Columbia,Canada,Winter
 1961-01-01,-10.054,0.443,British Columbia,Canada,Winter
@@ -1561,7 +1561,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1961-07-01,13.798,0.207,British Columbia,Canada,Summer
 1961-08-01,13.161,0.189,British Columbia,Canada,Summer
 1961-09-01,5.930,0.150,British Columbia,Canada,Summer
-1961-10-01,0.174,0.336,British Columbia,Canada,Winter
+1961-10-01,0.174,0.336,British Columbia,Canada,Summer
 1961-11-01,-8.334,0.179,British Columbia,Canada,Winter
 1961-12-01,-13.894,0.354,British Columbia,Canada,Winter
 1962-01-01,-12.035,0.346,British Columbia,Canada,Winter
@@ -1573,7 +1573,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1962-07-01,12.218,0.237,British Columbia,Canada,Summer
 1962-08-01,11.086,0.185,British Columbia,Canada,Summer
 1962-09-01,7.240,0.282,British Columbia,Canada,Summer
-1962-10-01,2.527,0.328,British Columbia,Canada,Winter
+1962-10-01,2.527,0.328,British Columbia,Canada,Summer
 1962-11-01,-3.533,0.277,British Columbia,Canada,Winter
 1962-12-01,-8.415,0.331,British Columbia,Canada,Winter
 1963-01-01,-12.839,0.435,British Columbia,Canada,Winter
@@ -1585,7 +1585,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1963-07-01,11.887,0.299,British Columbia,Canada,Summer
 1963-08-01,13.000,0.184,British Columbia,Canada,Summer
 1963-09-01,9.355,0.165,British Columbia,Canada,Summer
-1963-10-01,2.991,0.250,British Columbia,Canada,Winter
+1963-10-01,2.991,0.250,British Columbia,Canada,Summer
 1963-11-01,-7.946,0.179,British Columbia,Canada,Winter
 1963-12-01,-9.649,0.222,British Columbia,Canada,Winter
 1964-01-01,-10.885,0.443,British Columbia,Canada,Winter
@@ -1597,7 +1597,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1964-07-01,11.504,0.262,British Columbia,Canada,Summer
 1964-08-01,10.322,0.283,British Columbia,Canada,Summer
 1964-09-01,5.979,0.132,British Columbia,Canada,Summer
-1964-10-01,2.266,0.288,British Columbia,Canada,Winter
+1964-10-01,2.266,0.288,British Columbia,Canada,Summer
 1964-11-01,-7.211,0.167,British Columbia,Canada,Winter
 1964-12-01,-17.038,0.302,British Columbia,Canada,Winter
 1965-01-01,-13.390,0.325,British Columbia,Canada,Winter
@@ -1609,7 +1609,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1965-07-01,13.298,0.275,British Columbia,Canada,Summer
 1965-08-01,12.683,0.219,British Columbia,Canada,Summer
 1965-09-01,6.165,0.243,British Columbia,Canada,Summer
-1965-10-01,2.497,0.336,British Columbia,Canada,Winter
+1965-10-01,2.497,0.336,British Columbia,Canada,Summer
 1965-11-01,-7.140,0.189,British Columbia,Canada,Winter
 1965-12-01,-11.401,0.233,British Columbia,Canada,Winter
 1966-01-01,-17.579,0.449,British Columbia,Canada,Winter
@@ -1621,7 +1621,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1966-07-01,12.239,0.219,British Columbia,Canada,Summer
 1966-08-01,10.841,0.205,British Columbia,Canada,Summer
 1966-09-01,8.176,0.251,British Columbia,Canada,Summer
-1966-10-01,0.475,0.194,British Columbia,Canada,Winter
+1966-10-01,0.475,0.194,British Columbia,Canada,Summer
 1966-11-01,-8.785,0.299,British Columbia,Canada,Winter
 1966-12-01,-10.077,0.282,British Columbia,Canada,Winter
 1967-01-01,-12.631,0.304,British Columbia,Canada,Winter
@@ -1633,7 +1633,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1967-07-01,12.035,0.329,British Columbia,Canada,Summer
 1967-08-01,13.456,0.355,British Columbia,Canada,Summer
 1967-09-01,9.159,0.209,British Columbia,Canada,Summer
-1967-10-01,1.707,0.127,British Columbia,Canada,Winter
+1967-10-01,1.707,0.127,British Columbia,Canada,Summer
 1967-11-01,-4.719,0.180,British Columbia,Canada,Winter
 1967-12-01,-11.374,0.254,British Columbia,Canada,Winter
 1968-01-01,-13.781,0.342,British Columbia,Canada,Winter
@@ -1645,7 +1645,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1968-07-01,12.545,0.182,British Columbia,Canada,Summer
 1968-08-01,10.537,0.149,British Columbia,Canada,Summer
 1968-09-01,6.718,0.131,British Columbia,Canada,Summer
-1968-10-01,0.793,0.285,British Columbia,Canada,Winter
+1968-10-01,0.793,0.285,British Columbia,Canada,Summer
 1968-11-01,-5.012,0.212,British Columbia,Canada,Winter
 1968-12-01,-16.240,0.314,British Columbia,Canada,Winter
 1969-01-01,-22.540,0.539,British Columbia,Canada,Winter
@@ -1657,7 +1657,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1969-07-01,11.520,0.310,British Columbia,Canada,Summer
 1969-08-01,9.861,0.211,British Columbia,Canada,Summer
 1969-09-01,6.977,0.120,British Columbia,Canada,Summer
-1969-10-01,1.176,0.250,British Columbia,Canada,Winter
+1969-10-01,1.176,0.250,British Columbia,Canada,Summer
 1969-11-01,-3.672,0.310,British Columbia,Canada,Winter
 1969-12-01,-7.366,0.241,British Columbia,Canada,Winter
 1970-01-01,-14.313,0.218,British Columbia,Canada,Winter
@@ -1669,7 +1669,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1970-07-01,11.821,0.209,British Columbia,Canada,Summer
 1970-08-01,11.422,0.173,British Columbia,Canada,Summer
 1970-09-01,5.929,0.165,British Columbia,Canada,Summer
-1970-10-01,1.007,0.169,British Columbia,Canada,Winter
+1970-10-01,1.007,0.169,British Columbia,Canada,Summer
 1970-11-01,-8.133,0.141,British Columbia,Canada,Winter
 1970-12-01,-14.112,0.242,British Columbia,Canada,Winter
 1971-01-01,-15.751,0.299,British Columbia,Canada,Winter
@@ -1681,7 +1681,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1971-07-01,13.320,0.189,British Columbia,Canada,Summer
 1971-08-01,12.728,0.161,British Columbia,Canada,Summer
 1971-09-01,6.097,0.172,British Columbia,Canada,Summer
-1971-10-01,0.359,0.180,British Columbia,Canada,Winter
+1971-10-01,0.359,0.180,British Columbia,Canada,Summer
 1971-11-01,-5.791,0.201,British Columbia,Canada,Winter
 1971-12-01,-16.049,0.390,British Columbia,Canada,Winter
 1972-01-01,-18.191,0.432,British Columbia,Canada,Winter
@@ -1693,7 +1693,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1972-07-01,11.784,0.236,British Columbia,Canada,Summer
 1972-08-01,12.219,0.214,British Columbia,Canada,Summer
 1972-09-01,4.910,0.153,British Columbia,Canada,Summer
-1972-10-01,0.108,0.298,British Columbia,Canada,Winter
+1972-10-01,0.108,0.298,British Columbia,Canada,Summer
 1972-11-01,-4.714,0.211,British Columbia,Canada,Winter
 1972-12-01,-13.965,0.250,British Columbia,Canada,Winter
 1973-01-01,-13.023,0.173,British Columbia,Canada,Winter
@@ -1705,7 +1705,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1973-07-01,11.723,0.172,British Columbia,Canada,Summer
 1973-08-01,10.434,0.240,British Columbia,Canada,Summer
 1973-09-01,7.279,0.099,British Columbia,Canada,Summer
-1973-10-01,0.578,0.162,British Columbia,Canada,Winter
+1973-10-01,0.578,0.162,British Columbia,Canada,Summer
 1973-11-01,-11.886,0.275,British Columbia,Canada,Winter
 1973-12-01,-10.320,0.118,British Columbia,Canada,Winter
 1974-01-01,-16.467,0.313,British Columbia,Canada,Winter
@@ -1717,7 +1717,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1974-07-01,10.653,0.147,British Columbia,Canada,Summer
 1974-08-01,11.871,0.273,British Columbia,Canada,Summer
 1974-09-01,8.087,0.195,British Columbia,Canada,Summer
-1974-10-01,2.179,0.132,British Columbia,Canada,Winter
+1974-10-01,2.179,0.132,British Columbia,Canada,Summer
 1974-11-01,-4.555,0.242,British Columbia,Canada,Winter
 1974-12-01,-7.175,0.310,British Columbia,Canada,Winter
 1975-01-01,-13.060,0.218,British Columbia,Canada,Winter
@@ -1729,7 +1729,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1975-07-01,13.384,0.332,British Columbia,Canada,Summer
 1975-08-01,9.948,0.463,British Columbia,Canada,Summer
 1975-09-01,8.226,0.343,British Columbia,Canada,Summer
-1975-10-01,1.057,0.260,British Columbia,Canada,Winter
+1975-10-01,1.057,0.260,British Columbia,Canada,Summer
 1975-11-01,-7.751,0.227,British Columbia,Canada,Winter
 1975-12-01,-11.212,0.306,British Columbia,Canada,Winter
 1976-01-01,-10.330,0.180,British Columbia,Canada,Winter
@@ -1741,7 +1741,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1976-07-01,11.028,0.379,British Columbia,Canada,Summer
 1976-08-01,10.980,0.212,British Columbia,Canada,Summer
 1976-09-01,8.366,0.205,British Columbia,Canada,Summer
-1976-10-01,1.486,0.300,British Columbia,Canada,Winter
+1976-10-01,1.486,0.300,British Columbia,Canada,Summer
 1976-11-01,-3.326,0.287,British Columbia,Canada,Winter
 1976-12-01,-8.423,0.184,British Columbia,Canada,Winter
 1977-01-01,-9.944,0.294,British Columbia,Canada,Winter
@@ -1753,7 +1753,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1977-07-01,11.480,0.255,British Columbia,Canada,Summer
 1977-08-01,12.903,0.265,British Columbia,Canada,Summer
 1977-09-01,6.638,0.193,British Columbia,Canada,Summer
-1977-10-01,1.477,0.150,British Columbia,Canada,Winter
+1977-10-01,1.477,0.150,British Columbia,Canada,Summer
 1977-11-01,-8.082,0.204,British Columbia,Canada,Winter
 1977-12-01,-16.258,0.265,British Columbia,Canada,Winter
 1978-01-01,-13.716,0.264,British Columbia,Canada,Winter
@@ -1765,7 +1765,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1978-07-01,13.214,0.236,British Columbia,Canada,Summer
 1978-08-01,11.410,0.273,British Columbia,Canada,Summer
 1978-09-01,6.820,0.112,British Columbia,Canada,Summer
-1978-10-01,2.806,0.167,British Columbia,Canada,Winter
+1978-10-01,2.806,0.167,British Columbia,Canada,Summer
 1978-11-01,-7.672,0.257,British Columbia,Canada,Winter
 1978-12-01,-12.467,0.360,British Columbia,Canada,Winter
 1979-01-01,-17.215,0.528,British Columbia,Canada,Winter
@@ -1777,7 +1777,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1979-07-01,13.271,0.125,British Columbia,Canada,Summer
 1979-08-01,13.082,0.302,British Columbia,Canada,Summer
 1979-09-01,8.616,0.111,British Columbia,Canada,Summer
-1979-10-01,2.975,0.140,British Columbia,Canada,Winter
+1979-10-01,2.975,0.140,British Columbia,Canada,Summer
 1979-11-01,-4.671,0.282,British Columbia,Canada,Winter
 1979-12-01,-8.879,0.372,British Columbia,Canada,Winter
 1980-01-01,-15.619,0.212,British Columbia,Canada,Winter
@@ -1789,7 +1789,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1980-07-01,11.944,0.260,British Columbia,Canada,Summer
 1980-08-01,10.350,0.182,British Columbia,Canada,Summer
 1980-09-01,6.843,0.146,British Columbia,Canada,Summer
-1980-10-01,3.143,0.255,British Columbia,Canada,Winter
+1980-10-01,3.143,0.255,British Columbia,Canada,Summer
 1980-11-01,-2.645,0.232,British Columbia,Canada,Winter
 1980-12-01,-13.407,0.432,British Columbia,Canada,Winter
 1981-01-01,-5.532,0.246,British Columbia,Canada,Winter
@@ -1801,7 +1801,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1981-07-01,12.859,0.281,British Columbia,Canada,Summer
 1981-08-01,13.456,0.194,British Columbia,Canada,Summer
 1981-09-01,7.716,0.221,British Columbia,Canada,Summer
-1981-10-01,1.290,0.257,British Columbia,Canada,Winter
+1981-10-01,1.290,0.257,British Columbia,Canada,Summer
 1981-11-01,-3.358,0.322,British Columbia,Canada,Winter
 1981-12-01,-12.064,0.209,British Columbia,Canada,Winter
 1982-01-01,-18.605,0.300,British Columbia,Canada,Winter
@@ -1813,7 +1813,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1982-07-01,12.792,0.243,British Columbia,Canada,Summer
 1982-08-01,10.666,0.152,British Columbia,Canada,Summer
 1982-09-01,8.331,0.186,British Columbia,Canada,Summer
-1982-10-01,1.556,0.132,British Columbia,Canada,Winter
+1982-10-01,1.556,0.132,British Columbia,Canada,Summer
 1982-11-01,-8.633,0.386,British Columbia,Canada,Winter
 1982-12-01,-10.425,0.451,British Columbia,Canada,Winter
 1983-01-01,-9.485,0.264,British Columbia,Canada,Winter
@@ -1825,7 +1825,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1983-07-01,11.703,0.155,British Columbia,Canada,Summer
 1983-08-01,11.644,0.142,British Columbia,Canada,Summer
 1983-09-01,5.719,0.152,British Columbia,Canada,Summer
-1983-10-01,1.428,0.189,British Columbia,Canada,Winter
+1983-10-01,1.428,0.189,British Columbia,Canada,Summer
 1983-11-01,-4.836,0.247,British Columbia,Canada,Winter
 1983-12-01,-16.821,0.210,British Columbia,Canada,Winter
 1984-01-01,-8.827,0.303,British Columbia,Canada,Winter
@@ -1837,7 +1837,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1984-07-01,12.070,0.268,British Columbia,Canada,Summer
 1984-08-01,11.390,0.216,British Columbia,Canada,Summer
 1984-09-01,5.426,0.200,British Columbia,Canada,Summer
-1984-10-01,-0.972,0.263,British Columbia,Canada,Winter
+1984-10-01,-0.972,0.263,British Columbia,Canada,Summer
 1984-11-01,-8.500,0.166,British Columbia,Canada,Winter
 1984-12-01,-15.379,0.220,British Columbia,Canada,Winter
 1985-01-01,-8.108,0.192,British Columbia,Canada,Winter
@@ -1849,7 +1849,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1985-07-01,13.415,0.216,British Columbia,Canada,Summer
 1985-08-01,10.837,0.195,British Columbia,Canada,Summer
 1985-09-01,6.087,0.276,British Columbia,Canada,Summer
-1985-10-01,-0.071,0.172,British Columbia,Canada,Winter
+1985-10-01,-0.071,0.172,British Columbia,Canada,Summer
 1985-11-01,-14.119,0.170,British Columbia,Canada,Winter
 1985-12-01,-9.135,0.510,British Columbia,Canada,Winter
 1986-01-01,-7.586,0.277,British Columbia,Canada,Winter
@@ -1861,7 +1861,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1986-07-01,11.698,0.125,British Columbia,Canada,Summer
 1986-08-01,12.272,0.210,British Columbia,Canada,Summer
 1986-09-01,6.434,0.260,British Columbia,Canada,Summer
-1986-10-01,3.099,0.143,British Columbia,Canada,Winter
+1986-10-01,3.099,0.143,British Columbia,Canada,Summer
 1986-11-01,-7.607,0.257,British Columbia,Canada,Winter
 1986-12-01,-7.607,0.265,British Columbia,Canada,Winter
 1987-01-01,-8.140,0.270,British Columbia,Canada,Winter
@@ -1873,7 +1873,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1987-07-01,12.856,0.198,British Columbia,Canada,Summer
 1987-08-01,11.046,0.196,British Columbia,Canada,Summer
 1987-09-01,8.776,0.203,British Columbia,Canada,Summer
-1987-10-01,2.750,0.174,British Columbia,Canada,Winter
+1987-10-01,2.750,0.174,British Columbia,Canada,Summer
 1987-11-01,-2.695,0.199,British Columbia,Canada,Winter
 1987-12-01,-8.219,0.202,British Columbia,Canada,Winter
 1988-01-01,-12.607,0.198,British Columbia,Canada,Winter
@@ -1885,7 +1885,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1988-07-01,11.576,0.124,British Columbia,Canada,Summer
 1988-08-01,11.706,0.235,British Columbia,Canada,Summer
 1988-09-01,7.101,0.157,British Columbia,Canada,Summer
-1988-10-01,2.768,0.174,British Columbia,Canada,Winter
+1988-10-01,2.768,0.174,British Columbia,Canada,Summer
 1988-11-01,-5.305,0.281,British Columbia,Canada,Winter
 1988-12-01,-9.517,0.242,British Columbia,Canada,Winter
 1989-01-01,-11.642,0.289,British Columbia,Canada,Winter
@@ -1897,7 +1897,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1989-07-01,13.157,0.177,British Columbia,Canada,Summer
 1989-08-01,12.523,0.275,British Columbia,Canada,Summer
 1989-09-01,8.526,0.249,British Columbia,Canada,Summer
-1989-10-01,1.478,0.213,British Columbia,Canada,Winter
+1989-10-01,1.478,0.213,British Columbia,Canada,Summer
 1989-11-01,-5.725,0.191,British Columbia,Canada,Winter
 1989-12-01,-6.754,0.248,British Columbia,Canada,Winter
 1990-01-01,-10.559,0.348,British Columbia,Canada,Winter
@@ -1909,7 +1909,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1990-07-01,13.683,0.168,British Columbia,Canada,Summer
 1990-08-01,13.116,0.157,British Columbia,Canada,Summer
 1990-09-01,9.271,0.278,British Columbia,Canada,Summer
-1990-10-01,-0.143,0.288,British Columbia,Canada,Winter
+1990-10-01,-0.143,0.288,British Columbia,Canada,Summer
 1990-11-01,-8.805,0.236,British Columbia,Canada,Winter
 1990-12-01,-14.201,0.247,British Columbia,Canada,Winter
 1991-01-01,-14.051,0.247,British Columbia,Canada,Winter
@@ -1921,7 +1921,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1991-07-01,12.154,0.204,British Columbia,Canada,Summer
 1991-08-01,12.405,0.153,British Columbia,Canada,Summer
 1991-09-01,8.409,0.147,British Columbia,Canada,Summer
-1991-10-01,-0.414,0.136,British Columbia,Canada,Winter
+1991-10-01,-0.414,0.136,British Columbia,Canada,Summer
 1991-11-01,-5.602,0.235,British Columbia,Canada,Winter
 1991-12-01,-7.189,0.190,British Columbia,Canada,Winter
 1992-01-01,-6.718,0.316,British Columbia,Canada,Winter
@@ -1933,7 +1933,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1992-07-01,12.837,0.211,British Columbia,Canada,Summer
 1992-08-01,11.842,0.216,British Columbia,Canada,Summer
 1992-09-01,5.185,0.290,British Columbia,Canada,Summer
-1992-10-01,0.799,0.128,British Columbia,Canada,Winter
+1992-10-01,0.799,0.128,British Columbia,Canada,Summer
 1992-11-01,-4.247,0.263,British Columbia,Canada,Winter
 1992-12-01,-14.301,0.463,British Columbia,Canada,Winter
 1993-01-01,-14.604,0.439,British Columbia,Canada,Winter
@@ -1945,7 +1945,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1993-07-01,11.572,0.238,British Columbia,Canada,Summer
 1993-08-01,11.857,0.189,British Columbia,Canada,Summer
 1993-09-01,8.241,0.229,British Columbia,Canada,Summer
-1993-10-01,2.977,0.144,British Columbia,Canada,Winter
+1993-10-01,2.977,0.144,British Columbia,Canada,Summer
 1993-11-01,-5.271,0.158,British Columbia,Canada,Winter
 1993-12-01,-7.210,0.265,British Columbia,Canada,Winter
 1994-01-01,-10.324,0.244,British Columbia,Canada,Winter
@@ -1957,7 +1957,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1994-07-01,13.805,0.162,British Columbia,Canada,Summer
 1994-08-01,13.441,0.194,British Columbia,Canada,Summer
 1994-09-01,8.466,0.193,British Columbia,Canada,Summer
-1994-10-01,1.743,0.157,British Columbia,Canada,Winter
+1994-10-01,1.743,0.157,British Columbia,Canada,Summer
 1994-11-01,-7.282,0.179,British Columbia,Canada,Winter
 1994-12-01,-10.791,0.360,British Columbia,Canada,Winter
 1995-01-01,-11.545,0.249,British Columbia,Canada,Winter
@@ -1969,7 +1969,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1995-07-01,12.667,0.197,British Columbia,Canada,Summer
 1995-08-01,10.030,0.205,British Columbia,Canada,Summer
 1995-09-01,9.822,0.290,British Columbia,Canada,Summer
-1995-10-01,1.322,0.187,British Columbia,Canada,Winter
+1995-10-01,1.322,0.187,British Columbia,Canada,Summer
 1995-11-01,-6.878,0.254,British Columbia,Canada,Winter
 1995-12-01,-12.171,0.214,British Columbia,Canada,Winter
 1996-01-01,-17.802,0.262,British Columbia,Canada,Winter
@@ -1981,7 +1981,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1996-07-01,12.613,0.231,British Columbia,Canada,Summer
 1996-08-01,11.574,0.182,British Columbia,Canada,Summer
 1996-09-01,6.336,0.243,British Columbia,Canada,Summer
-1996-10-01,-0.095,0.135,British Columbia,Canada,Winter
+1996-10-01,-0.095,0.135,British Columbia,Canada,Summer
 1996-11-01,-9.367,0.192,British Columbia,Canada,Winter
 1996-12-01,-15.274,0.138,British Columbia,Canada,Winter
 1997-01-01,-13.078,0.270,British Columbia,Canada,Winter
@@ -1993,7 +1993,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1997-07-01,12.498,0.200,British Columbia,Canada,Summer
 1997-08-01,12.960,0.191,British Columbia,Canada,Summer
 1997-09-01,8.671,0.249,British Columbia,Canada,Summer
-1997-10-01,0.449,0.190,British Columbia,Canada,Winter
+1997-10-01,0.449,0.190,British Columbia,Canada,Summer
 1997-11-01,-4.062,0.262,British Columbia,Canada,Winter
 1997-12-01,-6.024,0.345,British Columbia,Canada,Winter
 1998-01-01,-13.871,0.399,British Columbia,Canada,Winter
@@ -2005,7 +2005,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1998-07-01,14.434,0.106,British Columbia,Canada,Summer
 1998-08-01,12.575,0.159,British Columbia,Canada,Summer
 1998-09-01,8.460,0.205,British Columbia,Canada,Summer
-1998-10-01,1.996,0.121,British Columbia,Canada,Winter
+1998-10-01,1.996,0.121,British Columbia,Canada,Summer
 1998-11-01,-4.874,0.231,British Columbia,Canada,Winter
 1998-12-01,-10.794,0.243,British Columbia,Canada,Winter
 1999-01-01,-11.366,0.346,British Columbia,Canada,Winter
@@ -2017,7 +2017,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 1999-07-01,11.636,0.248,British Columbia,Canada,Summer
 1999-08-01,12.419,0.153,British Columbia,Canada,Summer
 1999-09-01,7.361,0.213,British Columbia,Canada,Summer
-1999-10-01,1.691,0.165,British Columbia,Canada,Winter
+1999-10-01,1.691,0.165,British Columbia,Canada,Summer
 1999-11-01,-4.294,0.171,British Columbia,Canada,Winter
 1999-12-01,-7.153,0.290,British Columbia,Canada,Winter
 2000-01-01,-12.933,0.297,British Columbia,Canada,Winter
@@ -2029,7 +2029,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2000-07-01,12.473,0.203,British Columbia,Canada,Summer
 2000-08-01,10.896,0.227,British Columbia,Canada,Summer
 2000-09-01,7.045,0.197,British Columbia,Canada,Summer
-2000-10-01,1.431,0.194,British Columbia,Canada,Winter
+2000-10-01,1.431,0.194,British Columbia,Canada,Summer
 2000-11-01,-4.371,0.206,British Columbia,Canada,Winter
 2000-12-01,-11.380,0.214,British Columbia,Canada,Winter
 2001-01-01,-6.682,0.326,British Columbia,Canada,Winter
@@ -2041,7 +2041,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2001-07-01,12.193,0.162,British Columbia,Canada,Summer
 2001-08-01,12.346,0.179,British Columbia,Canada,Summer
 2001-09-01,7.973,0.264,British Columbia,Canada,Summer
-2001-10-01,0.670,0.097,British Columbia,Canada,Winter
+2001-10-01,0.670,0.097,British Columbia,Canada,Summer
 2001-11-01,-4.840,0.160,British Columbia,Canada,Winter
 2001-12-01,-11.347,0.232,British Columbia,Canada,Winter
 2002-01-01,-9.987,0.314,British Columbia,Canada,Winter
@@ -2053,7 +2053,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2002-07-01,12.332,0.189,British Columbia,Canada,Summer
 2002-08-01,11.483,0.240,British Columbia,Canada,Summer
 2002-09-01,7.035,0.189,British Columbia,Canada,Summer
-2002-10-01,1.265,0.317,British Columbia,Canada,Winter
+2002-10-01,1.265,0.317,British Columbia,Canada,Summer
 2002-11-01,-2.896,0.227,British Columbia,Canada,Winter
 2002-12-01,-7.222,0.222,British Columbia,Canada,Winter
 2003-01-01,-8.903,0.261,British Columbia,Canada,Winter
@@ -2065,7 +2065,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2003-07-01,13.476,0.299,British Columbia,Canada,Summer
 2003-08-01,12.114,0.235,British Columbia,Canada,Summer
 2003-09-01,7.617,0.288,British Columbia,Canada,Summer
-2003-10-01,2.916,0.238,British Columbia,Canada,Winter
+2003-10-01,2.916,0.238,British Columbia,Canada,Summer
 2003-11-01,-7.382,0.216,British Columbia,Canada,Winter
 2003-12-01,-8.868,0.316,British Columbia,Canada,Winter
 2004-01-01,-13.589,0.345,British Columbia,Canada,Winter
@@ -2077,7 +2077,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2004-07-01,14.054,0.174,British Columbia,Canada,Summer
 2004-08-01,12.955,0.182,British Columbia,Canada,Summer
 2004-09-01,6.414,0.115,British Columbia,Canada,Summer
-2004-10-01,1.204,0.247,British Columbia,Canada,Winter
+2004-10-01,1.204,0.247,British Columbia,Canada,Summer
 2004-11-01,-3.948,0.249,British Columbia,Canada,Winter
 2004-12-01,-8.546,0.271,British Columbia,Canada,Winter
 2005-01-01,-13.081,0.240,British Columbia,Canada,Winter
@@ -2089,7 +2089,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2005-07-01,11.932,0.174,British Columbia,Canada,Summer
 2005-08-01,12.008,0.179,British Columbia,Canada,Summer
 2005-09-01,7.103,0.133,British Columbia,Canada,Summer
-2005-10-01,1.986,0.176,British Columbia,Canada,Winter
+2005-10-01,1.986,0.176,British Columbia,Canada,Summer
 2005-11-01,-4.104,0.142,British Columbia,Canada,Winter
 2005-12-01,-7.769,0.229,British Columbia,Canada,Winter
 2006-01-01,-8.118,0.400,British Columbia,Canada,Winter
@@ -2101,7 +2101,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2006-07-01,13.644,0.216,British Columbia,Canada,Summer
 2006-08-01,11.414,0.212,British Columbia,Canada,Summer
 2006-09-01,8.587,0.178,British Columbia,Canada,Summer
-2006-10-01,1.384,0.199,British Columbia,Canada,Winter
+2006-10-01,1.384,0.199,British Columbia,Canada,Summer
 2006-11-01,-10.372,0.424,British Columbia,Canada,Winter
 2006-12-01,-7.390,0.172,British Columbia,Canada,Winter
 2007-01-01,-9.218,0.248,British Columbia,Canada,Winter
@@ -2113,7 +2113,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2007-07-01,13.733,0.126,British Columbia,Canada,Summer
 2007-08-01,11.343,0.133,British Columbia,Canada,Summer
 2007-09-01,7.086,0.230,British Columbia,Canada,Summer
-2007-10-01,1.554,0.108,British Columbia,Canada,Winter
+2007-10-01,1.554,0.108,British Columbia,Canada,Summer
 2007-11-01,-5.485,0.254,British Columbia,Canada,Winter
 2007-12-01,-11.997,0.258,British Columbia,Canada,Winter
 2008-01-01,-12.471,0.252,British Columbia,Canada,Winter
@@ -2125,7 +2125,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2008-07-01,12.091,0.179,British Columbia,Canada,Summer
 2008-08-01,11.892,0.196,British Columbia,Canada,Summer
 2008-09-01,7.626,0.181,British Columbia,Canada,Summer
-2008-10-01,1.632,0.177,British Columbia,Canada,Winter
+2008-10-01,1.632,0.177,British Columbia,Canada,Summer
 2008-11-01,-3.668,0.157,British Columbia,Canada,Winter
 2008-12-01,-14.666,0.298,British Columbia,Canada,Winter
 2009-01-01,-11.943,0.383,British Columbia,Canada,Winter
@@ -2137,7 +2137,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2009-07-01,14.249,0.285,British Columbia,Canada,Summer
 2009-08-01,12.619,0.210,British Columbia,Canada,Summer
 2009-09-01,8.982,0.139,British Columbia,Canada,Summer
-2009-10-01,0.183,0.124,British Columbia,Canada,Winter
+2009-10-01,0.183,0.124,British Columbia,Canada,Summer
 2009-11-01,-4.671,0.267,British Columbia,Canada,Winter
 2009-12-01,-13.748,0.361,British Columbia,Canada,Winter
 2010-01-01,-9.348,0.535,British Columbia,Canada,Winter
@@ -2149,7 +2149,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2010-07-01,13.096,0.248,British Columbia,Canada,Summer
 2010-08-01,12.233,0.364,British Columbia,Canada,Summer
 2010-09-01,7.054,0.136,British Columbia,Canada,Summer
-2010-10-01,2.964,0.167,British Columbia,Canada,Winter
+2010-10-01,2.964,0.167,British Columbia,Canada,Summer
 2010-11-01,-6.234,0.214,British Columbia,Canada,Winter
 2010-12-01,-11.689,0.563,British Columbia,Canada,Winter
 2011-01-01,-10.962,0.386,British Columbia,Canada,Winter
@@ -2161,7 +2161,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2011-07-01,11.586,0.252,British Columbia,Canada,Summer
 2011-08-01,11.374,0.194,British Columbia,Canada,Summer
 2011-09-01,8.730,0.183,British Columbia,Canada,Summer
-2011-10-01,1.881,0.154,British Columbia,Canada,Winter
+2011-10-01,1.881,0.154,British Columbia,Canada,Summer
 2011-11-01,-7.273,0.346,British Columbia,Canada,Winter
 2011-12-01,-7.085,0.354,British Columbia,Canada,Winter
 2012-01-01,-10.896,0.449,British Columbia,Canada,Winter
@@ -2173,7 +2173,7 @@ dt,AverageTemperature,AverageTemperatureUncertainty,State,Country,Season
 2012-07-01,13.667,0.309,British Columbia,Canada,Summer
 2012-08-01,12.909,0.279,British Columbia,Canada,Summer
 2012-09-01,9.058,0.218,British Columbia,Canada,Summer
-2012-10-01,-0.421,0.201,British Columbia,Canada,Winter
+2012-10-01,-0.421,0.201,British Columbia,Canada,Summer
 2012-11-01,-7.142,0.331,British Columbia,Canada,Winter
 2012-12-01,-12.404,0.398,British Columbia,Canada,Winter
 2013-01-01,-9.991,0.338,British Columbia,Canada,Winter
