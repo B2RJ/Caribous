@@ -37,7 +37,7 @@
 
     function(data) {
       // group the data: I want to draw one line per group
-      var sumstat = d3.nest() // nest function allows to group the calculation per level of a factor
+      var sumStat = d3.nest() // nest function allows to group the calculation per level of a factor
         .key(function(d) { return d.Season;})
         .entries(data);
     
@@ -57,14 +57,14 @@
         .call(d3.axisLeft(y));
     
       // color palette
-      var res = sumstat.map(function(d){ return d.key }) // list of group names
+      var res = sumStat.map(function(d){ return d.key }) // list of group names
       var color = d3.scaleOrdinal()
         .domain(res)
         .range(['#e41a1c','#377eb8','#4daf4a','#984ea3','#ff7f00','#ffff33','#a65628','#f781bf','#999999'])
     
       // Draw the line
       svg.selectAll(".line")
-          .data(sumstat)
+          .data(sumStat)
           .enter()
           .append("path")
             .attr("fill", "none")
