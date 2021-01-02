@@ -1,81 +1,110 @@
-<!DOCTYPE html>
-<meta charset="utf-8">
+<html lang="en"></html>
 
-<!-- Load d3.js -->
-<script src="https://d3js.org/d3.v4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    
+    <style> /* set the CSS */
+        body { font: 12px Arial;}
+        
+        path { 
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+        
+    </style>
+</head>
 
-<!-- Create a div where the graph will take place -->
-<div id="my_dataviz"></div>
-
-<script>
-
-  // set the dimensions and margins of the graph
-  var margin = { top: 10, right: 30, bottom: 30, left: 60 },
-    width = 1080 - margin.left - margin.right,
-    height = 720 - margin.top - margin.bottom;
-
-  // append the svg object to the body of the page
-  var svg = d3.select("#my_dataviz")
-    .append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform",
-      "translate(" + margin.left + "," + margin.top + ")");
-
-  var startYear = moment().subtract(50, 'year').toDate()
-
-  //Read the data
-  d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/SeasonAverage.csv",
-
-    //When reading the csv, I must format variables:
-    function (d) {
-      if (new Date(d.Year) > startYear) return { Year: d3.timeParse("%Y")(d.Year), Average: d.Average, Season: d.Season }
-    },
-
-    function (data) {
-      // group the data: I want to draw one line per group
-      var sumStat = d3.nest() // nest function allows to group the calculation per level of a factor
-        .key(function (d) { return d.Season; })
-        .entries(data);
-
-      // Add X axis --> it is a date format
-      var x = d3.scaleTime()
-        .domain(d3.extent(data, function (d) { return d.Year; }))
-        .range([0, width]);
-      svg.append("g")
-        .attr("transform", "translate(0," + height + ")")
-        .call(d3.axisBottom(x));
-
-      // Add Y axis
-      var y = d3.scaleLinear()
-        .domain([-20, d3.max(data, function (d) { return +d.Average; })])
-        .range([height, 0]);
-      svg.append("g")
-        .call(d3.axisLeft(y));
-
-      // color palette
-      var res = sumStat.map(function (d) { return d.key }) // list of group names
-      var color = d3.scaleOrdinal()
-        .domain(res)
-        .range(['#e41a1c', '#377eb8', '#4daf4a', '#984ea3', '#ff7f00', '#ffff33', '#a65628', '#f781bf', '#999999'])
-
-      // Draw the line
-      svg.selectAll(".line")
-        .data(sumStat)
-        .enter()
-        .append("path")
-        .attr("fill", "none")
-        .attr("stroke", function (d) { return color(d.key) })
-        .attr("stroke-width", 1.5)
-        .attr("d", function (d) {
-          return d3.line()
-            .x(function (d) { return x(d.Year); })
-            .y(function (d) { return y(+d.Average); })
-            (d.values)
+<body>
+    <h1>Temperature</h1>
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
+    
+    <script>
+        // set the dimensions and margins of the graph
+        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 600 - margin.left - margin.right,
+        height = 270 - margin.top - margin.bottom;
+        
+        // For the verification of date
+        var startYear = moment().subtract(33, 'year').toDate();
+        
+        // Parse the date / time
+        var parseDate = d3.timeParse("%Y");
+        
+        // Set the ranges
+        var x = d3.scaleTime().range([0, width]);  
+        var y = d3.scaleLinear().range([height, 0]);
+        
+        // Define the line 
+        var temperatureLine = d3.line()    
+        .x(function(d) { return x(d.Year); })
+        .y(function(d) { return y(d.Average); });
+        
+        // Adds the svg canvas
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", 
+        "translate(" + margin.left + "," + margin.top + ")");
+        
+        // Get the data
+        let fetchedData = []
+        
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/SeasonAverage.csv").then(data => {
+            fetchedData = data
+            
+            //When reading the csv, I must format variables:
+            return data.filter(elem => new Date(elem.Year) > startYear).map(elem => {
+                return { Year: d3.timeParse("%Y")(elem.Year), Average: elem.Average, Season: elem.Season }
+            })
+        }).then(data => {
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.Year; }));
+            y.domain([d3.min(data, function(d) { return d.Average; })-2, d3.max(data, function(d) { return d.Average; })]);
+            
+            // Group the entries by season
+            dataNest = Array.from(
+            d3.group(data, d => d.Season), ([key, value]) => ({key, value})
+            );
+            
+            // set the colour scale
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            // Loop through each season / key
+            dataNest.forEach(function(d,i) {
+                svg.append("path")
+                .attr("class", "line")
+                .style("stroke", function() { // Add the colours dynamically
+                    return d.color = color(i);
+                })
+                .attr("d", temperatureLine(d.value));
+            });
+            
+            // Add the X Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+            
+            // Add the Y Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisLeft(y));
         })
-
-    })
-
-</script>
+        
+    </script>
+</body>
