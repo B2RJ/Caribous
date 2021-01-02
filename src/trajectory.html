@@ -20,8 +20,12 @@
     <H1>Trajectory</H1>
     <div id="trajectory"></div>
     <div id="slider"></div>
+    <select id="herd-names"></select>
     <script>
-        /*_____ INITIALISATION & CONFIGURATION _____*/
+        /*_______________ INITIAL CONFIGURATION _______________*/
+
+
+        /*----- Graphical global variables -----*/
 
         const width = 600
         const height = 250
@@ -29,13 +33,18 @@
         const initialScale = zoomValue
         const initialCenter = [-122.567179, 56.074159]
 
-        // Initialisation de la vue
-        const svg = d3
-            .select("#trajectory")
+
+        /*----- Graphical global components -----*/
+
+        const svg = d3.select("#trajectory")
             .append("svg")
             .attr("viewBox", [0, 0, width, height])
-        const sliderSvg = d3
-            .select("#slider")
+        // Création d'un graphique dans le svg
+        let image = svg.append("g")
+            .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
+            .selectAll("image") // Setup les image mais pas encore créées
+
+        const sliderSvg = d3.select("#slider")
             .append('svg')
             .attr('width', 700)
             .attr('height', 100)
@@ -43,8 +52,12 @@
             .attr('transform', 'translate(20,20)')
         let slider
 
-        // Définition de la projection (mercator)
-        // Passage de coordonnées polaires en coordonnées cartésiennes
+        const herdList = d3.select("#herd-names")
+
+
+        /*----- D3JS Setup (params, events, etc.) -----*/
+
+        // Setup de la projection (mercator, coordonnées polaires --> coordonnées cartésiennes)
         const projection = d3.geoMercator()
             .scale(1 / (2 * Math.PI))
             .translate([0, 0])
@@ -60,11 +73,6 @@
             .extent([[0, 0], [width, height]])
             .on("zoom", ({ transform }) => zoomed(transform))
 
-        // Création d'un graphique dans le svg
-        let image = svg.append("g")
-            .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
-            .selectAll("image") // Setup les image mais pas encore créées
-
         const zoomTransform = d3.zoomIdentity // Appel à l'évenement
             .translate(width / 2, height / 2)
             .scale(-initialScale)
@@ -72,7 +80,11 @@
             .scale(-1)
 
 
-        /*_____ DATA LOADING & HANDLING _____*/
+
+        /*_______________ DATA LOADING & HANDLING _______________*/
+
+
+        /*----- Global variables -----*/
 
         let alreadyInitZoomed = false
         let fetchedData = []
@@ -81,18 +93,31 @@
         const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
         const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
 
-        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv")
-            .then(function (data) {
-                fetchedData = data
+        const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv"
 
-                createSelectList(getHerdNames(data), "herd-names")
 
-                svg
-                    .call(zoom) // Setup de l'event de gestion du zoom
-                    .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
-            })
+        /*----- Main process -----*/
 
+        // Load plain csv data from repo
+        d3.csv(csvUrl).then(function (data) {
+            fetchedData = data
+
+            createSelectList(getHerdNames(data))
+            updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
+
+            svg
+                .call(zoom) // Setup de l'event de gestion du zoom
+                .on("dblclick.zoom", null)
+                .on("mousedown.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("touchmove.zoom", null)
+                .on("touchend.zoom", null)
+                .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+        })
+
+        // Initialize or update the map when zooming/moving on map
         function zoomed(transform) {
+            console.log("zoomed!")
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
             const tiles = tile(transform)
 
@@ -109,13 +134,8 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const herdName = document.getElementById("herd-names").value //get herdname from html list
-            const dates = getDatesByHerdName(fetchedData, herdName)
-            updateSlider(dates, alreadyInitZoomed)
-
-            data = getUsefulData(fetchedData, herdName, getRangedDates())
+            const data = getUsefulData(fetchedData, herdList.node().value, getRangedDates())
             const lines = svg.selectAll("path").data([data])
-            const points = svg.selectAll("circle").data(data)
 
             if (alreadyInitZoomed) { // UPDATES
                 lines
@@ -151,7 +171,8 @@
             }
         }
 
-        function updateSlider(dates, alreadyInitZoomed) {
+        // Initialize or update the slider when zooming/moving on map
+        function updateSlider(dates) {
             firstDateRows = getFirstOfEachYear(dates)
 
             const firstJanuaryDates = firstDateRows.map(row => row[0])
@@ -176,14 +197,34 @@
                     .tickFormat(d3.timeFormat('%Y'))
                     .fill("red")
                     .value([minDate, maxDate])
+                    .on("end", (dates) => {
+                        svg.call(zoom.transform, zoomTransform)
+                    })
 
                 sliderSvg
                     .call(slider)
             }
         }
 
+        // Create the select list for multiple herd names
+        function createSelectList(data) {
+            herdList
+                .selectAll("option")
+                .data(data)
+                .enter()
+                .append("option")
+                .attr("value", d => d)
+                .text(d => d)
 
-        /*_____ UTILS FUNCTIONS _____*/
+            herdList.on("change", () => {
+                updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
+                svg.call(zoom.transform, zoomTransform)
+            })
+        }
+
+
+
+        /*_______________ UTILS FUNCTIONS _______________*/
 
         Array.prototype.distinct = function () {
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
@@ -211,7 +252,7 @@
 
         function getRangedDates() {
             return firstDateRows
-                .filter(row => slider.value().find(value => value.getTime() === row[0].getTime()))
+                .filter(row => slider.value().find(value => new Date(value).getTime() === row[0].getTime()))
                 .map(row => row[1])
         }
 
@@ -228,19 +269,6 @@
 
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
-        }
-
-        function createSelectList(data, listName) {
-            let selectList = document.createElement("select")
-            selectList.id = listName
-            document.body.appendChild(selectList)
-
-            data.forEach(elem => {
-                let option = document.createElement("option")
-                option.value = elem
-                option.text = elem
-                selectList.appendChild(option)
-            })
         }
     </script>
 </body>
