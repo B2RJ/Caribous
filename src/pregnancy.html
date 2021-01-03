@@ -4,10 +4,148 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    
+    <style> /* set the CSS */
+        body { font: 12px Arial;}
+        
+        path { 
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+        
+        .legend {
+	            padding: 5px;
+	            font: 10px sans-serif;
+	            background: yellow;
+	            box-shadow: 2px 2px 1px #888;
+            }
+        
+    </style>
+    
 </head>
 <body>
+    <h1>Pregnancy</h1>
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div> 
+    <div id="my_dataviz2"></div>
     <script>
-
+        // set the dimensions and margins of the graph
+        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 600 - margin.left - margin.right,
+        height = 270 - margin.top - margin.bottom;
+        
+        // Parse the date / time
+        var parseDate = d3.timeParse("%Y");
+        
+        // Set the ranges
+        var x = d3.scaleTime().range([0, width]);  
+        var y = d3.scaleLinear().range([height, 0]);
+        
+        // Define the line 
+        var pregnancyLine = d3.line()    
+        .x(function(d) { return x(d.timestamp); })
+        .y(function(d) { return y(d.pregnant); });
+        
+        // Adds the svg canvas
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", 
+        "translate(" + margin.left + "," + margin.top + ")");
+        
+        // TODO: Update link
+        d3.csv("https://raw.githubusercontent.com/pi-aire/DM-projet/pregnant_count/src/ourDB/pregnant_count.csv?token=ALONEICD76ZZC6HOKSBOKRS76H2EO").then(data => {
+            //When reading the csv, I must format variables:
+            return data.map(elem => {
+                return { timestamp: d3.timeParse("%Y")(elem.timestamp), pregnant: elem.pregnant, study_site: elem.study_site }
+            })
+        }).then(data => {
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.timestamp; }));
+            y.domain([0, d3.max(data, function(d) { return d.pregnant; })]);
+            
+            // Group the entries by study_site
+            dataNest = Array.from(
+            d3.group(data, d => d.study_site), ([key, value]) => ({key, value})
+            );
+            
+            // set the colour scale
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            // Loop through each study_site / key
+            dataNest.forEach(function(d,i) {
+                svg.append("path")
+                .attr("class", "line")
+                .style("stroke", function() { // Add the colours dynamically
+                    return d.color = color(i);
+                })
+                .attr("d", pregnancyLine(d.value));
+            });
+            
+            // Add the X Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(d3.axisBottom(x));
+            
+            // Add the Y Axis
+            svg.append("g")
+            .attr("class", "axis")
+            .call(d3.axisLeft(y));
+            
+            // Add title    
+            svg.append("svg:text")
+            .attr("class", "title")
+            .attr("x", 20)
+            .attr("y", 20)
+            .text("Evolution of number of pregnant in each group");
+            
+            
+            // // Add the legend
+            // add legend   
+            var legend = svg.append("g")
+            .attr("class", "legend")
+            .attr("x", width - 65)
+            .attr("y", 25)
+            .attr("height", 100)
+            .attr("width", 100);
+            
+            legend.selectAll('g').data(data)
+            .enter()
+            .append('g')
+            .each(function(d, i) {
+                if (i < 4) {
+                    var g = d3.select(this);
+                    g.append("rect")
+                    .attr("x", width - 150)
+                    .attr("y", i*25)
+                    .attr("width", 10)
+                    .attr("height", 10)
+                    .style("fill", color(i));
+                    console.log(data[0]["study_site"])
+                    g.append("text")
+                    .attr("x", width - 130)
+                    .attr("y", i * 25 + 8)
+                    .attr("height",30)
+                    .attr("width",100)
+                    .style("fill", color(i))
+                    .text(data[i*3]["study_site"]);
+                }
+                
+            })
+            
+        })
+        
     </script>
 </body>
 </html>
