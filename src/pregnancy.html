@@ -22,13 +22,6 @@
             shape-rendering: crispEdges;
         }
         
-        .legend {
-	            padding: 5px;
-	            font: 10px sans-serif;
-	            background: yellow;
-	            box-shadow: 2px 2px 1px #888;
-            }
-        
     </style>
     
 </head>
@@ -47,7 +40,7 @@
         var parseDate = d3.timeParse("%Y");
         
         // Set the ranges
-        var x = d3.scaleTime().range([0, width]);  
+        var x = d3.scaleTime().range([0, width]);
         var y = d3.scaleLinear().range([height, 0]);
         
         // Define the line 
@@ -65,7 +58,8 @@
         "translate(" + margin.left + "," + margin.top + ")");
         
         // TODO: Update link
-        d3.csv("https://raw.githubusercontent.com/pi-aire/DM-projet/pregnant_count/src/ourDB/pregnant_count.csv?token=ALONEICD76ZZC6HOKSBOKRS76H2EO").then(data => {
+        link="https://raw.githubusercontent.com/pi-aire/DM-projet/pregnant_count/src/ourDB/pregnant_count.csv?token=ALONEIESTXRKOIZLIKTHT5S76H6XQ"
+        d3.csv(link).then(data => {
             //When reading the csv, I must format variables:
             return data.map(elem => {
                 return { timestamp: d3.timeParse("%Y")(elem.timestamp), pregnant: elem.pregnant, study_site: elem.study_site }
@@ -82,6 +76,8 @@
             
             // set the colour scale
             var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+            legendSpace = width/dataNest.length; // spacing for the legend
             // Loop through each study_site / key
             dataNest.forEach(function(d,i) {
                 svg.append("path")
@@ -90,62 +86,37 @@
                     return d.color = color(i);
                 })
                 .attr("d", pregnancyLine(d.value));
-            });
-            
-            // Add the X Axis
-            svg.append("g")
-            .attr("class", "axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(d3.axisBottom(x));
-            
-            // Add the Y Axis
-            svg.append("g")
-            .attr("class", "axis")
-            .call(d3.axisLeft(y));
-            
-            // Add title    
-            svg.append("svg:text")
-            .attr("class", "title")
-            .attr("x", 20)
-            .attr("y", 20)
-            .text("Evolution of number of pregnant in each group");
-            
-            
-            // // Add the legend
-            // add legend   
-            var legend = svg.append("g")
-            .attr("class", "legend")
-            .attr("x", width - 65)
-            .attr("y", 25)
-            .attr("height", 100)
-            .attr("width", 100);
-            
-            legend.selectAll('g').data(data)
-            .enter()
-            .append('g')
-            .each(function(d, i) {
-                if (i < 4) {
-                    var g = d3.select(this);
-                    g.append("rect")
-                    .attr("x", width - 150)
-                    .attr("y", i*25)
-                    .attr("width", 10)
-                    .attr("height", 10)
-                    .style("fill", color(i));
-                    console.log(data[0]["study_site"])
-                    g.append("text")
-                    .attr("x", width - 130)
-                    .attr("y", i * 25 + 8)
-                    .attr("height",30)
-                    .attr("width",100)
-                    .style("fill", color(i))
-                    .text(data[i*3]["study_site"]);
-                }
+                
+                // Add the legend
+                svg.append("text")
+                .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+                .attr("y", height + (margin.bottom/2)+ 13)
+                .attr("class", "legend")    // style the legend
+                .style("fill", function() { // Add the colours dynamically
+                    return d.color = color(i); })
+                    .text(d.key); 
+                });
+                
+                // Add the X Axis
+                svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(3));
+                
+                // Add the Y Axis
+                svg.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y).ticks(5));
+                
+                // Add title    
+                svg.append("svg:text")
+                .attr("class", "title")
+                .attr("x", width/4)
+                .attr("y", 0)
+                .text("Evolution of number of pregnant in each group");
                 
             })
             
-        })
-        
-    </script>
-</body>
-</html>
+        </script>
+    </body>
+    </html>
