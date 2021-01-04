@@ -23,13 +23,11 @@
         }
         
     </style>
-    
 </head>
 <body>
     <h1>Pregnancy</h1>
     <!-- Create a div where the graph will take place -->
-    <div id="my_dataviz"></div> 
-    <div id="my_dataviz2"></div>
+    <div id="my_dataviz"></div>
     <script>
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 30, bottom: 30, left: 60 },
@@ -57,9 +55,8 @@
         .attr("transform", 
         "translate(" + margin.left + "," + margin.top + ")");
         
-        // TODO: Update link
-        link="https://raw.githubusercontent.com/pi-aire/DM-projet/pregnant_count/src/ourDB/pregnant_count.csv?token=ALONEIESTXRKOIZLIKTHT5S76H6XQ"
-        d3.csv(link).then(data => {
+        
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/pregnant_count.csv").then(data => {
             //When reading the csv, I must format variables:
             return data.map(elem => {
                 return { timestamp: d3.timeParse("%Y")(elem.timestamp), pregnant: elem.pregnant, study_site: elem.study_site }
@@ -76,8 +73,9 @@
             
             // set the colour scale
             var color = d3.scaleOrdinal(d3.schemeCategory10);
-
-            legendSpace = width/dataNest.length; // spacing for the legend
+            
+            // spacing for the legend
+            legendSpace = width/dataNest.length; 
             // Loop through each study_site / key
             dataNest.forEach(function(d,i) {
                 svg.append("path")
@@ -89,7 +87,7 @@
                 
                 // Add the legend
                 svg.append("text")
-                .attr("x", (legendSpace/2)+i*legendSpace)  // space legend
+                .attr("x", (legendSpace/2)+i*legendSpace)
                 .attr("y", height + (margin.bottom/2)+ 13)
                 .attr("class", "legend")    // style the legend
                 .style("fill", function() { // Add the colours dynamically
@@ -114,9 +112,8 @@
                 .attr("x", width/4)
                 .attr("y", 0)
                 .text("Evolution of number of pregnant in each group");
-                
             })
             
         </script>
     </body>
-    </html>
+</html>
