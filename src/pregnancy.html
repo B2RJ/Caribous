@@ -4,10 +4,116 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
+    
+    <style> /* set the CSS */
+        body { font: 12px Arial;}
+        
+        path { 
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+        
+    </style>
 </head>
 <body>
+    <h1>Pregnancy</h1>
+    <!-- Create a div where the graph will take place -->
+    <div id="my_dataviz"></div>
     <script>
-
-    </script>
-</body>
+        // set the dimensions and margins of the graph
+        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 600 - margin.left - margin.right,
+        height = 270 - margin.top - margin.bottom;
+        
+        // Parse the date / time
+        var parseDate = d3.timeParse("%Y");
+        
+        // Set the ranges
+        var x = d3.scaleTime().range([0, width]);
+        var y = d3.scaleLinear().range([height, 0]);
+        
+        // Define the line 
+        var pregnancyLine = d3.line()    
+        .x(function(d) { return x(d.timestamp); })
+        .y(function(d) { return y(d.pregnant); });
+        
+        // Adds the svg canvas
+        var svg = d3.select("body")
+        .append("svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", 
+        "translate(" + margin.left + "," + margin.top + ")");
+        
+        
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/pregnant_count.csv").then(data => {
+            //When reading the csv, I must format variables:
+            return data.map(elem => {
+                return { timestamp: d3.timeParse("%Y")(elem.timestamp), pregnant: elem.pregnant, study_site: elem.study_site }
+            })
+        }).then(data => {
+            // Scale the range of the data
+            x.domain(d3.extent(data, function(d) { return d.timestamp; }));
+            y.domain([0, d3.max(data, function(d) { return d.pregnant; })]);
+            
+            // Group the entries by study_site
+            dataNest = Array.from(
+            d3.group(data, d => d.study_site), ([key, value]) => ({key, value})
+            );
+            
+            // set the colour scale
+            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            
+            // spacing for the legend
+            legendSpace = width/dataNest.length; 
+            // Loop through each study_site / key
+            dataNest.forEach(function(d,i) {
+                svg.append("path")
+                .attr("class", "line")
+                .style("stroke", function() { // Add the colours dynamically
+                    return d.color = color(i);
+                })
+                .attr("d", pregnancyLine(d.value));
+                
+                // Add the legend
+                svg.append("text")
+                .attr("x", (legendSpace/2)+i*legendSpace)
+                .attr("y", height + (margin.bottom/2)+ 13)
+                .attr("class", "legend")    // style the legend
+                .style("fill", function() { // Add the colours dynamically
+                    return d.color = color(i); })
+                    .text(d.key); 
+                });
+                
+                // Add the X Axis
+                svg.append("g")
+                .attr("class", "axis")
+                .attr("transform", "translate(0," + height + ")")
+                .call(d3.axisBottom(x).ticks(3));
+                
+                // Add the Y Axis
+                svg.append("g")
+                .attr("class", "axis")
+                .call(d3.axisLeft(y).ticks(5));
+                
+                // Add title    
+                svg.append("svg:text")
+                .attr("class", "title")
+                .attr("x", width/4)
+                .attr("y", 0)
+                .text("Evolution of number of pregnant in each group");
+            })
+            
+        </script>
+    </body>
 </html>
