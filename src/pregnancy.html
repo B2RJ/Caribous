@@ -27,93 +27,118 @@
 <body>
     <h1>Pregnancy</h1>
     <!-- Create a div where the graph will take place -->
-    <div id="my_dataviz"></div>
+    <div id="chart"></div>
     <script>
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 30, bottom: 30, left: 60 },
         width = 600 - margin.left - margin.right,
-        height = 270 - margin.top - margin.bottom;
-        
-        // Parse the date / time
-        var parseDate = d3.timeParse("%Y");
-        
-        // Set the ranges
-        var x = d3.scaleTime().range([0, width]);
-        var y = d3.scaleLinear().range([height, 0]);
-        
-        // Define the line 
-        var pregnancyLine = d3.line()    
-        .x(function(d) { return x(d.timestamp); })
-        .y(function(d) { return y(d.pregnant); });
+        height = 270 - margin.top - margin.bottom,
+        legendCellSize = 20,
+        keys = ["Moberly", "Kennedy", "Quintette", "Hart Ranges"],
+        colors = ["#ccebc5","#7bccc4","#2b8cbe","#084081"];
         
         // Adds the svg canvas
-        var svg = d3.select("body")
-        .append("svg")
+        const svg = d3.select("#chart").append("svg")
+        .attr("id", "svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
-        .attr("transform", 
-        "translate(" + margin.left + "," + margin.top + ")");
-        
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/pregnant_count.csv").then(data => {
-            //When reading the csv, I must format variables:
-            return data.map(elem => {
-                return { timestamp: d3.timeParse("%Y")(elem.timestamp), pregnant: elem.pregnant, study_site: elem.study_site }
-            })
-        }).then(data => {
-            // Scale the range of the data
-            x.domain(d3.extent(data, function(d) { return d.timestamp; }));
-            y.domain([0, d3.max(data, function(d) { return d.pregnant; })]);
+            var stack = d3.stack()
+            .keys(keys)
+            .order(d3.stackOrderNone)
+            .offset(d3.stackOffsetNone);
             
-            // Group the entries by study_site
-            dataNest = Array.from(
-            d3.group(data, d => d.study_site), ([key, value]) => ({key, value})
-            );
+            var series = stack(data);
             
-            // set the colour scale
-            var color = d3.scaleOrdinal(d3.schemeCategory10);
+            const x = d3.scaleBand()
+            .domain(data.map(d => d.timestamp))
+            .range([0, width])
+            .padding(0.1);
             
-            // spacing for the legend
-            legendSpace = width/dataNest.length; 
-            // Loop through each study_site / key
-            dataNest.forEach(function(d,i) {
-                svg.append("path")
-                .attr("class", "line")
-                .style("stroke", function() { // Add the colours dynamically
-                    return d.color = color(i);
-                })
-                .attr("d", pregnancyLine(d.value));
-                
-                // Add the legend
-                svg.append("text")
-                .attr("x", (legendSpace/2)+i*legendSpace)
-                .attr("y", height + (margin.bottom/2)+ 13)
-                .attr("class", "legend")    // style the legend
-                .style("fill", function() { // Add the colours dynamically
-                    return d.color = color(i); })
-                    .text(d.key); 
-                });
-                
-                // Add the X Axis
-                svg.append("g")
-                .attr("class", "axis")
-                .attr("transform", "translate(0," + height + ")")
-                .call(d3.axisBottom(x).ticks(3));
-                
-                // Add the Y Axis
-                svg.append("g")
-                .attr("class", "axis")
-                .call(d3.axisLeft(y).ticks(5));
-                
-                // Add title    
-                svg.append("svg:text")
+            const y = d3.scaleLinear()
+            .domain([0, d3.max(series[series.length - 1], d => d[1])])
+            .range([height, 0]);
+            
+            // Sur l'axe horizontal, on filtre les dates afficher
+            const xAxis = d3.axisBottom(x)
+            
+            svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")	
+            .style("text-anchor", "middle");
+            
+            svg.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(y).ticks(10))
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .style("text-anchor", "end")
+            .text("nombre de bébés");
+            
+            let groups = svg.selectAll("g.biberon")
+            .data(series)
+            .enter().append("g")
+            .style("fill", (d, i) => colors[i]);
+            
+            let rect = groups.selectAll("rect")
+            .data(d => d)
+            .enter()
+            .append("rect")
+            .attr("x", d => x(d.data.timestamp))
+            .attr("width", x.bandwidth())
+            .attr("y", d => y(d[1]))
+            .attr("height", d => height - y(d[1] - d[0]));
+
+            // Add the title
+            // Add title    
+            svg.append("svg:text")
                 .attr("class", "title")
                 .attr("x", width/4)
                 .attr("y", 0)
                 .text("Evolution of number of pregnant in each group");
-            })
             
-        </script>
-    </body>
+            // Add the legend
+            addLegend(colors);
+        });
+        
+        function addLegend(colors) {
+            let reverseColors = colors.reverse(); // Pour présenter les catégories dans le même sens qu'elles sont utilisées
+            let reverseKeys = keys.reverse();
+            
+            let legend = svg.append('g')
+            .attr('transform', 'translate(10, 20)'); // Représente le point précis en haut à gauche du premier carré de couleur
+            
+            // Pour chaque couleur, on ajoute un carré toujours positionné au même endroit sur l'axe X et décalé en fonction de la 
+            // taille du carré et de l'indice de la couleur traitée sur l'axe Y
+            legend.selectAll()
+            .data(reverseColors)
+            .enter().append('rect')
+            .attr('height', legendCellSize + 'px')
+            .attr('width', legendCellSize + 'px')
+            .attr('x', 5)
+            .attr('y', (d,i) => i * legendCellSize)
+            .style("fill", d => d);
+            
+            // On procéde de la même façon sur les libellés avec un positionement sur l'axe X de la taille des carrés 
+            // à laquelle on rajoute 10 px de marge
+            legend.selectAll()
+            .data(reverseKeys)
+            .enter().append('text')
+            .attr("transform", (d,i) => "translate(" + (legendCellSize + 10) + ", " + (i * legendCellSize) + ")")
+            .attr("dy", legendCellSize / 1.6) // Pour centrer le texte par rapport aux carrés
+            .style("font-size", "13px")
+            .style("fill", "grey")
+            .text(d => d);
+        }
+        
+    </script>
+</body>
 </html>
