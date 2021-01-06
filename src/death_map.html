@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Death reasons</title>
+    <title>Death map</title>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
@@ -16,8 +16,8 @@
 </head>
 
 <body>
-    <H1>Death reasons</H1>
-    <div id="trajectory"></div>
+    <H1>Death map</H1>
+    <div id="death"></div>
     <script>
         /*_______________ INITIAL CONFIGURATION _______________*/
 
@@ -33,7 +33,7 @@
 
         /*----- Graphical global components -----*/
 
-        const svg = d3.select("#trajectory")
+        const svg = d3.select("#death")
             .append("svg")
             .attr("viewBox", [0, 0, width, height])
         // Création d'un graphique dans le svg
