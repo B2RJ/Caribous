@@ -1,0 +1,112 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    
+    <style> /* set the CSS */
+        body { font: 12px Arial;}
+        
+        path { 
+            stroke: steelblue;
+            stroke-width: 2;
+            fill: none;
+        }
+        
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: grey;
+            stroke-width: 1;
+            shape-rendering: crispEdges;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Pregnancy</h1>
+    <!-- Create a div where the graph will take place -->
+    <div id="chart"></div>
+    <script>
+        // set the dimensions and margins of the graph
+        var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+        width = 600 - margin.left - margin.right,
+        height = 270 - margin.top - margin.bottom;
+        
+        keys = ["Moberly", "Kennedy", "Quintette", "HartRanges"],
+        colors = ["#ff0000","#4eb3d3","#084081","#000000"];
+        
+        // Parse the date / time
+        var parseDate = d3.timeParse("%Y");
+        
+        
+        
+        // Adds the svg canvas
+        const svg = d3.select("#chart").append("svg")
+        .attr("id", "svg")
+        .attr("width", width + margin.left + margin.right)
+        .attr("height", height + margin.top + margin.bottom)
+        .append("g")
+        .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+        
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/pregnant/data/ourdata/test_pregnancy.csv").then(data => {
+            var stack = d3.stack()
+            .keys(keys)
+            .order(d3.stackOrderNone)
+            .offset(d3.stackOffsetNone);
+            
+            var series = stack(data);
+            
+            const x = d3.scaleBand()
+            .domain(data.map(d => d.timestamp))
+            .range([0, width])
+            .padding(0.1);
+            
+            const y = d3.scaleLinear()
+            .domain([0, d3.max(series[series.length - 1], d => d[1])])
+            .range([height, 0]);
+            
+            // Sur l'axe horizontal, on filtre les dates afficher
+            const xAxis = d3.axisBottom(x)
+            
+            svg.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + height + ")")
+            .call(xAxis)
+            .selectAll("text")	
+            .style("text-anchor", "middle");
+            
+            svg.append("g")
+            .attr("class", "y axis")
+            .call(d3.axisLeft(y).ticks(10))
+            .append("text")
+            .attr("fill", "#000")
+            .attr("transform", "rotate(-90)")
+            .attr("y", 6)
+            .attr("dy", "0.71em")
+            .style("text-anchor", "end")
+            .text("nombre de bébés");
+            
+            let groups = svg.selectAll("g.biberon")
+            .data(series)
+            .enter().append("g")
+            .style("fill", (d, i) => colors[i]);
+            
+            let rect = groups.selectAll("rect")
+            .data(d => d)
+            .enter()
+            .append("rect")
+            .attr("x", d => x(d.data.timestamp))
+            .attr("width", x.bandwidth())
+            .attr("y", d => y(d[1]))
+            .attr("height", d => height - y(d[1] - d[0]));
+            
+            console.log(data)
+            console.log(series)
+        });
+        
+    </script>
+</body>
+</html>
