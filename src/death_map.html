@@ -83,7 +83,8 @@
 
         // Load plain csv data from repo
         d3.csv(csvUrl).then(data => {
-            fetchedData = data
+            fetchedData = getUtilData(data)
+            console.log(fetchedData)
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -114,14 +115,21 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const data = [] // TODO: load data for circles/areas
+            const circles = svg.selectAll("circle").data(fetchedData)
 
             if (alreadyInitZoomed) { // UPDATES
                 // TODO: update circles 
 
             } else { // INITIALIZATION
-                // TODO: create circles 
-
+                // TODO: create circles
+                circles
+                    .enter()
+                    .append("circle")
+                    .attr("r", 4)
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
+                    .style("stroke", "red")
+                    .style("fill", "None")
                 alreadyInitZoomed = true
             }
         }
@@ -129,7 +137,29 @@
 
 
         /*_______________ UTILS FUNCTIONS _______________*/
+        function getMeanCoords(coords) {
+            const longs = coords.map(c => c[0]);
+            const lats = coords.map(c => c[1]);
+            return [(Math.min (...longs) + Math.max (...longs)) / 2, (Math.min (...lats) + Math.max (...lats)) / 2]
+        }
 
+        function getClusters(data) {
+            const dict = {};
+            data.forEach(d => {
+                if (!dict.hasOwnProperty(d.cluster)) dict[d.cluster] = []
+                dict[d.cluster].push(d)
+            });
+            return Object.values(dict);
+        }
+
+        function getCoords(cluster) {
+            /*console.log(cluster)*/
+            return cluster.map(d => [d.deploy_off_longitude, d.deploy_off_latitude])
+        }
+
+        function getUtilData(data) {
+            return getClusters(data).map(c => getMeanCoords(getCoords(c)))
+        }
 
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
