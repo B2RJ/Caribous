@@ -26,9 +26,9 @@
 
         const width = 600
         const height = 250
-        const zoomValue = 1 << 13 // Zoom dans l'image
+        const zoomValue = 1 << 14 // Zoom dans l'image
         const initialScale = zoomValue
-        const initialCenter = [-122.567179, 56.074159]
+        const initialCenter = [-122.567179, 55.5]
 
 
         /*----- Graphical global components -----*/
@@ -125,7 +125,7 @@
                 circles
                     .enter()
                     .append("circle")
-                    .attr("r", 4)
+                    .attr("r", 8)
                     .attr("cx", d => projection(d)[0])
                     .attr("cy", d => projection(d)[1])
                     .style("stroke", "red")
