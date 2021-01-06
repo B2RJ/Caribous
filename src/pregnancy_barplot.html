@@ -32,15 +32,10 @@
         // set the dimensions and margins of the graph
         var margin = { top: 10, right: 30, bottom: 30, left: 60 },
         width = 600 - margin.left - margin.right,
-        height = 270 - margin.top - margin.bottom;
-        
+        height = 270 - margin.top - margin.bottom,
+        legendCellSize = 20,
         keys = ["Moberly", "Kennedy", "Quintette", "HartRanges"],
-        colors = ["#ff0000","#4eb3d3","#084081","#000000"];
-        
-        // Parse the date / time
-        var parseDate = d3.timeParse("%Y");
-        
-        
+        colors = ["#ccebc5","#7bccc4","#2b8cbe","#084081"];
         
         // Adds the svg canvas
         const svg = d3.select("#chart").append("svg")
@@ -49,7 +44,6 @@
         .attr("height", height + margin.top + margin.bottom)
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-        
         
         d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/pregnant/data/ourdata/test_pregnancy.csv").then(data => {
             var stack = d3.stack()
@@ -102,10 +96,48 @@
             .attr("width", x.bandwidth())
             .attr("y", d => y(d[1]))
             .attr("height", d => height - y(d[1] - d[0]));
+
+            // Add the title
+            // Add title    
+            svg.append("svg:text")
+                .attr("class", "title")
+                .attr("x", width/4)
+                .attr("y", 0)
+                .text("Evolution of number of pregnant in each group");
             
-            console.log(data)
-            console.log(series)
+            // Add the legend
+            addLegend(colors);
         });
+        
+        function addLegend(colors) {
+            let reverseColors = colors.reverse(); // Pour présenter les catégories dans le même sens qu'elles sont utilisées
+            let reverseKeys = keys.reverse();
+            
+            let legend = svg.append('g')
+            .attr('transform', 'translate(10, 20)'); // Représente le point précis en haut à gauche du premier carré de couleur
+            
+            // Pour chaque couleur, on ajoute un carré toujours positionné au même endroit sur l'axe X et décalé en fonction de la 
+            // taille du carré et de l'indice de la couleur traitée sur l'axe Y
+            legend.selectAll()
+            .data(reverseColors)
+            .enter().append('rect')
+            .attr('height', legendCellSize + 'px')
+            .attr('width', legendCellSize + 'px')
+            .attr('x', 5)
+            .attr('y', (d,i) => i * legendCellSize)
+            .style("fill", d => d);
+            
+            // On procéde de la même façon sur les libellés avec un positionement sur l'axe X de la taille des carrés 
+            // à laquelle on rajoute 10 px de marge
+            legend.selectAll()
+            .data(reverseKeys)
+            .enter().append('text')
+            .attr("transform", (d,i) => "translate(" + (legendCellSize + 10) + ", " + (i * legendCellSize) + ")")
+            .attr("dy", legendCellSize / 1.6) // Pour centrer le texte par rapport aux carrés
+            .style("font-size", "13px")
+            .style("fill", "grey")
+            .text(d => d);
+        }
         
     </script>
 </body>
