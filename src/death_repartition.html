@@ -2,30 +2,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Répartion des morts</title>
     <script src="https://d3js.org/d3.v6.min.js"></script>
-    
-    <style> /* set the CSS */
-        body { font: 12px Arial;}
-        
-        path { 
-            stroke: steelblue;
-            stroke-width: 2;
-            fill: none;
-        }
-        
-        .axis path,
-        .axis line {
-            fill: none;
-            stroke: grey;
-            stroke-width: 1;
-            shape-rendering: crispEdges;
-        }
-        
-    </style>
+    <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
 </head>
 <body>
-    <h1>Pregnancy</h1>
+    <h1>Répartion des morts</h1>
     <!-- Create a div where the graph will take place -->
     <div id="my_dataviz"></div>
     <script>
@@ -34,8 +16,8 @@
         width = 600 - margin.left - margin.right,
         height = 270 - margin.top - margin.bottom,
         legendCellSize = 20,
-        keys = ["Moberly", "Kennedy", "Quintette", "Hart Ranges"],
-        colors = ["#ccebc5","#7bccc4","#2b8cbe","#084081"];
+        keys = ["Other", "Predation", "Vehicle Collision"],
+        colors = ["#7bccc4","#2b8cbe","#084081"];
         
         // Adds the svg canvas
         const svg = d3.select("#my_dataviz").append("svg")
@@ -45,7 +27,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/pregnant_count.csv").then(data => {
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/death_cause_stats.csv").then(data => {
             
             // Diagram builder. keys = study_site
             var stack = d3.stack()
@@ -58,7 +40,7 @@
             
             // Set the range
             const x = d3.scaleBand()
-            .domain(data.map(d => d.timestamp))
+            .domain(data.map(d => d.last_known_timestamp))
             .range([0, width])
             .padding(0.1);
             const y = d3.scaleLinear()
@@ -85,10 +67,10 @@
             .attr("y", 6)
             .attr("dy", "0.71em")
             .style("text-anchor", "end")
-            .text("nombre de bébés");
+            .text("nombre de morts");
             
             // Group the data 
-            let groups = svg.selectAll("g.pregnant")
+            let groups = svg.selectAll("g.death_cause")
             .data(series)
             .enter().append("g")
             .style("fill", (d, i) => colors[i]);
@@ -98,17 +80,17 @@
             .data(d => d)
             .enter()
             .append("rect")
-            .attr("x", d => x(d.data.timestamp))
+            .attr("x", d => x(d.data.last_known_timestamp))
             .attr("width", x.bandwidth())
             .attr("y", d => y(d[1]))
             .attr("height", d => height - y(d[1] - d[0]));
-
+            
             // Add title
             svg.append("svg:text")
-                .attr("class", "title")
-                .attr("x", width/4)
-                .attr("y", 0)
-                .text("Evolution of number of pregnant in each group");
+            .attr("class", "title")
+            .attr("x", width/4)
+            .attr("y", 0)
+            .text("Repartition des morts par catégorie et par an");
             
             // Add the legend
             // To display the study_site in the correct order
