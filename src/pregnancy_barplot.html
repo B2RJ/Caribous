@@ -45,7 +45,7 @@
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
         
-        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/pregnant/data/ourdata/test_pregnancy.csv").then(data => {
+        d3.csv("https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/pregnant_count.csv").then(data => {
             var stack = d3.stack()
             .keys(keys)
             .order(d3.stackOrderNone)
