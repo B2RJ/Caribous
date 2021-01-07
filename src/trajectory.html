@@ -27,11 +27,11 @@
 
         /*----- Graphical global variables -----*/
 
-        const width = 600
-        const height = 250
-        const zoomValue = 1 << 13 // Zoom dans l'image
+        const width = 500
+        const height = 275
+        const zoomValue = 1 << 14 // Zoom dans l'image
         const initialScale = zoomValue
-        const initialCenter = [-122.567179, 56.074159]
+        const initialCenter = [-122, 55]
 
 
         /*----- Graphical global components -----*/
@@ -136,12 +136,23 @@
 
             const data = getUsefulData(fetchedData, herdList.node().value, getRangedDates())
             const lines = svg.selectAll("path").data([data])
+            const startPoint = svg.selectAll("circle").data([data[0]])
 
             if (alreadyInitZoomed) { // UPDATES
                 lines
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(100)
                     .attr("d", d3.line()
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
+
+                startPoint
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(100)
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
             } else { // INITIALIZATION
                 lines
                     .enter()
@@ -166,6 +177,15 @@
                     .append("path")
                     .attr("d", d3.line()(arrowPoints))
                     .style("fill", "red")
+
+                startPoint
+                    .enter()
+                    .append("circle")
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
+                    .attr("fill", "green")
+                    .attr("r", 10)
+                    .style("opacity", 0.5)
 
                 alreadyInitZoomed = true
             }
