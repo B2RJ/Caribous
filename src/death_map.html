@@ -84,8 +84,8 @@
 
         // Load plain csv data from repo
         d3.csv(csvUrl).then(data => {
-            clustersCoords = getClusterCoords(data).flatMap(c => c)
-            clustersMeans = getClusterCoords(data).map(c => [getMeanCoords(c), c.length, c])
+            clustersCoords = getClusterCoords(data)
+            clustersMeans = clustersCoords.map(c => [getMeanCoords(c), c.length])
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -116,40 +116,38 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const means = svg.selectAll("means").data(clustersMeans)
-            console.log(clustersCoords)
-            const coords = svg.selectAll("coords").data(clustersCoords)
+            const clustersData = []
+            for(let i = 0; i < clustersMeans.length; i++) {
+                clustersData.push({
+                    means: svg.selectAll("means_"+i).data([clustersMeans[i]]),
+                    coords: svg.selectAll("coords_"+i).data(clustersCoords[i])
+                })
+            }
 
             if (alreadyInitZoomed) { // UPDATES
                 // TODO: update circles 
 
             } else { // INITIALIZATION
                 // TODO: create circles
-                means.enter().append("circle")
-                    .attr("class", "means")
-                    .attr("r", d => 4 + 2*Math.log2(d[1]))
-                    .attr("cx", d => projection(d[0])[0])
-                    .attr("cy", d => projection(d[0])[1])
-                    .style("stroke", "red")
-                    .style("fill", "None")
-                    .on("mouseover", function(event, d) {
-                        /*if(d.length > 1) {
-                            console.log(d)
-                            const c2 = svg.selectAll("circle").data(d[2])
-                            c2.enter().append("circle")
-                                .attr("r", c => 5)
-                                .attr("cx", c => projection(c)[0])
-                                .attr("cy", c => projection(c)[1])
-                                .style("stroke", "blue")
-                        }*/
-                    })
-                coords.enter().append("circle")
-                    .attr("class", "coords")
-                    .attr("r", 1)
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
-                    //.style("stroke", "blue")
-                    .style("fill", "blue")
+                for(let i = 0; i < clustersData.length; i++) {
+                    let cd = clustersData[i]
+                    cd.coords.enter().append("circle")
+                        .attr("class", "coords_"+i)
+                        .attr("r", 1)
+                        .attr("cx", d => projection(d)[0])
+                        .attr("cy", d => projection(d)[1])
+                        //.style("fill", "None")
+
+                    cd.means.enter().append("circle")
+                        .attr("class", "means_"+i)
+                        .attr("r", d => 4 + 2*Math.log2(d[1]))
+                        .attr("cx", d => projection(d[0])[0])
+                        .attr("cy", d => projection(d[0])[1])
+                        .style("stroke", "red")
+                        .style("fill", "None")
+                        .on("mouseover", (event, d) => cd.coords.style("fill", "blue"))
+                        .on("mouseleave", (event, d) => cd.coords.style("fill", "None"))
+                }
                 alreadyInitZoomed = true
             }
         }
