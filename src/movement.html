@@ -1,12 +1,281 @@
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tendancy movement</title>
+    <title>Movement</title>
+
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
+    <script src="https://unpkg.com/d3-simple-slider"></script>
+
+    <style>
+        body {
+            background-color: #666
+        }
+    </style>
 </head>
+
 <body>
-    
+    <H1>Movement</H1>
+    <div id="trajectory"></div>
+    <div id="slider"></div>
+    <select id="herd-names"></select>
+    <script>
+        /*_______________ INITIAL CONFIGURATION _______________*/
+
+
+        /*----- Graphical global variables -----*/
+
+        const width = 600
+        const height = 250
+        const zoomValue = 1 << 13 // Zoom dans l'image
+        const initialScale = zoomValue
+        const initialCenter = [-122.567179, 56.074159]
+
+
+        /*----- Graphical global components -----*/
+
+        const svg = d3.select("#trajectory")
+            .append("svg")
+            .attr("viewBox", [0, 0, width, height])
+        // Création d'un graphique dans le svg
+        let image = svg.append("g")
+            .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
+            .selectAll("image") // Setup les image mais pas encore créées
+
+        const sliderSvg = d3.select("#slider")
+            .append('svg')
+            .attr('width', 700)
+            .attr('height', 100)
+            .append('g')
+            .attr('transform', 'translate(20,20)')
+        let slider
+
+        const herdList = d3.select("#herd-names")
+
+
+        /*----- D3JS Setup (params, events, etc.) -----*/
+
+        // Setup de la projection (mercator, coordonnées polaires --> coordonnées cartésiennes)
+        const projection = d3.geoMercator()
+            .scale(1 / (2 * Math.PI))
+            .translate([0, 0])
+
+        // Setup du nombre de pavé present dans l'image et leur taille
+        const tile = d3.tile()
+            .extent([[0, 0], [width, height]])
+            .tileSize(200)
+
+        // Définition de l'échelle de zoom (min/max), de sa taille et de l'event associé
+        const zoom = d3.zoom()
+            .scaleExtent([zoomValue, zoomValue])
+            .extent([[0, 0], [width, height]])
+            .on("zoom", ({ transform }) => zoomed(transform))
+
+        const zoomTransform = d3.zoomIdentity // Appel à l'évenement
+            .translate(width / 2, height / 2)
+            .scale(-initialScale)
+            .translate(...projection(initialCenter))
+            .scale(-1)
+
+
+
+        /*_______________ DATA LOADING & HANDLING _______________*/
+
+
+        /*----- Global variables -----*/
+
+        let alreadyInitZoomed = false
+        let fetchedData = []
+        let firstDateRows = []
+
+        const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
+        const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
+
+        // const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv"
+        
+        const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means_years.csv"
+
+
+        /*----- Main process -----*/
+
+        // Load plain csv data from repo
+        d3.csv(csvUrl).then(function (data) {
+            fetchedData = data
+            createSelectList(data,getHerdNames(data))
+            updateSlider(getDatesByHerdName(data, herdList.node().value))
+
+            svg
+                .call(zoom) // Setup de l'event de gestion du zoom
+                .on("dblclick.zoom", null)
+                .on("mousedown.zoom", null)
+                .on("touchstart.zoom", null)
+                .on("touchmove.zoom", null)
+                .on("touchend.zoom", null)
+                .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+        })
+
+        // Initialize or update the map when zooming/moving on map
+        function zoomed(transform) {
+            console.log(getRangedYears())
+            // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
+            const tiles = tile(transform)
+
+            // On crée/actualise les images présentes dans le graphique
+            // Chaque image représente une portion de carte et chaque image est un pavé
+            image = image.data(tiles, d => d).join("image")
+                .attr("xlink:href", d => url(...d))
+                .attr("x", ([x]) => (x + tiles.translate[0]) * tiles.scale)
+                .attr("y", ([, y]) => (y + tiles.translate[1]) * tiles.scale)
+                .attr("width", tiles.scale)
+                .attr("height", tiles.scale)
+
+            projection
+                .scale(transform.k / (2 * Math.PI))
+                .translate([transform.x, transform.y])
+
+            const lines = getLinesData(fetchedData, herdList.node().value, getRangedYears())
+            
+            if (alreadyInitZoomed) { // UPDATES
+                svg.selectAll(".line").remove()
+                svg.selectAll("path").data(lines)
+                    .enter()
+                    .append("path")
+                    .attr("class", "line")
+                    .attr("marker-end", "url(#arrow)")
+                    .attr("d", d3.line()
+                        .x(d => projection(d)[0])
+                        .y(d => projection(d)[1]))
+                    .style("stroke", "black")
+                    .style("stroke-linecap", "round")
+            } else { // INITIALIZATION
+                svg.selectAll("path").data(lines)
+                    .enter()
+                    .append("path")
+                    .attr("class", "line")
+                    .attr("marker-end", "url(#arrow)")
+                    .attr("d", d3.line()
+                        .x(d => projection(d)[0])
+                        .y(d => projection(d)[1]))
+                    .style("stroke", "black")
+                    .style("stroke-linecap", "round")
+
+                svg
+                    .append("defs")
+                    .append("marker")
+                    .attr("id", "arrow")
+                    .attr("viewBox", [0, 0, arrowHeadWidth, arrowHeadHeight])
+                    .attr("refX", arrowHeadWidth / 2)
+                    .attr("refY", arrowHeadHeight / 2)
+                    .attr("markerWidth", arrowHeadWidth)
+                    .attr("markerHeight", arrowHeadHeight)
+                    .attr("orient", "auto")
+                    .append("path")
+                    .attr("d", d3.line()(arrowPoints))
+                    .style("fill", "black")
+
+                alreadyInitZoomed = true
+            }
+        }
+
+        // // Initialize or update the slider when zooming/moving on map
+        function updateSlider(years) {
+            const minYear = years[0]
+            const maxYear = years[years.length - 1]
+            if (alreadyInitZoomed) {
+                sliderSvg
+                    .call(slider
+                        .domain([minYear, maxYear])
+                        .tickValues(years)
+                        .marks(years)
+                        .value([minYear, maxYear])
+                    )
+            } else {
+                slider = d3
+                    .sliderBottom()
+                    .domain([minYear, maxYear])
+                    .width(650)
+                    .tickValues(years)
+                    .marks(years)
+                    .tickFormat(d3.timeFormat('%Y'))
+                    .fill("red")
+                    .value([minYear, maxYear])
+                    .on("end", (dates) => {
+                        svg.call(zoom.transform, zoomTransform)
+                    })
+
+                sliderSvg
+                    .call(slider)
+            }
+        }
+
+        // Create the select list for multiple herd names
+        function createSelectList(data,names) {
+            herdList
+                .selectAll("option")
+                .data(names)
+                .enter()
+                .append("option")
+                .attr("value", d => d)
+                .text(d => d)
+
+                herdList.on("change", () => {
+                updateSlider(getDatesByHerdName(data, herdList.node().value))
+                svg.call(zoom.transform, zoomTransform)
+            })
+        }
+
+
+
+        /*_______________ UTILS FUNCTIONS _______________*/
+        // Retourn tous les lieux d'étude
+        function getHerdNames(data) {
+            return [...new Set(data.map(elem =>elem.study_site))]
+        }
+
+        // Retourne la liste des années présentes dans la base pour une race donnée
+        function getDatesByHerdName(data, herdName) {
+            console.log("data",data)
+            years = getOneHerd(data, herdName).map(elem => new Date(elem.year))
+            return [...new Set(years)]
+        }
+
+        // Retourne les animaux qui sont de la race donnée
+        function getOneHerd(data, herdName) {
+            return data.filter(elem => elem.study_site == herdName)
+        }
+
+        // Retourne les bornes des années
+        function getRangedYears() {
+            return slider.value().map(date=> new Date(date).getFullYear())
+        }
+      
+        // Retourne les coordonnée de départ 
+        function getLinesData(data, herdName, rangeYear) {
+            let selectionMin = data.filter(elem => elem.study_site == herdName && elem.year == rangeYear[0])
+            const animal_idsMin = selectionMin.map(elem => elem.animal_id)
+            let selectionMax = data.filter(elem => elem.study_site == herdName && elem.year == rangeYear[1])
+            const animal_idsMAX = selectionMax.map(elem => elem.animal_id)
+            const intersect = animal_idsMin.filter(value=>animal_idsMAX.includes(value));
+            selectionMin = selectionMin.filter(elem => intersect.includes(elem.animal_id));
+            selectionMax = selectionMax.filter(elem => intersect.includes(elem.animal_id));
+
+            let result = []
+            for(let i in selectionMin){
+                result.push([
+                    [Number(selectionMin[i].longitude),Number(selectionMin[i].latitude)],
+                    [Number(selectionMax[i].longitude),Number(selectionMax[i].latitude)]
+                ])
+            }
+            return result
+        }
+
+        // Retourne l'adresse de télechargement d'un pavé
+        function url(x, y, z) {
+            return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
+        }
+    </script>
 </body>
+
 </html>
