@@ -119,8 +119,8 @@
             const clustersData = []
             for(let i = 0; i < clustersMeans.length; i++) {
                 clustersData.push({
-                    means: svg.selectAll("means_"+i).data([clustersMeans[i]]),
-                    coords: svg.selectAll("coords_"+i).data(clustersCoords[i])
+                    means: svg.selectAll(".means_"+i).data([clustersMeans[i]]),
+                    coords: svg.selectAll(".coords_"+i).data(clustersCoords[i])
                 })
             }
 
@@ -136,7 +136,7 @@
                         .attr("r", 1)
                         .attr("cx", d => projection(d)[0])
                         .attr("cy", d => projection(d)[1])
-                        //.style("fill", "None")
+                        .style("fill", "None")
 
                     cd.means.enter().append("circle")
                         .attr("class", "means_"+i)
@@ -144,9 +144,9 @@
                         .attr("cx", d => projection(d[0])[0])
                         .attr("cy", d => projection(d[0])[1])
                         .style("stroke", "red")
-                        .style("fill", "None")
-                        .on("mouseover", (event, d) => cd.coords.style("fill", "blue"))
-                        .on("mouseleave", (event, d) => cd.coords.style("fill", "None"))
+                        .style("fill", "rgba(255,0,0,0.1")
+                        .on("mouseover", (event, d) => svg.selectAll(".coords_"+i).style("fill", "blue"))
+                        .on("mouseleave", (event, d) => svg.selectAll(".coords_"+i).style("fill", "None"))
                 }
                 alreadyInitZoomed = true
             }
