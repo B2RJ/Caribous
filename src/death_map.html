@@ -74,7 +74,8 @@
         /*----- Global variables -----*/
 
         let alreadyInitZoomed = false
-        let fetchedData = []
+        let clustersMeans = []
+        let clustersCoords = []
 
         const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/death_reasons.csv"
 
@@ -83,8 +84,8 @@
 
         // Load plain csv data from repo
         d3.csv(csvUrl).then(data => {
-            fetchedData = getUtilData(data)
-            console.log(fetchedData)
+            clustersCoords = getClusterCoords(data).flatMap(c => c)
+            clustersMeans = getClusterCoords(data).map(c => [getMeanCoords(c), c.length, c])
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -115,21 +116,40 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const circles = svg.selectAll("circle").data(fetchedData)
+            const means = svg.selectAll("means").data(clustersMeans)
+            console.log(clustersCoords)
+            const coords = svg.selectAll("coords").data(clustersCoords)
 
             if (alreadyInitZoomed) { // UPDATES
                 // TODO: update circles 
 
             } else { // INITIALIZATION
                 // TODO: create circles
-                circles
-                    .enter()
-                    .append("circle")
+                means.enter().append("circle")
+                    .attr("class", "means")
                     .attr("r", d => 4 + 2*Math.log2(d[1]))
                     .attr("cx", d => projection(d[0])[0])
                     .attr("cy", d => projection(d[0])[1])
                     .style("stroke", "red")
                     .style("fill", "None")
+                    .on("mouseover", function(event, d) {
+                        /*if(d.length > 1) {
+                            console.log(d)
+                            const c2 = svg.selectAll("circle").data(d[2])
+                            c2.enter().append("circle")
+                                .attr("r", c => 5)
+                                .attr("cx", c => projection(c)[0])
+                                .attr("cy", c => projection(c)[1])
+                                .style("stroke", "blue")
+                        }*/
+                    })
+                coords.enter().append("circle")
+                    .attr("class", "coords")
+                    .attr("r", 1)
+                    .attr("cx", d => projection(d)[0])
+                    .attr("cy", d => projection(d)[1])
+                    //.style("stroke", "blue")
+                    .style("fill", "blue")
                 alreadyInitZoomed = true
             }
         }
@@ -153,12 +173,11 @@
         }
 
         function getCoords(cluster) {
-            /*console.log(cluster)*/
             return cluster.map(d => [d.deploy_off_longitude, d.deploy_off_latitude])
         }
 
-        function getUtilData(data) {
-            return getClusters(data).map(c => [getMeanCoords(getCoords(c)), c.length])
+        function getClusterCoords(data) {
+            return getClusters(data).map(c => getCoords(c))
         }
 
         function url(x, y, z) {
