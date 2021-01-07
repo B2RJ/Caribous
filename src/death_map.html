@@ -125,9 +125,9 @@
                 circles
                     .enter()
                     .append("circle")
-                    .attr("r", 8)
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
+                    .attr("r", d => 4 + 2*Math.log2(d[1]))
+                    .attr("cx", d => projection(d[0])[0])
+                    .attr("cy", d => projection(d[0])[1])
                     .style("stroke", "red")
                     .style("fill", "None")
                 alreadyInitZoomed = true
@@ -158,7 +158,7 @@
         }
 
         function getUtilData(data) {
-            return getClusters(data).map(c => getMeanCoords(getCoords(c)))
+            return getClusters(data).map(c => [getMeanCoords(getCoords(c)), c.length])
         }
 
         function url(x, y, z) {
