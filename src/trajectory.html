@@ -103,8 +103,11 @@
         // Load plain csv data from repo
         getDataLoading().then(data => {
             const displayHerdNames = getHerdNames()
-            fetchedData = data.map((dataframe, i) => ({ herdName: displayHerdNames[i], data: dataframe }))
-            
+            fetchedData = data.map((dataframe, i) => ({
+                herdName: displayHerdNames[i],
+                data: dataframe
+            }))
+
             // create select list for herd names
             createSelectList(displayHerdNames)
 
@@ -116,7 +119,7 @@
                 .on("touchstart.zoom", null)
                 .on("touchmove.zoom", null)
                 .on("touchend.zoom", null)
-            
+
             // initialize all things related to herdname (current data, slider, map)
             herdList.dispatch("change")
         })
@@ -130,13 +133,55 @@
                 .append("option")
                 .attr("value", d => d)
                 .text(d => d)
-                
+
             herdList
                 .on("change", () => {
-                    currentData = getDataBySelectedHerdName() //update current herd data
-                    updateSlider(getDatesByHerdName()) //update the slider accordingly
+                    updateDataFromSelectedHerdName() //update current herd data
+                    updateSlider() //update the slider accordingly
                     svg.call(zoom.transform, zoomTransform) //update map accordingly
                 })
+        }
+
+        // Initialize or update the slider when zooming/moving on map
+        function updateSlider() {
+            const currentDates = getUniqueDates().map(date => {
+                let individualCoords = getIndividualCoordsByDate(date)
+                return {
+                    date: new Date(date),
+                    individuals: individualCoords,
+                    center: getCenterFromCoords(individualCoords)
+                }
+            })
+            firstDateRows = getFirstOfEachYear(currentDates)
+
+            // consts for slider display
+            const firstJanuaryDates = firstDateRows.map(row => row[0])
+            const minDate = firstJanuaryDates[0]
+            const maxDate = firstJanuaryDates[firstJanuaryDates.length - 1]
+
+            if (alreadyInitZoomed) {
+                sliderSvg
+                    .call(slider
+                        .domain([minDate, maxDate])
+                        .tickValues(firstJanuaryDates)
+                        .marks(firstJanuaryDates)
+                        .value([minDate, maxDate])
+                    )
+            } else {
+                slider = d3
+                    .sliderBottom()
+                    .domain([minDate, maxDate])
+                    .width(650)
+                    .tickValues(firstJanuaryDates)
+                    .marks(firstJanuaryDates)
+                    .tickFormat(d3.timeFormat('%Y'))
+                    .fill("red")
+                    .value([minDate, maxDate])
+                    .on("end", () => svg.call(zoom.transform, zoomTransform))
+
+                sliderSvg
+                    .call(slider)
+            }
         }
 
         // Initialize or update the map when zooming/moving on map
@@ -215,41 +260,6 @@
             }
         }
 
-        // Initialize or update the slider when zooming/moving on map
-        function updateSlider(dates) {
-            firstDateRows = getFirstOfEachYear(dates)
-
-            const firstJanuaryDates = firstDateRows.map(row => row[0])
-            const minDate = firstJanuaryDates[0]
-            const maxDate = firstJanuaryDates[firstJanuaryDates.length - 1]
-
-            if (alreadyInitZoomed) {
-                sliderSvg
-                    .call(slider
-                        .domain([minDate, maxDate])
-                        .tickValues(firstJanuaryDates)
-                        .marks(firstJanuaryDates)
-                        .value([minDate, maxDate])
-                    )
-            } else {
-                slider = d3
-                    .sliderBottom()
-                    .domain([minDate, maxDate])
-                    .width(650)
-                    .tickValues(firstJanuaryDates)
-                    .marks(firstJanuaryDates)
-                    .tickFormat(d3.timeFormat('%Y'))
-                    .fill("red")
-                    .value([minDate, maxDate])
-                    .on("end", (dates) => {
-                        svg.call(zoom.transform, zoomTransform)
-                    })
-
-                sliderSvg
-                    .call(slider)
-            }
-        }
-
 
 
         /*_______________ UTILS FUNCTIONS _______________*/
@@ -258,41 +268,58 @@
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
         }
 
+
+        /*----- Data loading functions -----*/
+
         function getDataLoading() {
             return Promise.all(herdNames.map(name => d3.csv(repoPrefix + name + ".csv")))
         }
+
+
+        /*----- Herdname list related functions -----*/
 
         function getHerdNames() {
             return herdNames.map(name => name.replace("_", " ")).map(name => name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "))
         }
 
-        function getDataBySelectedHerdName() {
-            return fetchedData.find(obj => obj.herdName === herdList.node().value).data
+        function updateDataFromSelectedHerdName() {
+            currentData = fetchedData.find(obj => obj.herdName === herdList.node().value).data
         }
 
-        function getDatesByHerdName() {
-            return currentData.map(elem => new Date(elem.date)).distinct()
+
+        /*----- Date slider related functions -----*/
+
+        function getUniqueDates() {
+            return currentData.map(row => row.date).distinct()
         }
 
-        /*function getMeanCoords(coords) {
-            const longs = coords.map(c => c[0]);
-            const lats = coords.map(c => c[1]);
-            return [(Math.min(...longs) + Math.max(...longs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2]
-        }*/
-
-        
-
-        function getOneHerd(data, herdName) {
-            return data.filter(elem => elem.study_site === herdName)
+        function getIndividualCoordsByDate(date) {
+            return currentData.filter(row => row.date === date).map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
         }
 
-        function getYears(data) {
-            return data.map(elem => elem.getFullYear()).distinct()
+        function getCenterFromCoords(coords) {
+            const longitudes = coords.map(c => c[0]);
+            const latitudes = coords.map(c => c[1]);
+            const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2
+            const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2
+            return [centerLongitude, centerLatitude]
         }
 
-        function getFirstOfEachYear(data) {
-            return getYears(data).map(year => [new Date(year, 0, 1), data.find(elem => elem.getFullYear() === year)])
+        function getUniqueYears(dates) {
+            return dates.map(row => row.date.getFullYear()).distinct().sort()
         }
+
+        function getFirstOfEachYear(dates) {
+            return getUniqueYears(dates).map(year => [
+                new Date(year, 0, 1),
+                dates.find(row => row.date.getFullYear() === year).date
+            ])
+        }
+
+
+
+
+
 
         function getRangedDates() {
             return firstDateRows
