@@ -87,7 +87,7 @@
         /*----- Global variables -----*/
 
         let alreadyInitZoomed = false
-        let allData = []
+        let fetchedData = []
         let currentData = []
         let firstDateRows = []
 
@@ -101,26 +101,43 @@
         /*----- Main process -----*/
 
         // Load plain csv data from repo
-        
+        getDataLoading().then(data => {
+            const displayHerdNames = getHerdNames()
+            fetchedData = data.map((dataframe, i) => ({ herdName: displayHerdNames[i], data: dataframe }))
+            
+            // create select list for herd names
+            createSelectList(displayHerdNames)
 
-        Promise.all(herdNames.map(name => d3.csv(repoPrefix + name + ".csv"))).then(data => {
-            allData = data
-            currentData = allData[0]
-
-            console.log(currentData)
-
-            createSelectList()
-            updateSlider(getDatesByHerdName(data, herdList.node().value))
-
+            // setup of zoom event handling
             svg
-                .call(zoom) // Setup de l'event de gestion du zoom
+                .call(zoom)
                 .on("dblclick.zoom", null)
                 .on("mousedown.zoom", null)
                 .on("touchstart.zoom", null)
                 .on("touchmove.zoom", null)
                 .on("touchend.zoom", null)
-                .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+            
+            // initialize all things related to herdname (current data, slider, map)
+            herdList.dispatch("change")
         })
+
+        // Create the select list for herd names & settle event
+        function createSelectList(herdNames) {
+            herdList
+                .selectAll("option")
+                .data(herdNames)
+                .enter()
+                .append("option")
+                .attr("value", d => d)
+                .text(d => d)
+                
+            herdList
+                .on("change", () => {
+                    currentData = getDataBySelectedHerdName() //update current herd data
+                    updateSlider(getDatesByHerdName()) //update the slider accordingly
+                    svg.call(zoom.transform, zoomTransform) //update map accordingly
+                })
+        }
 
         // Initialize or update the map when zooming/moving on map
         function zoomed(transform) {
@@ -233,22 +250,6 @@
             }
         }
 
-        // Create the select list for herd names
-        function createSelectList() {
-            herdList
-                .selectAll("option")
-                .data(getHerdNames())
-                .enter()
-                .append("option")
-                .attr("value", d => d)
-                .text(d => d)
-
-            herdList.on("change", () => {
-                updateSlider(getDatesByHerdName(currentData, herdList.node().value))
-                svg.call(zoom.transform, zoomTransform)
-            })
-        }
-
 
 
         /*_______________ UTILS FUNCTIONS _______________*/
@@ -257,19 +258,29 @@
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
         }
 
-        function getMeanCoords(coords) {
-            const longs = coords.map(c => c[0]);
-            const lats = coords.map(c => c[1]);
-            return [(Math.min(...longs) + Math.max(...longs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2]
+        function getDataLoading() {
+            return Promise.all(herdNames.map(name => d3.csv(repoPrefix + name + ".csv")))
         }
 
         function getHerdNames() {
             return herdNames.map(name => name.replace("_", " ")).map(name => name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "))
         }
 
-        function getDatesByHerdName(data, herdName) {
-            return getOneHerd(data, herdName).map(elem => new Date(elem.date)).distinct()
+        function getDataBySelectedHerdName() {
+            return fetchedData.find(obj => obj.herdName === herdList.node().value).data
         }
+
+        function getDatesByHerdName() {
+            return currentData.map(elem => new Date(elem.date)).distinct()
+        }
+
+        /*function getMeanCoords(coords) {
+            const longs = coords.map(c => c[0]);
+            const lats = coords.map(c => c[1]);
+            return [(Math.min(...longs) + Math.max(...longs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2]
+        }*/
+
+        
 
         function getOneHerd(data, herdName) {
             return data.filter(elem => elem.study_site === herdName)
