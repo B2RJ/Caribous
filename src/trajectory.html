@@ -87,23 +87,30 @@
         /*----- Global variables -----*/
 
         let alreadyInitZoomed = false
-        let fetchedData = []
+        let allData = []
+        let currentData = []
         let firstDateRows = []
 
         const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
         const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
 
-        const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/location_means.csv"
+        const repoPrefix = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/trajectory_by_site/"
+        const herdNames = ["burnt_pine", "graham", "hart_ranges", "kennedy", "moberly", "narraway", "quintette", "scott"]
 
 
         /*----- Main process -----*/
 
         // Load plain csv data from repo
-        d3.csv(csvUrl).then(function (data) {
-            fetchedData = data
+        
 
-            createSelectList(getHerdNames(data))
-            updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
+        Promise.all(herdNames.map(name => d3.csv(repoPrefix + name + ".csv"))).then(data => {
+            allData = data
+            currentData = allData[0]
+
+            console.log(currentData)
+
+            createSelectList()
+            updateSlider(getDatesByHerdName(data, herdList.node().value))
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -134,7 +141,7 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const data = getUsefulData(fetchedData, herdList.node().value, getRangedDates())
+            const data = getUsefulData(currentData, herdList.node().value, getRangedDates())
             const lines = svg.selectAll("path").data([data])
             const startPoint = svg.selectAll("circle").data([data[0]])
 
@@ -226,18 +233,18 @@
             }
         }
 
-        // Create the select list for multiple herd names
-        function createSelectList(data) {
+        // Create the select list for herd names
+        function createSelectList() {
             herdList
                 .selectAll("option")
-                .data(data)
+                .data(getHerdNames())
                 .enter()
                 .append("option")
                 .attr("value", d => d)
                 .text(d => d)
 
             herdList.on("change", () => {
-                updateSlider(getDatesByHerdName(fetchedData, herdList.node().value))
+                updateSlider(getDatesByHerdName(currentData, herdList.node().value))
                 svg.call(zoom.transform, zoomTransform)
             })
         }
@@ -250,8 +257,14 @@
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
         }
 
-        function getHerdNames(data) {
-            return data.map(elem => elem.study_site).distinct()
+        function getMeanCoords(coords) {
+            const longs = coords.map(c => c[0]);
+            const lats = coords.map(c => c[1]);
+            return [(Math.min(...longs) + Math.max(...longs)) / 2, (Math.min(...lats) + Math.max(...lats)) / 2]
+        }
+
+        function getHerdNames() {
+            return herdNames.map(name => name.replace("_", " ")).map(name => name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "))
         }
 
         function getDatesByHerdName(data, herdName) {
