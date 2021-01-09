@@ -88,8 +88,9 @@
 
         let alreadyInitZoomed = false
         let fetchedData = []
-        let currentData = []
+        let herdNameData = []
         let firstDateRows = []
+        let sliderData = []
 
         const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
         const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
@@ -98,7 +99,7 @@
         const herdNames = ["burnt_pine", "graham", "hart_ranges", "kennedy", "moberly", "narraway", "quintette", "scott"]
 
 
-        /*----- Main process -----*/
+        /*----- Initialization and update functions -----*/
 
         // Load plain csv data from repo
         getDataLoading().then(data => {
@@ -124,7 +125,7 @@
             herdList.dispatch("change")
         })
 
-        // Create the select list for herd names & settle event
+        // Create the select list for herdnames & settle event
         function createSelectList(herdNames) {
             herdList
                 .selectAll("option")
@@ -142,9 +143,15 @@
                 })
         }
 
+        // Update current data from selected herdname
+        function updateDataFromSelectedHerdName() {
+            herdNameData = fetchedData.find(obj => obj.herdName === herdList.node().value).data
+        }
+
         // Initialize or update the slider when zooming/moving on map
         function updateSlider() {
-            const currentDates = getUniqueDates().map(date => {
+            // update objects related to current date range on slider
+            sliderData = getUniqueDates().map(date => {
                 let individualCoords = getIndividualCoordsByDate(date)
                 return {
                     date: new Date(date),
@@ -152,7 +159,8 @@
                     center: getCenterFromCoords(individualCoords)
                 }
             })
-            firstDateRows = getFirstOfEachYear(currentDates)
+
+            firstDateRows = getFirstOfEachYear()
 
             // consts for slider display
             const firstJanuaryDates = firstDateRows.map(row => row[0])
@@ -186,7 +194,6 @@
 
         // Initialize or update the map when zooming/moving on map
         function zoomed(transform) {
-            console.log("zoomed!")
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
             const tiles = tile(transform)
 
@@ -203,9 +210,9 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-            const data = getUsefulData(currentData, herdList.node().value, getRangedDates())
-            const lines = svg.selectAll("path").data([data])
-            const startPoint = svg.selectAll("circle").data([data[0]])
+            const data = getUsefulData()
+            const lines = svg.selectAll("path").data([data.map(obj => obj.center)])
+            //const points = svg.selectAll("circle").data(data.map(obj => obj.individuals))
 
             if (alreadyInitZoomed) { // UPDATES
                 lines
@@ -216,12 +223,12 @@
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
 
-                startPoint
-                    .transition()
-                    .ease(d3.easeLinear)
-                    .duration(100)
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
+                // points
+                //     .transition()
+                //     .ease(d3.easeLinear)
+                //     .duration(100)
+                //     .attr("cx", d => projection(d[0])[0])
+                //     .attr("cy", d => projection(d[0])[1])
             } else { // INITIALIZATION
                 lines
                     .enter()
@@ -247,14 +254,14 @@
                     .attr("d", d3.line()(arrowPoints))
                     .style("fill", "red")
 
-                startPoint
-                    .enter()
-                    .append("circle")
-                    .attr("cx", d => projection(d)[0])
-                    .attr("cy", d => projection(d)[1])
-                    .attr("fill", "green")
-                    .attr("r", 10)
-                    .style("opacity", 0.5)
+                // points
+                //     .enter()
+                //     .append("circle")
+                //     .attr("cx", d => projection(d[0])[0])
+                //     .attr("cy", d => projection(d[0])[1])
+                //     .attr("fill", "black")
+                //     .attr("r", 1)
+                //.style("opacity", 0.5)
 
                 alreadyInitZoomed = true
             }
@@ -266,6 +273,14 @@
 
         Array.prototype.distinct = function () {
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
+        }
+
+        Array.prototype.mean = function () {
+            return this.reduce((pv, cv) => pv + cv, 0) / this.length
+        }
+
+        function url(x, y, z) {
+            return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
         }
 
 
@@ -282,65 +297,53 @@
             return herdNames.map(name => name.replace("_", " ")).map(name => name.split(" ").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" "))
         }
 
-        function updateDataFromSelectedHerdName() {
-            currentData = fetchedData.find(obj => obj.herdName === herdList.node().value).data
-        }
-
 
         /*----- Date slider related functions -----*/
 
         function getUniqueDates() {
-            return currentData.map(row => row.date).distinct()
+            return herdNameData.map(row => row.date).distinct()
         }
 
         function getIndividualCoordsByDate(date) {
-            return currentData.filter(row => row.date === date).map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
+            return herdNameData.filter(row => row.date === date).map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
         }
 
         function getCenterFromCoords(coords) {
-            const longitudes = coords.map(c => c[0]);
-            const latitudes = coords.map(c => c[1]);
-            const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2
-            const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2
-            return [centerLongitude, centerLatitude]
+            const meanLongitude = coords.map(c => c[0]).mean()
+            const meanLatitude = coords.map(c => c[1]).mean()
+
+            // const longitudes = coords.map(c => c[0])
+            // const latitudes = coords.map(c => c[1])
+            // const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2
+            // const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2
+            //return [centerLongitude, centerLatitude]
+
+            return [meanLongitude, meanLatitude]
         }
 
-        function getUniqueYears(dates) {
-            return dates.map(row => row.date.getFullYear()).distinct().sort()
+        function getUniqueYears() {
+            return sliderData.map(row => row.date.getFullYear()).distinct().sort()
         }
 
-        function getFirstOfEachYear(dates) {
-            return getUniqueYears(dates).map(year => [
-                new Date(year, 0, 1),
-                dates.find(row => row.date.getFullYear() === year).date
+        function getFirstOfEachYear() {
+            return getUniqueYears().map(year => [
+                new Date(year, 0, 1), //fake date, just for slider display
+                sliderData.find(row => row.date.getFullYear() === year).date //true first date of the year
             ])
         }
 
 
+        /*----- Map related functions -----*/
 
-
-
-
-        function getRangedDates() {
-            return firstDateRows
-                .filter(row => slider.value().find(value => new Date(value).getTime() === row[0].getTime()))
-                .map(row => row[1])
+        function getDateRange() {
+            const sliderRange = slider.value().map(value => new Date(value)) //because d3js-slider return a unix time and a date value
+            return firstDateRows.filter(row => sliderRange.find(value => value.getTime() === row[0].getTime())).map(row => row[1])
         }
 
-        function getRangedCoords(data, dateRange) {
-            return dateRange.map(date => {
-                const row = data.find(row => new Date(row.date).getTime() === date.getTime())
-                return [parseFloat(row.longitude), parseFloat(row.latitude)]
-            })
+        function getUsefulData() {
+            return getDateRange().map(date => sliderData.find(row => row.date.getTime() === date.getTime()))
         }
 
-        function getUsefulData(data, herdName, dateRange) {
-            return getRangedCoords(getOneHerd(data, herdName), dateRange)
-        }
-
-        function url(x, y, z) {
-            return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
-        }
     </script>
 </body>
 
