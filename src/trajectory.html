@@ -8,6 +8,7 @@
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
     <script src="https://unpkg.com/d3-simple-slider"></script>
+    <script src="https://d3js.org/d3-polygon.v2.min.js"></script>
 
     <style>
         body {
@@ -184,7 +185,7 @@
                     .width(650)
                     .tickValues(firstJanuaryDates)
                     .marks(firstJanuaryDates)
-                    .tickFormat(d3.timeFormat('%Y'))
+                    .tickFormat(d3.timeFormat("%Y"))
                     .fill("red")
                     .value([minDate, maxDate])
                     .on("start", () => {
@@ -225,11 +226,28 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
+            // load useful data
             const data = getUsefulData()
             const lines = svg.selectAll("path").data([data.map(obj => obj.center)])
-            //const points = svg.selectAll("circle").data(data.map(obj => obj.individuals))
+            const points = data.flatMap(obj => obj.individuals)
+            const area = ((points.length > 2) ? d3.polygonHull(points) : points)
+                .map(coords => projection(coords).join(","))
+                .join(" ")
 
-            if (alreadyInitZoomed) { // UPDATES
+            // update polygon
+            svg
+                .select("polygon")
+                .remove()
+            svg
+                .append("polygon")
+                .attr("points", area)
+                .attr("stroke", "blue")
+                .attr("stroke-width", 2)
+                .attr("fill", "blue")
+                .attr("opacity", 0.2)
+
+            // other updates
+            if (alreadyInitZoomed) {
                 lines
                     .transition()
                     .ease(d3.easeLinear)
@@ -238,13 +256,9 @@
                         .x(d => projection(d)[0])
                         .y(d => projection(d)[1]))
 
-                // points
-                //     .transition()
-                //     .ease(d3.easeLinear)
-                //     .duration(100)
-                //     .attr("cx", d => projection(d[0])[0])
-                //     .attr("cy", d => projection(d[0])[1])
-            } else { // INITIALIZATION
+            }
+            // initialization
+            else {
                 lines
                     .enter()
                     .append("path")
@@ -269,15 +283,6 @@
                     .attr("d", d3.line()(arrowPoints))
                     .style("fill", "red")
 
-                // points
-                //     .enter()
-                //     .append("circle")
-                //     .attr("cx", d => projection(d[0])[0])
-                //     .attr("cy", d => projection(d[0])[1])
-                //     .attr("fill", "black")
-                //     .attr("r", 1)
-                //.style("opacity", 0.5)
-
                 alreadyInitZoomed = true
             }
         }
@@ -288,10 +293,6 @@
 
         Array.prototype.distinct = function () {
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
-        }
-
-        Array.prototype.mean = function () {
-            return this.reduce((pv, cv) => pv + cv, 0) / this.length
         }
 
         function url(x, y, z) {
@@ -324,16 +325,11 @@
         }
 
         function getCenterFromCoords(coords) {
-            const meanLongitude = coords.map(c => c[0]).mean()
-            const meanLatitude = coords.map(c => c[1]).mean()
-
-            // const longitudes = coords.map(c => c[0])
-            // const latitudes = coords.map(c => c[1])
-            // const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2
-            // const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2
-            //return [centerLongitude, centerLatitude]
-
-            return [meanLongitude, meanLatitude]
+            const longitudes = coords.map(c => c[0])
+            const latitudes = coords.map(c => c[1])
+            const centerLongitude = (Math.min(...longitudes) + Math.max(...longitudes)) / 2
+            const centerLatitude = (Math.min(...latitudes) + Math.max(...latitudes)) / 2
+            return [centerLongitude, centerLatitude]
         }
 
         function getUniqueYears() {
