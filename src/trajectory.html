@@ -361,9 +361,8 @@
             return [centerLongitude, centerLatitude]
         }
 
-        // TODO: REMOVE sort() CALL AND UPDATE DATA-MINING PROJECT TO SORT DATA
         function getUniqueYears() {
-            return sliderData.map(row => row.date.getFullYear()).distinct().sort()
+            return sliderData.map(row => row.date.getFullYear()).distinct()
         }
 
         function getDatesByYear() {
@@ -376,9 +375,8 @@
 
         /*----- Map related functions -----*/
 
-        // TODO: REMOVE sort() CALL AND UPDATE DATA-MINING PROJECT TO SORT DATA
         function getUsefulData() {
-            return getDatesByYearRange().map(dates => dates.sort((a, b) => a - b)).map(dates => {
+            return getDatesByYearRange().map(dates => {
                 return {
                     range: [getOneRelatedData(dates[0]), getOneRelatedData(dates[dates.length - 1])],
                     all: getManyRelatedData(dates)
