@@ -143,8 +143,8 @@
                         .attr("r", d => 4 + 2*Math.log2(d[1]))
                         .attr("cx", d => projection(d[0])[0])
                         .attr("cy", d => projection(d[0])[1])
-                        .style("stroke", "red")
-                        .style("fill", "rgba(255,0,0,0.1")
+                        .style("stroke", "rgba(255,0,0,0.4)")
+                        .style("fill", "rgba(255,0,0,0.1)")
                         .on("mouseover", (event, d) => svg.selectAll(".coords_"+i).style("fill", "blue"))
                         .on("mouseleave", (event, d) => svg.selectAll(".coords_"+i).style("fill", "None"))
                 }
