@@ -17,13 +17,9 @@
     </style>
 </head>
 
-<body>
-    <H1>Movement</H1>
-    <div id="trajectory"></div>
-    <div id="slider"></div>
-    <select id="herd-names"></select>
-    <input id="epsilon" type="number" value="0.40" min="0.00" max="5.00" step="0.01">
+<body id="content_movement">
     <script>
+
         /*_______________ INITIAL CONFIGURATION _______________*/
 
 
@@ -39,6 +35,24 @@
         const radius = 1
         var distance = 1
         /*----- Graphical global components -----*/
+        const body = d3.select("#content_movement")
+        body.append("H1")
+            .text("Movement")
+        body.append("div")
+            .attr("id","trajectory")
+        body.append("div")
+            .attr("id","slider")
+        body.append("select")
+            .attr("id","herd-names")
+        body.append("input")
+            .attr("id","epsilon")
+            .attr("type","number")
+            .attr("value","0.28")
+            .attr("min","0.00")
+            .attr("max","5.00")
+            .attr("step","0.01")
+            
+
 
         const svg = d3.select("#trajectory")
             .append("svg")
@@ -139,13 +153,17 @@
                 .scale(transform.k / (2 * Math.PI))
                 .translate([transform.x, transform.y])
 
-
             let points = toCoordonnateofYear(
                 getOneHerd(fetchedData, herdList.node().value),
                 getRangedYears()[0]
             )
-
-            let center = d3.polygonCentroid(d3.polygonHull(points))
+            let center = []
+            if (points.length > 2){
+                center = d3.polygonCentroid(d3.polygonHull(points))
+            } else {
+                center.push((points[0][0] + points[1][0])/2)
+                center.push((points[0][1] + points[1][1])/2)
+            }
             let diametre = maxDist(points)
             distance = diametre
 
@@ -157,6 +175,7 @@
 
             let lines = getLinesData(fetchedData, herdList.node().value, getRangedYears())
             lines = centerLines(lines, center)
+            
             if (alreadyInitZoomed) { // UPDATES
                 svg.selectAll(".line").remove()
                 svg.selectAll("path").data(lines)
