@@ -14,6 +14,12 @@
         body {
             background-color: #666
         }
+
+        #data-loading {
+            display: inline-block;
+            color: #dddddd;
+            margin-left: 10px
+        }
     </style>
 </head>
 
@@ -21,7 +27,10 @@
     <H1>Trajectory</H1>
     <div id="trajectory"></div>
     <div id="slider"></div>
-    <select id="herd-names"></select>
+    <span>
+        <select id="herd-names"></select>
+        <p id="data-loading"></p>
+    </span>
     <script>
         /*_______________ INITIAL CONFIGURATION _______________*/
 
@@ -140,9 +149,15 @@
 
             herdList
                 .on("change", () => {
-                    updateDataFromSelectedHerdName() //update current herd data
-                    updateSlider() //update the slider accordingly
-                    svg.call(zoom.transform, zoomTransform) //update map accordingly
+                    new Promise(resolve => {
+                        d3.select("#data-loading").text("Data is loading, please wait...")
+                        setTimeout(() => resolve(1), 1)
+                    }).then(d => {
+                        updateDataFromSelectedHerdName() //update current herd data
+                        updateSlider() //update the slider accordingly
+                        svg.call(zoom.transform, zoomTransform) //update map accordingly
+                        d3.select("#data-loading").text("")
+                    })
                 })
         }
 
