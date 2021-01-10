@@ -74,8 +74,8 @@
         /*----- Global variables -----*/
 
         let alreadyInitZoomed = false
-        let clustersMeans = []
-        let clustersCoords = []
+        let clustersDeaths = []
+        let clustersDangerZones = []
 
         const csvUrl = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/death_reasons.csv"
 
@@ -84,8 +84,8 @@
 
         // Load plain csv data from repo
         d3.csv(csvUrl).then(data => {
-            clustersCoords = getClusterCoords(data)
-            clustersMeans = clustersCoords.map(c => [getMeanCoords(c), c.length])
+            clustersDeaths = getClusterDeaths(data)
+            clustersDangerZones = clustersDeaths.map(c => [getMeanCoords(c), c.length])
 
             svg
                 .call(zoom) // Setup de l'event de gestion du zoom
@@ -117,10 +117,10 @@
                 .translate([transform.x, transform.y])
 
             const clustersData = []
-            for(let i = 0; i < clustersMeans.length; i++) {
+            for(let i = 0; i < clustersDangerZones.length; i++) {
                 clustersData.push({
-                    means: svg.selectAll(".means_"+i).data([clustersMeans[i]]),
-                    coords: svg.selectAll(".coords_"+i).data(clustersCoords[i])
+                    deaths: svg.selectAll(".deaths_"+i).data(clustersDeaths[i]),
+                    zones: svg.selectAll(".zones_"+i).data([clustersDangerZones[i]])
                 })
             }
 
@@ -131,22 +131,28 @@
                 // TODO: create circles
                 for(let i = 0; i < clustersData.length; i++) {
                     let cd = clustersData[i]
-                    cd.coords.enter().append("circle")
-                        .attr("class", "coords_"+i)
+                    cd.deaths.enter().append("circle")
+                        .attr("class", "deaths_"+i)
                         .attr("r", 1)
-                        .attr("cx", d => projection(d)[0])
-                        .attr("cy", d => projection(d)[1])
+                        .attr("cx", d => projection(d[1])[0])
+                        .attr("cy", d => projection(d[1])[1])
                         .style("fill", "None")
 
-                    cd.means.enter().append("circle")
-                        .attr("class", "means_"+i)
+                    cd.zones.enter().append("circle")
+                        .attr("class", "zones_"+i)
                         .attr("r", d => 4 + 2*Math.log2(d[1]))
                         .attr("cx", d => projection(d[0])[0])
                         .attr("cy", d => projection(d[0])[1])
                         .style("stroke", "rgba(255,0,0,0.4)")
                         .style("fill", "rgba(255,0,0,0.1)")
-                        .on("mouseover", (event, d) => svg.selectAll(".coords_"+i).style("fill", "blue"))
-                        .on("mouseleave", (event, d) => svg.selectAll(".coords_"+i).style("fill", "None"))
+                        .on("mouseover", () => svg.selectAll(".deaths_"+i).style("fill", d => {
+                            switch(d[0]) {
+                                case "Predation": return "black"
+                                case "Vehicle Collision": return "purple"
+                                case "Other": return "blue"
+                            }
+                        }))
+                        .on("mouseleave", () => svg.selectAll(".deaths_"+i).style("fill", "None"))
                 }
                 alreadyInitZoomed = true
             }
@@ -155,9 +161,9 @@
 
 
         /*_______________ UTILS FUNCTIONS _______________*/
-        function getMeanCoords(coords) {
-            const longs = coords.map(c => c[0]);
-            const lats = coords.map(c => c[1]);
+        function getMeanCoords(cluster) {
+            const longs = cluster.map(c => c[1][0]);
+            const lats = cluster.map(c => c[1][1]);
             return [(Math.min (...longs) + Math.max (...longs)) / 2, (Math.min (...lats) + Math.max (...lats)) / 2]
         }
 
@@ -170,12 +176,12 @@
             return Object.values(dict);
         }
 
-        function getCoords(cluster) {
-            return cluster.map(d => [d.deploy_off_longitude, d.deploy_off_latitude])
+        function getDeathInfo(cluster) {
+            return cluster.map(d => [d.death_cause, [parseFloat(d.deploy_off_longitude), parseFloat(d.deploy_off_latitude)]])
         }
 
-        function getClusterCoords(data) {
-            return getClusters(data).map(c => getCoords(c))
+        function getClusterDeaths(data) {
+            return getClusters(data).map(c => getDeathInfo(c))
         }
 
         function url(x, y, z) {
