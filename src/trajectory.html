@@ -122,10 +122,19 @@
         // Load plain csv data from repo
         getDataLoading().then(data => {
             const displayHerdNames = getHerdNames()
-            fetchedData = data.map((dataframe, i) => ({
-                herdName: displayHerdNames[i],
-                data: dataframe
-            }))
+            fetchedData = data.map((dataframe, i) => {
+                const data = dataframe.reduce((result, elem) => {
+                    const year = new Date(elem.date).getFullYear() //TODO: check if split("-") is fastest
+                    result[year] = [...result[year] || [], elem]
+                    return result
+                }, {})
+
+                return {
+                    herdName: displayHerdNames[i],
+                    years: Object.keys(data),
+                    data: data
+                }
+            })
 
             // create select list for herd names
             createSelectList(displayHerdNames)
@@ -170,7 +179,7 @@
 
         // Update data from current selected herdname
         function updateDataFromSelectedHerdName() {
-            herdNameData = fetchedData.find(obj => obj.herdName === herdList.node().value).data
+            herdNameData = fetchedData.find(obj => obj.herdName === herdList.node().value)
         }
 
         // Initialize or update the slider when zooming/moving on map
@@ -226,10 +235,10 @@
 
         // Update data from current slider range
         function updateDataFromSlider() {
-            sliderData = getUniqueDates().map(date => {
-                const individualCoords = getIndividualCoordsByDate(date)
+            sliderData = herdNameData.years.map(year => {
+                const individualCoords = getIndividualCoordsByDate(year)
                 return {
-                    date: new Date(date),
+                    date: new Date(year),
                     individuals: individualCoords,
                     center: getCenterFromCoords(individualCoords)
                 }
@@ -327,10 +336,6 @@
 
         /*_______________ UTILS FUNCTIONS _______________*/
 
-        Array.prototype.distinct = function () {
-            return this.filter((elem, index, self) => self.indexOf(elem) === index)
-        }
-
         // works only with year array !
         Array.prototype.withFakeYear = function () {
             return this.concat(this[this.length - 1] + 1)
@@ -357,12 +362,8 @@
 
         /*----- Date slider related functions -----*/
 
-        function getUniqueDates() {
-            return herdNameData.map(row => row.date).distinct()
-        }
-
         function getIndividualCoordsByDate(date) {
-            return herdNameData.filter(row => row.date === date).map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
+            return herdNameData.data[date].map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
         }
 
         function getCenterFromCoords(coords) {
