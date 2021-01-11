@@ -35,11 +35,12 @@
         const radius = 1
         var distance = 1
         /*----- Graphical global components -----*/
-        const body = d3.select("#content_movement")
-        body.append("H1")
-            .text("Movement")
+        const body = d3.select("#content")
+        
         body.append("div")
             .attr("id","trajectory")
+        body.append("H1")
+            .text("Movement")
         body.append("div")
             .attr("id","slider")
         body.append("select")
@@ -51,7 +52,14 @@
             .attr("min","0.00")
             .attr("max","5.00")
             .attr("step","0.01")
-            
+        // let all = body.append("div")
+        // all.append("input")
+        //     .attr("type","checkbox")
+        //     .attr("id","all")
+        //     .attr("name","all")
+        // all.append("label")
+        //     .attr("for","all")
+        //     .text("All")
 
 
         const svg = d3.select("#trajectory")
@@ -175,7 +183,7 @@
 
             let lines = getLinesData(fetchedData, herdList.node().value, getRangedYears())
             lines = centerLines(lines, center)
-            
+
             if (alreadyInitZoomed) { // UPDATES
                 svg.selectAll(".line").remove()
                 svg.selectAll("path").data(lines)
