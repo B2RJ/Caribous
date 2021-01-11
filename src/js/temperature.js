@@ -5,7 +5,7 @@ function displayTemperature(
     height = 400
 ) {
     // set the dimensions and margins of the graph
-    var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+    var margin = { top: 0, right: 1, bottom: 20, left: 30 },
         width = width - margin.left - margin.right,
         height = height - margin.top - margin.bottom;
 
@@ -60,10 +60,7 @@ function displayTemperature(
                 })
                 .attr("d", temperatureLine(d.value));
 
-            svg.append("text")
-                .attr("x", (legendSpace / 2) + i * legendSpace)  // space legend
-                .attr("y", height + (margin.bottom / 2) + 13)
-                .attr("class", "legend")    // style the legend
+            d3.select("#viz-legend").append("text")
                 .style("fill", function () { // Add the colours dynamically
                     return d.color = color(i);
                 })
@@ -82,10 +79,8 @@ function displayTemperature(
             .call(d3.axisLeft(y));
 
         // Add title
-        // svg.append("svg:text")
-        //     .attr("class", "title")
-        //     .attr("x", width / 3)
-        //     .attr("y", 0)
-        //     .text("Evolution of the temperature");
+        d3.select("#viz-title")
+            .append("text")
+            .text("Evolution de la temperature")
     })
 }
