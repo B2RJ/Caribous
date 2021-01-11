@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trajectory</title>
+    <title>Caribou trajectories</title>
 
     <script src="https://d3js.org/d3.v6.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-tile@1"></script>
@@ -14,23 +14,10 @@
         body {
             background-color: #666
         }
-
-        #data-loading {
-            display: inline-block;
-            color: #dddddd;
-            margin-left: 10px
-        }
     </style>
 </head>
 
 <body>
-    <H1>Trajectory</H1>
-    <div id="trajectory"></div>
-    <div id="slider"></div>
-    <span>
-        <select id="herd-names"></select>
-        <p id="data-loading"></p>
-    </span>
     <script>
         /*_______________ INITIAL CONFIGURATION _______________*/
 
@@ -46,23 +33,43 @@
 
         /*----- Graphical global components -----*/
 
-        const svg = d3.select("#trajectory")
+        // main component
+        const main = d3.select("body")
+            .append("div")
+            .attr("id", "viz-body")
+
+        // title component
+        main.append("h1").text("Caribou trajectories")
+
+        // map component
+        const svg = main.append("div")
+            .attr("id", "trajectory")
             .append("svg")
             .attr("viewBox", [0, 0, width, height])
-        // Création d'un graphique dans le svg
-        let image = svg.append("g")
+        let image = svg.append("g") // Création d'un graphique dans le svg
             .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
             .selectAll("image") // Setup les image mais pas encore créées
 
-        const sliderSvg = d3.select("#slider")
-            .append('svg')
-            .attr('width', 700)
-            .attr('height', 100)
-            .append('g')
-            .attr('transform', 'translate(20,20)')
+        // slider component
+        const sliderSvg = main.append("div")
+            .attr("id", "slider")
+            .append("svg")
+            .attr("width", 700)
+            .attr("height", 100)
+            .append("g")
+            .attr("transform", "translate(20, 20)")
         let slider
 
-        const herdList = d3.select("#herd-names")
+        // select list component
+        const span = main.append("span")
+        const herdList = span.append("select")
+            .attr("id", "herd-names")
+        span.append("p")
+            .attr("id", "data-loading")
+            .text("Data is loading, please wait...")
+            .style("display", "inline-block")
+            .style("color", "#dddddd")
+            .style("margin-left", 10)
 
 
         /*----- D3JS Setup (params, events, etc.) -----*/
@@ -324,6 +331,11 @@
             return this.filter((elem, index, self) => self.indexOf(elem) === index)
         }
 
+        // works only with year array !
+        Array.prototype.withFakeYear = function () {
+            return this.concat(this[this.length - 1] + 1)
+        }
+
         function url(x, y, z) {
             return `https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/${z}/${x}/${y}${devicePixelRatio > 1 ? "@2x" : ""}?access_token=pk.eyJ1IjoicGF3YXJvIiwiYSI6ImNramI5NDIyMDdqMGYydnBkeGVrcGNydDUifQ.k7aT1uH2iIZEAnUC38-QJw`
         }
@@ -366,7 +378,7 @@
         }
 
         function getDatesByYear() {
-            return getUniqueYears().map(year => [
+            return getUniqueYears().withFakeYear().map(year => [
                 new Date(year, 0, 1), //fake date, just for slider display
                 sliderData.filter(row => row.date.getFullYear() === year).map(row => row.date) //all true dates of the year
             ])
@@ -375,6 +387,14 @@
 
         /*----- Map related functions -----*/
 
+        function getDatesByYearRange() {
+            const sliderRange = slider.value().map(value => new Date(value).getFullYear()) //because d3js-slider return a unix time and a date value
+            return yearDates.filter(row => {
+                const year = row[0].getFullYear()
+                return sliderRange[0] <= year && year < sliderRange[1]
+            }).map(row => row[1])
+        }
+
         function getUsefulData() {
             return getDatesByYearRange().map(dates => {
                 return {
@@ -382,14 +402,6 @@
                     all: getManyRelatedData(dates)
                 }
             })
-        }
-
-        function getDatesByYearRange() {
-            const sliderRange = slider.value().map(value => new Date(value).getFullYear()) //because d3js-slider return a unix time and a date value
-            return yearDates.filter(row => {
-                const year = row[0].getFullYear()
-                return sliderRange[0] <= year && year <= sliderRange[1]
-            }).map(row => row[1])
         }
 
         function getManyRelatedData(dates) {
@@ -403,7 +415,6 @@
         function isSameDates(first, second) {
             return first.getTime() === second.getTime()
         }
-
     </script>
 </body>
 
