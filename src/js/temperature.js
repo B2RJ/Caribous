@@ -82,10 +82,10 @@ function displayTemperature(
             .call(d3.axisLeft(y));
 
         // Add title
-        svg.append("svg:text")
-            .attr("class", "title")
-            .attr("x", width / 3)
-            .attr("y", 0)
-            .text("Evolution of the temperature");
+        // svg.append("svg:text")
+        //     .attr("class", "title")
+        //     .attr("x", width / 3)
+        //     .attr("y", 0)
+        //     .text("Evolution of the temperature");
     })
 }
