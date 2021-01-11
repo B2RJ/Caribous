@@ -15,7 +15,8 @@
         #death {
             position: relative
         }
-        #death-hover-info {
+        /* TODO: use legend... */
+        /*#death-hover-info {
             left: 0;
             top: 0;
             padding: 10px;
@@ -28,7 +29,7 @@
         }
         #death-hover-info ul {
             list-style: square;
-        }
+        }*/
     </style>
 </head>
 
@@ -93,7 +94,6 @@
 
         /*----- Global variables -----*/
 
-        let alreadyInitZoomed = false
         let clustersDeaths = []
         let clustersDangerZones = []
 
@@ -119,7 +119,6 @@
 
         // Initialize or update the map when zooming/moving on map
         function zoomed(transform) {
-            console.log("zoomed!")
             // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
             const tiles = tile(transform)
 
@@ -144,57 +143,52 @@
                 })
             }
 
-            if (alreadyInitZoomed) { // UPDATES
-                // TODO: update circles 
+            for(let i = 0; i < clustersData.length; i++) {
+                let cd = clustersData[i]
+                cd.deaths.enter().append("circle")
+                    .attr("class", "deaths_"+i)
+                    .attr("r", 1)
+                    .attr("cx", d => projection(d[1])[0])
+                    .attr("cy", d => projection(d[1])[1])
+                    .style("fill", "None")
 
-            } else { // INITIALIZATION
-                // TODO: create circles
-                for(let i = 0; i < clustersData.length; i++) {
-                    let cd = clustersData[i]
-                    cd.deaths.enter().append("circle")
-                        .attr("class", "deaths_"+i)
-                        .attr("r", 1)
-                        .attr("cx", d => projection(d[1])[0])
-                        .attr("cy", d => projection(d[1])[1])
-                        .style("fill", "None")
-
-                    cd.zones.enter().append("circle")
-                        .attr("class", "zones_"+i)
-                        .attr("r", d => 4 + 2*Math.log2(d[1]))
-                        .attr("cx", d => projection(d[0])[0])
-                        .attr("cy", d => projection(d[0])[1])
-                        .style("stroke", "rgba(255,0,0,0.4)")
-                        .style("fill", "rgba(255,0,0,0.1)")
-                        .on("mouseover", () => {
-                            let p = 0, v = 0, o = 0
-                            svg.selectAll(".deaths_"+i).style("fill", d => {
-                                switch(d[0]) {
-                                    case "Predation": p++; return "black"
-                                    case "Vehicle Collision": v++; return "purple"
-                                    case "Other": o++; return "blue"
-                                }
-                            })
-
-                            let html = "<ul>Pour la zone de danger survolée :"
-                            if(p > 0) html += "<li>" + p + " caribous ont été tués par un prédateur (Loup, Ours, Carcajou...)</li>"
-                            if(v > 0) html += "<li>" + v + " caribous ont été renversés par un véhicule (Voiture, Train...)</li>"
-                            if(o > 0) html += "<li>" + o + " caribous sont morts pour une autre raison (Accident, Cause inconnue...)</li>"
-                            html += "</ul>"
-
-                            let elem = document.getElementById("death-hover-info")
-                            elem.innerHTML = html
-                            elem.style.visibility = "visible"
-
+                cd.zones.enter().append("circle")
+                    .attr("class", "zones_"+i)
+                    .attr("r", d => 4 + 2*Math.log2(d[1]))
+                    .attr("cx", d => projection(d[0])[0])
+                    .attr("cy", d => projection(d[0])[1])
+                    .style("stroke", "rgba(255,0,0,0.4)")
+                    .style("fill", "rgba(255,0,0,0.1)")
+                    .on("mouseover", () => {
+                        let p = 0, v = 0, o = 0
+                        svg.selectAll(".deaths_"+i).style("fill", d => {
+                            switch(d[0]) {
+                                case "Predation": p++; return "black"
+                                case "Vehicle Collision": v++; return "purple"
+                                case "Other": o++; return "blue"
+                            }
                         })
-                        .on("mouseleave", () => {
-                            svg.selectAll(".deaths_"+i).style("fill", "None")
 
-                            let elem = document.getElementById("death-hover-info")
-                            elem.style.visibility = "hidden"
-                            elem.innerHTML = ""
-                        })
-                }
-                alreadyInitZoomed = true
+                        // TODO: use legend...
+                        /*
+                        let html = "<ul>Pour la zone de danger survolée :"
+                        if(p > 0) html += "<li>" + p + " caribous ont été tués par un prédateur (Loup, Ours, Carcajou...)</li>"
+                        if(v > 0) html += "<li>" + v + " caribous ont été renversés par un véhicule (Voiture, Train...)</li>"
+                        if(o > 0) html += "<li>" + o + " caribous sont morts pour une autre raison (Accident, Cause inconnue...)</li>"
+                        html += "</ul>"
+
+                        let elem = document.getElementById("death-hover-info")
+                        elem.innerHTML = html
+                        elem.style.visibility = "visible"
+                        */
+                    })
+                    .on("mouseleave", () => {
+                        svg.selectAll(".deaths_"+i).style("fill", "None")
+
+                        let elem = document.getElementById("death-hover-info")
+                        elem.style.visibility = "hidden"
+                        elem.innerHTML = ""
+                    })
             }
         }
 
