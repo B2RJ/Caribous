@@ -336,6 +336,10 @@
 
         /*_______________ UTILS FUNCTIONS _______________*/
 
+        Array.prototype.distinct = function () {
+            return this.filter((elem, index, self) => self.indexOf(elem) === index)
+        }
+
         // works only with year array !
         Array.prototype.withFakeYear = function () {
             return this.concat(this[this.length - 1] + 1)
