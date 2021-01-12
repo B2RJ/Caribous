@@ -1,12 +1,15 @@
 const listFunction = []
-
 $(_=>{ // Appelé quand le doc et load en entié
     // Initialise la visualisation
-    $("#prev").hide();    
-    displayTemperature()
+    $("#prev").hide();  
+    displayTemperature($("#viz-body").width(),$("#viz-body").height())
     listFunction.push(displayTemperature)
     listFunction.push(displayMovement)
+    listFunction.push(displayDeathMap)
+    listFunction.push(displayTrajectory)
+    $(".card").height($("#viz-body").height())
 
+    $("#advanced").on("click", _=> loadVisu());
 })
 
 let index_vizu = 0
@@ -34,7 +37,12 @@ function prevVisu() {
 
 // Charge une vizu
 function loadVisu(){
-    $("#content_viz").empty()
+    $("#viz-body").empty()
+    $("#viz-legend").empty()
     // On charge le prog
-    listFunction[index_vizu]()
+    listFunction[index_vizu](
+        $("#viz-body").width(),
+        $("#viz-body").height(),
+        !$('#advanced').is(":checked"),
+        1 << 15 )
 }

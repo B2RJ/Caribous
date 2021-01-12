@@ -1,15 +1,15 @@
 function displayDeathMap(
-    modePresentation = true,
     width = 700,
     height = 400,
+    modePresentation = true,
     zoomValue = 1 << 14, // Zoom dans l'image
     initialScale = zoomValue,
     initialCenter = [-122, 55],
 ) {
-
+    d3.select("#viz-title").text("Carte des zones de mort des caribous")
     /*----- Graphical global components -----*/
 
-    const svg = d3.select("#content_viz")
+    const svg = d3.select("#viz-body")
         .append("svg")
         .lower()
         .attr("viewBox", [0, 0, width, height])
@@ -128,24 +128,24 @@ function displayDeathMap(
                     })
 
                     // TODO: use legend...
-                    /*
-                    let html = "<ul>Pour la zone de danger survolée :"
-                    if(p > 0) html += "<li>" + p + " caribous ont été tués par un prédateur (Loup, Ours, Carcajou...)</li>"
-                    if(v > 0) html += "<li>" + v + " caribous ont été renversés par un véhicule (Voiture, Train...)</li>"
-                    if(o > 0) html += "<li>" + o + " caribous sont morts pour une autre raison (Accident, Cause inconnue...)</li>"
-                    html += "</ul>"
-
-                    let elem = document.getElementById("death-hover-info")
-                    elem.innerHTML = html
-                    elem.style.visibility = "visible"
-                    */
+                    let legend = d3.select("#viz-legend")
+                    legend.html("")
+                    legend = legend.append("div").attr("class","alert alert-dark")
+                    legend.append("h5").text("Pour la zone de danger survolée :")
+                    let list = legend.append("ul")
+                    if (p > 0) {
+                        list.append("li").text(p + " caribous ont été tués par un prédateur (Loup, Ours, Carcajou...)")
+                    }
+                    if (v > 0) {
+                        list.append("li").text(v + " caribous ont été renversés par un véhicule (Voiture, Train...)")
+                    }
+                    if (o > 0) {
+                        list.append("li").text(o + " caribous sont morts pour une autre raison (Accident, Cause inconnue...)")
+                    }
                 })
                 .on("mouseleave", () => {
                     svg.selectAll(".deaths_" + i).style("fill", "None")
-
-                    let elem = document.getElementById("death-hover-info")
-                    elem.style.visibility = "hidden"
-                    elem.innerHTML = ""
+                    d3.select("#viz-legend").html("")
                 })
         }
     }

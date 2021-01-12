@@ -1,14 +1,14 @@
 function displayMovement(
+    width = 700,
+    height = 400,
     modePresentation = true,
+    zoomValue = 1 << 14, // Zoom dans l'image
     startYear= "1988",
     endYear = "1992",
     herd = "Hart Ranges" ,
     epsilon = 0.28,
-    width = 700,
-    height = 400,
-    zoomValue = 1 << 13, // Zoom dans l'image
     initialScale = zoomValue,
-    initialCenter = [-122.567179, 56.074159],
+    initialCenter = [-122, 55],
     colorArrow = "black",
     colorPoint = "#9E7246",
     radius = 1,
@@ -21,14 +21,11 @@ function displayMovement(
 
     
     /*----- Graphical global components -----*/
-    const body = d3.select("#content_viz")
+    const body = d3.select("#viz-body")
 
     body.append("div")
-        .attr("id", "trajectory")
-    if (!modePresentation){
-        body.append("H1")
-            .text("Movement")
-    }
+        .attr("id", "movement")
+
     body.append("div")
         .attr("id", "slider")
     body.append("select")
@@ -54,8 +51,8 @@ function displayMovement(
     //     .attr("for","all")
     //     .text("All")
 
-
-    const svg = d3.select("#trajectory")
+    d3.select("#viz-title").text("Tendances des déplacement d'un troupeau des caribous d'Hart Ranges")
+    const svg = d3.select("#movement")
         .append("svg")
         .attr("viewBox", [0, 0, width, height])
         .attr('width', width)

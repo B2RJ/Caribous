@@ -17,27 +17,45 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    
+
     <!-- Liste des visualisations -->
     <script src="./js/movement.js"></script>
     <script src="./js/temperature.js"></script>
+    <script src="./js/death_map.js"></script>
+    <script src="./js/trajectory.js"></script>
 
 
     <script src="./js/slide.js"></script>
 
     <style>
-        .line_tmp { 
+        .line_tmp {
             stroke: steelblue;
             stroke-width: 2;
             fill: none;
         }
-        
         .axis path,
         .axis .line_tmp {
             fill: none;
             stroke: grey;
             stroke-width: 1;
             shape-rendering: crispEdges;
+        }
+        #death {
+            position: relative
+        }
+        .container {
+            padding: 0;
+            margin: 0 2vw;
+            width: 96vw !important;
+            max-width: none;
+
+        }
+        svg {
+            border-radius: .25rem;
+        }
+
+        .d-flex{
+            margin-bottom: 0!important;
         }
     </style>
     <title>Slide</title>
@@ -47,33 +65,41 @@
     <nav class="navbar navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Étude de l'impact du réchauffement climatique sur les caribous</a>
+            <form class="d-flex">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" id="advanced">
+                    <label class="form-check-label" for="advanced" style="color: whitesmoke;">Mode avancé</label>
+                </div>
+            </form>
         </div>
     </nav>
     <br>
     <div class="container">
-        <div class="row justify-content-md-center">
-            <div class="col-md-auto" id="content_viz">
-
+        <div class="row">
+            <div id="viz-body" style="width: calc(100%*0.70);height: 60vh;">
             </div>
-            <div class="col col-lg-4" style="height: 400px!important;">
+            <div style="width: calc(100%*0.30);">
                 <div class="card" style="height: 400px!important">
-                    <h5 class="card-header">Featured</h5>
+                    <h5 class="card-header" id="viz-title"></h5>
                     <div class="card-body">
-                        <div id="legende"></div>
-                        <h5 class="card-title">Special title treatment</h5>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        
+                        <h5 id="viz-title" class="card-title"></h5>
+                        <p id="viz-description" class="card-text"></p>
+                        <br>
+                        <div id="viz-legend"></div>
                     </div>
                     <div class="card-footer">
-                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-                            <button id="prev" type="button" class="btn btn-secondary" onclick="prevVisu()">précédent</button>
-                            <button id="next" type="button" class="btn btn-secondary" onclick="nextVisu()">suivant</button>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-center">
+                            <button id="prev" type="button" class="btn btn-secondary"
+                                onclick="prevVisu()">précédent</button>
+                            <button id="next" type="button" class="btn btn-secondary"
+                                onclick="nextVisu()">suivant</button>
                         </div>
                     </div>
                 </div>
+                <div id="viz-speech" hidden></div>
             </div>
         </div>
-        
+
     </div>
 </body>
 

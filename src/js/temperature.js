@@ -1,8 +1,8 @@
 function displayTemperature(
-
-    modePresentation = false,
     width = 700,
-    height = 400
+    height = 400,
+    modePresentation = false,
+    zoomValue = 1 << 14
 ) {
     // set the dimensions and margins of the graph
     var margin = { top: 0, right: 1, bottom: 20, left: 30 },
@@ -22,7 +22,7 @@ function displayTemperature(
         .y(function (d) { return y(d.Average); });
 
     // Adds the svg canvas
-    let svg = d3.select("#content_viz")
+    let svg = d3.select("#viz-body")
         .append("svg")
         .attr("width", width + margin.left + margin.right)
         .attr("height", height + margin.top + margin.bottom)
@@ -60,7 +60,7 @@ function displayTemperature(
                 })
                 .attr("d", temperatureLine(d.value));
 
-            d3.select("#viz-legend").append("text")
+            d3.select("#viz-legend")
                 .style("fill", function () { // Add the colours dynamically
                     return d.color = color(i);
                 })
@@ -79,8 +79,6 @@ function displayTemperature(
             .call(d3.axisLeft(y));
 
         // Add title
-        d3.select("#viz-title")
-            .append("text")
-            .text("Evolution de la temperature")
+        d3.select("#viz-title").text("Evolution de la température")
     })
 }
