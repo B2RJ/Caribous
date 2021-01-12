@@ -3,9 +3,9 @@ function displayMovement(
     height = 400,
     modePresentation = true,
     zoomValue = 1 << 14, // Zoom dans l'image
-    startYear= "1988",
+    startYear = "1988",
     endYear = "1992",
-    herd = "Hart Ranges" ,
+    herd = "Hart Ranges",
     epsilon = 0.28,
     initialScale = zoomValue,
     initialCenter = [-122, 55],
@@ -17,13 +17,13 @@ function displayMovement(
     /*_______________ INITIAL CONFIGURATION _______________*/
 
 
-    /*----- Graphical global variables -----*/
+    /*----- Graphical global components -----*/
+
     // legend component
     let legend = d3.select("#viz-legend").append("div")
-        .attr("class","alert alert-dark")
+        .attr("class", "alert alert-dark")
     legend.append("p").html("<b style='font-size: 36px;position:relative;top:5px;'>&rarr;</b> Vecteur de déplacement")
-    
-    /*----- Graphical global components -----*/
+
     const body = d3.select("#viz-body")
 
     body.append("div")
@@ -40,10 +40,10 @@ function displayMovement(
         .attr("min", "0.00")
         .attr("max", "5.00")
         .attr("step", "0.01")
-    if (modePresentation){
-        body.select("#slider").attr("hidden","")
-        body.select("#herd-names").attr("hidden","")
-        body.select("#epsilon").attr("hidden","")
+    if (modePresentation) {
+        body.select("#slider").attr("hidden", "")
+        body.select("#herd-names").attr("hidden", "")
+        body.select("#epsilon").attr("hidden", "")
     }
     // let all = body.append("div")
     // all.append("input")
@@ -109,7 +109,6 @@ function displayMovement(
 
     let alreadyInitZoomed = false
     let fetchedData = []
-    let firstDateRows = []
 
     const arrowHeadWidth = 12, arrowHeadHeight = arrowHeadWidth
     const arrowPoints = [[2, 2], [10, 6], [2, 10], [6, 6], [2, 2]]
@@ -124,8 +123,9 @@ function displayMovement(
     // Load plain csv data from repo
     d3.csv(csvUrl).then(function (data) {
         fetchedData = data
-        createSelectList(data, getHerdNames(data))
-        updateSlider(getDatesByHerdName(data, herdList.node().value))
+
+        createSelectList(data)
+        updateSlider(data)
 
         svg
             .call(zoom) // Setup de l'event de gestion du zoom
@@ -156,10 +156,9 @@ function displayMovement(
             .scale(transform.k / (2 * Math.PI))
             .translate([transform.x, transform.y])
 
-        let points = toCoordonnateofYear(
-            getOneHerd(fetchedData, herdList.node().value),
-            getRangedYears()[0]
-        )
+        const sliderRange = getRangedYears()
+
+        let points = getCoordsByYear(sliderRange[0])
         let center = []
         if (points.length > 2) {
             center = d3.polygonCentroid(d3.polygonHull(points))
@@ -170,13 +169,9 @@ function displayMovement(
         let diametre = maxDist(points)
         distance = diametre
 
-        let circles = svg.selectAll("circle")
-            .data(toCoordonnateofYear(
-                getOneHerd(fetchedData, herdList.node().value),
-                getRangedYears()[0]
-            ))
+        let circles = svg.selectAll("circle").data(getCoordsByYear(sliderRange[0]))
 
-        let lines = getLinesData(fetchedData, herdList.node().value, getRangedYears())
+        let lines = getLinesData(fetchedData, sliderRange)
         lines = centerLines(lines, center)
 
         if (alreadyInitZoomed) { // UPDATES
@@ -216,8 +211,6 @@ function displayMovement(
                 .style("stroke", colorArrow)
                 .style("stroke-linecap", "round")
 
-            // console.log(getOneHerd(fetchedData,herdList.node().value))
-
             svg
                 .append("defs")
                 .append("marker")
@@ -251,30 +244,33 @@ function displayMovement(
     }
 
     // // Initialize or update the slider when zooming/moving on map
-    function updateSlider(years) {
-        const minYear = years[0]
-        const maxYear = years[years.length - 1]
+    function updateSlider(data) {
+        const yearDates = getDatesByHerdName(data)
+
+        const minYear = yearDates[0]
+        const maxYear = yearDates[yearDates.length - 1]
+
         if (alreadyInitZoomed) {
             sliderSvg
                 .call(slider
                     .domain([minYear, maxYear])
-                    .tickValues(years)
-                    .marks(years)
+                    .tickValues(yearDates)
+                    .marks(yearDates)
                     .value([minYear, maxYear])
-                    .default([new Date(startYear),new Date(endYear)])
+                    .default([new Date(startYear), new Date(endYear)])
                 )
         } else {
             slider = d3
                 .sliderBottom()
                 .domain([minYear, maxYear])
                 .width(650)
-                .tickValues(years)
-                .marks(years)
-                .tickFormat(d3.timeFormat('%Y'))
+                .tickValues(yearDates)
+                .marks(yearDates)
+                .tickFormat(d3.timeFormat("%Y"))
                 .fill("grey")
                 .value([minYear, maxYear])
-                .default([new Date(startYear),new Date(endYear)])
-                .on("end", (dates) => {
+                .default([new Date(startYear), new Date(endYear)])
+                .on("end", () => {
                     svg.call(zoom.transform, zoomTransform)
                 })
 
@@ -284,22 +280,22 @@ function displayMovement(
     }
 
     // Create the select list for multiple herd names
-    function createSelectList(data, names) {
+    function createSelectList(data) {
         herdList
             .selectAll("option")
-            .data(names)
+            .data(getHerdNames(data))
             .enter()
             .append("option")
             .attr("value", d => d)
             .text(d => d)
         herdList.on("change", () => {
-            updateSlider(getDatesByHerdName(data, herdList.node().value))
+            updateSlider(data)
             svg.call(zoom.transform, zoomTransform)
         })
-        .attr("value",herd)
+            .attr("value", herd)
         d3.select("#epsilon") // event quand on change la valeur d'epsilon
             .on("change", () => {
-                updateSlider(getDatesByHerdName(data, herdList.node().value))
+                updateSlider(data)
                 svg.call(zoom.transform, zoomTransform)
             })
     }
@@ -307,20 +303,27 @@ function displayMovement(
 
 
     /*_______________ UTILS FUNCTIONS _______________*/
+
+
+    // works only with year array !
+    function concatFakeYear(array) {
+        return array.concat(new String(parseInt(array[array.length - 1]) + 1))
+    }
+
     // Retourn tous les lieux d'étude
     function getHerdNames(data) {
         return [...new Set(data.map(elem => elem.study_site))]
     }
 
     // Retourne la liste des années présentes dans la base pour une race donnée
-    function getDatesByHerdName(data, herdName) {
-        years = getOneHerd(data, herdName).map(elem => new Date(elem.year))
-        return [...new Set(years)]
+    function getDatesByHerdName(data) {
+        const distinctDates = [...new Set(getCurrentHerd(data).map(elem => elem.year))]
+        return concatFakeYear(distinctDates).map(year => new Date(year))
     }
 
     // Retourne les animaux qui sont de la race donnée
-    function getOneHerd(data, herdName) {
-        return data.filter(elem => elem.study_site == herdName)
+    function getCurrentHerd(data) {
+        return data.filter(elem => elem.study_site == herdList.node().value)
     }
 
     // Retourne les bornes des années
@@ -329,16 +332,10 @@ function displayMovement(
     }
 
     //
-    function toCoordonnateofYear(data, year) {
-        let result = []
-        for (let i in data) {
-            if (data[i].year == year) {
-                result.push(
-                    [Number(data[i].longitude), Number(data[i].latitude)]
-                )
-            }
-        }
-        return result
+    function getCoordsByYear(year) {
+        return getCurrentHerd(fetchedData)
+            .filter(row => parseInt(row.year) === year)
+            .map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
     }
 
     function maxDist(points) {
@@ -367,14 +364,18 @@ function displayMovement(
     }
 
     // Retourne les coordonnée de départ 
-    function getLinesData(data, herdName, rangeYear) {
-        let selectionMin = data.filter(elem => elem.study_site == herdName && elem.year == rangeYear[0])
+    function getLinesData(data, rangeYear) {
+        const herdNameData = getCurrentHerd(data)
+
+        let selectionMin = herdNameData.filter(row => row.year == rangeYear[0])
+        let selectionMax = herdNameData.filter(row => row.year == rangeYear[1])
+
         const animal_idsMin = selectionMin.map(elem => elem.animal_id)
-        let selectionMax = data.filter(elem => elem.study_site == herdName && elem.year == rangeYear[1])
         const animal_idsMAX = selectionMax.map(elem => elem.animal_id)
-        const intersect = animal_idsMin.filter(value => animal_idsMAX.includes(value));
-        selectionMin = selectionMin.filter(elem => intersect.includes(elem.animal_id));
-        selectionMax = selectionMax.filter(elem => intersect.includes(elem.animal_id));
+
+        const intersect = animal_idsMin.filter(value => animal_idsMAX.includes(value))
+        selectionMin = selectionMin.filter(elem => intersect.includes(elem.animal_id))
+        selectionMax = selectionMax.filter(elem => intersect.includes(elem.animal_id))
 
         let result = []
         for (let i in selectionMin) {
@@ -383,6 +384,7 @@ function displayMovement(
                 [Number(selectionMax[i].longitude), Number(selectionMax[i].latitude)]
             ])
         }
+
         const epsilon = d3.select("#epsilon").node().value
 
         const agrandissement = 1
