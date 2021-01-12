@@ -5,8 +5,9 @@ $(_=>{ // Appelé quand le doc et load en entié
     displayTemperature($("#viz-body").width(),$("#viz-body").height())
     listFunction.push(displayTemperature)
     listFunction.push(displayMovement)
-    listFunction.push(displayDeathMap)
+    listFunction.push(displayDeathRepartition)
     listFunction.push(displayTrajectory)
+    listFunction.push(displayDeathMap)
     $(".card").height($("#viz-body").height())
 
     $("#advanced").on("click", _=> loadVisu());
