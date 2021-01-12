@@ -5,11 +5,12 @@ function displayDeathRepartition(
     zoomValue = 1 << 14
 ){
     // set the dimensions and margins of the graph
-    var margin = { top: 10, right: 30, bottom: 30, left: 60 },
+    var margin = { top: 10, right: 30, bottom: 30, left: 40 },
         width = width - margin.left - margin.right,
         height = height - margin.top - margin.bottom,
         legendCellSize = 20,
         keys = ["Other", "Predation", "Vehicle Collision"],
+        trads = ["Autre", "Prédateur", "Collision avec un véhicule"]
         colors = ["#7bccc4", "#2b8cbe", "#084081"];
 
     // Adds the svg canvas
@@ -81,31 +82,14 @@ function displayDeathRepartition(
         d3.select("#viz-title").text("Répartition des morts par catégorie et par an")
         // Add the legend
         // To display the study_site in the correct order
-        let reverseColors = colors.reverse();
-        let reverseKeys = keys.reverse();
+        const reverseColors = colors.reverse();
+        const reverseTrads = trads.reverse();
 
         // The position of the square
-        let legend = svg.append('g')
-            .attr('transform', 'translate(10, 20)');
-
-        // Position of the square
-        legend.selectAll()
-            .data(reverseColors)
-            .enter().append('rect')
-            .attr('height', legendCellSize + 'px')
-            .attr('width', legendCellSize + 'px')
-            .attr('x', 5)
-            .attr('y', (d, i) => i * legendCellSize)
-            .style("fill", d => d);
-
-        // Same thing for the text
-        legend.selectAll()
-            .data(reverseKeys)
-            .enter().append('text')
-            .attr("transform", (d, i) => "translate(" + (legendCellSize + 10) + ", " + (i * legendCellSize) + ")")
-            .attr("dy", legendCellSize / 1.6)
-            .style("font-size", "13px")
-            .style("fill", "grey")
-            .text(d => d);
+        let legend = d3.select("#viz-legend").append("div")
+            .attr("class", "alert alert-dark")
+        for(let i = 0; i < reverseColors.length; i++) {
+            legend.append("p").html("<b><div style='display: inline-block; background:"+reverseColors[i]+"; height:"+legendCellSize+"; width:"+legendCellSize+"'></div></b> "+reverseTrads[i])
+        }
     });
 }

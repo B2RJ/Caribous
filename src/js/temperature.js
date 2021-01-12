@@ -5,7 +5,7 @@ function displayTemperature(
     zoomValue = 1 << 14
 ) {
     // set the dimensions and margins of the graph
-    var margin = { top: 0, right: 1, bottom: 20, left: 30 },
+    var margin = { top: 10, right: 30, bottom: 30, left: 40 },
         width = width - margin.left - margin.right,
         height = height - margin.top - margin.bottom;
 
@@ -47,9 +47,14 @@ function displayTemperature(
         );
 
         // set the colour scale
-        let color = d3.scaleOrdinal(d3.schemeCategory10);
+        let color = (i) => {
+            let colors = ["orange","steelblue"]
+            return colors[i]
+        };
 
-        legendSpace = width / dataNest.length; // spacing for the legend
+
+        let legende = d3.select("#viz-legend").append("div")
+                .attr("class","alert alert-dark")
         // Loop through each season / key
         dataNest.forEach(function (d, i) {
             svg.append("path")
@@ -59,13 +64,23 @@ function displayTemperature(
                     return d.color = color(i);
                 })
                 .attr("d", temperatureLine(d.value));
-
-            d3.select("#viz-legend")
-                .style("fill", function () { // Add the colours dynamically
-                    return d.color = color(i);
-                })
-                .text(d.key);
         });
+        let names = ["Été","Hiver"]
+        for (let i = 0; i < 2; i++){
+            legende
+                .append("p")
+                .text("-")
+                .style("color",color(i))
+                .style("font-weight", "bolder")
+                .style("font-size", "3em")
+                .append("span")
+                .style("color", "black")
+                .style("position", "relative")
+                .style("top", "-9px")
+                .style("font-size", "1rem")
+                .style("font-weight", "normal")
+                .text(" : "+names[i]);
+        }
 
         // Add the X Axis
         svg.append("g")
