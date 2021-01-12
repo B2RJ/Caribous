@@ -11,7 +11,7 @@ function displayDeathMap(
     let legend = d3.select("#viz-legend").append("div")
         .attr("class","alert alert-dark")
     const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
-    legend.append("p").html("Survole les zones de danger ( "+reddot+" ) pour obtenir plus d'informations")
+    legend.append("p").html("Survole les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations")
     /*----- Graphical global components -----*/
 
     const svg = d3.select("#viz-body")
@@ -110,14 +110,14 @@ function displayDeathMap(
             let cd = clustersData[i]
             cd.deaths.enter().append("circle")
                 .attr("class", "deaths_" + i)
-                .attr("r", 1)
+                .attr("r", 5)
                 .attr("cx", d => projection(d[1])[0])
                 .attr("cy", d => projection(d[1])[1])
                 .style("fill", "None")
 
             cd.zones.enter().append("circle")
                 .attr("class", "zones_" + i)
-                .attr("r", d => 4 + 2 * Math.log2(d[1]))
+                .attr("r", d => 4 + 2 * d[1])
                 .attr("cx", d => projection(d[0])[0])
                 .attr("cy", d => projection(d[0])[1])
                 .style("stroke", "rgba(255,0,0,0.4)")
@@ -137,15 +137,15 @@ function displayDeathMap(
                     let list = legend.append("ul")
                     if (p > 0) {
                         const pdot = "<div class='small dot' style='background-color:"+pcol+";'></div>"
-                        list.append("li").html(p + " caribous ont été tués par un prédateur ( "+pdot+" Loup, Ours, Carcajou...)")
+                        list.append("li").html("<b>"+p+"</b> caribous ont été tués par un prédateur ( "+pdot+" Loup, Ours, Carcajou...)")
                     }
                     if (v > 0) {
                         const vdot = "<div class='small dot' style='background-color:"+vcol+";'></div>"
-                        list.append("li").html(v + " caribous ont été renversés par un véhicule ( "+vdot+" Voiture, Train...)")
+                        list.append("li").html("<b>"+v+"</b> caribous ont été renversés par un véhicule ( "+vdot+" Voiture, Train...)")
                     }
                     if (o > 0) {
                         const odot = "<div class='small dot' style='background-color:"+ocol+";'></div>"
-                        list.append("li").html(o + " caribous sont morts pour une autre raison ( "+odot+" Accident, Cause inconnue...)")
+                        list.append("li").html("<b>"+o+"</b> caribous sont morts pour une autre raison ( "+odot+" Accident, Cause inconnue...)")
                     }
                 })
                 .on("mouseleave", () => {
