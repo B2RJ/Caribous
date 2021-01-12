@@ -60,3 +60,6 @@ svg {
 body{
     background-color: rgb(97, 97, 97);
 }
+#prev{
+    margin-right: 20px;
+}

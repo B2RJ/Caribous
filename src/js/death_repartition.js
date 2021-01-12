@@ -89,7 +89,7 @@ function displayDeathRepartition(
         let legend = d3.select("#viz-legend").append("div")
             .attr("class", "alert alert-dark")
         for(let i = 0; i < reverseColors.length; i++) {
-            legend.append("p").html("<b><div style='display: inline-block; background:"+reverseColors[i]+"; height:"+legendCellSize+"; width:"+legendCellSize+"'></div></b> "+reverseTrads[i])
+            legend.append("p").html("<b><div style='display: inline-block; background:"+reverseColors[i]+"; height:"+legendCellSize+"; width:"+legendCellSize+";position:relative;top:5px;'></div></b> "+reverseTrads[i])
         }
     });
 }

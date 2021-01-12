@@ -21,7 +21,7 @@ function displayMovement(
     // legend component
     let legend = d3.select("#viz-legend").append("div")
         .attr("class","alert alert-dark")
-    legend.append("p").html("<b style='font-size: 36px;'>&rarr;</b> Vecteur de déplacement")
+    legend.append("p").html("<b style='font-size: 36px;position:relative;top:5px;'>&rarr;</b> Vecteur de déplacement")
     
     /*----- Graphical global components -----*/
     const body = d3.select("#viz-body")
