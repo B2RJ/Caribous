@@ -39,6 +39,7 @@ function displayTrajectory(
     // Affiche un spinner
     d3.select("#viz-description")
         .append("div")
+        .attr("id","traj-loading")
         .attr("class","spinner-border")
         .attr("role","status")
         .append("span")
@@ -143,8 +144,9 @@ function displayTrajectory(
         herdList
             .on("change", () => {
                 new Promise(resolve => {
-                    d3.select("#viz-description")
+                    d3.select("#traj-loading")
                         .append("div")
+                        .attr("id","traj-loading")
                         .attr("class","spinner-border")
                         .attr("role","status")
                         .append("span")
@@ -155,7 +157,7 @@ function displayTrajectory(
                     updateDataFromSelectedHerdName() //update current herd data
                     updateSlider() //update the slider accordingly
                     svg.call(zoom.transform, zoomTransform) //update map accordingly
-                    d3.select("#viz-description").html("");
+                    d3.select("#traj-loading").remove();
                 })
             })
     }
