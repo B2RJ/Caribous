@@ -3,9 +3,13 @@ function displayTrajectory(
     height = 400,
     modePresentation = true,
     zoomValue = 1 << 14, // Zoom dans l'image
+    startYear = "2007",
+    endYear = "2010",
+    herd = "Kennedy",
     initialScale = zoomValue,
     initialCenter = [-122, 55]
 ) {
+    console.log(startYear)
     /*----- Graphical global components -----*/
 
     // main component
@@ -98,7 +102,6 @@ function displayTrajectory(
 
     const repoPrefix = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/data/ourdata/trajectory_by_site/"
     const herdNames = ["burnt_pine", "graham", "hart_ranges", "kennedy", "moberly", "narraway", "quintette", "scott"]
-    const defaultHerdName = "Hart Ranges"
 
 
     /*----- Initialization and update functions -----*/
@@ -150,7 +153,7 @@ function displayTrajectory(
             .enter()
             .append("option")
             .attr("value", d => d)
-            .property("selected", d => d === defaultHerdName)
+            .property("selected", d => d === herd)
             .text(d => d)
 
         herdList
@@ -214,6 +217,8 @@ function displayTrajectory(
                 )
         } else {
             let oldSliderRange
+            console.log(startYear, new Date(startYear))
+            console.log(endYear, new Date(endYear))
 
             slider = d3
                 .sliderBottom()
@@ -222,8 +227,8 @@ function displayTrajectory(
                 .tickValues(firstJanuaryDates)
                 .marks(firstJanuaryDates)
                 .tickFormat(d3.timeFormat("%Y"))
-                .fill("red")
-                .value([minDate, maxDate])
+                .fill("blue")
+                .default([new Date(startYear), new Date(endYear)])
                 .on("start", () => {
                     oldSliderRange = slider.value().map(value => new Date(value))
                 })

@@ -3,9 +3,9 @@ function displayMovement(
     height = 400,
     modePresentation = true,
     zoomValue = 1 << 14, // Zoom dans l'image
-    startYear = "1988",
-    endYear = "1992",
-    herd = "Hart Ranges",
+    startYear = "2010",
+    endYear = "2011",
+    herd = "Kennedy",
     epsilon = 0.28,
     initialScale = zoomValue,
     initialCenter = [-122, 55],
@@ -257,7 +257,6 @@ function displayMovement(
                     .tickValues(yearDates)
                     .marks(yearDates)
                     .value([minYear, maxYear])
-                    .default([new Date(startYear), new Date(endYear)])
                 )
         } else {
             let oldSliderRange
@@ -269,8 +268,7 @@ function displayMovement(
                 .tickValues(yearDates)
                 .marks(yearDates)
                 .tickFormat(d3.timeFormat("%Y"))
-                .fill("grey")
-                .value([minYear, maxYear])
+                .fill("black")
                 .default([new Date(startYear), new Date(endYear)])
                 .on("start", () => {
                     oldSliderRange = slider.value().map(value => new Date(value))
@@ -301,12 +299,12 @@ function displayMovement(
             .enter()
             .append("option")
             .attr("value", d => d)
+            .property("selected", d => d === herd)
             .text(d => d)
         herdList.on("change", () => {
             updateSlider(data)
             svg.call(zoom.transform, zoomTransform)
         })
-            .attr("value", herd)
         d3.select("#epsilon") // event quand on change la valeur d'epsilon
             .on("change", () => {
                 updateSlider(data)
