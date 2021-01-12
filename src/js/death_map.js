@@ -7,7 +7,7 @@ function displayDeathMap(
     initialCenter = [-122, 55],
 ) {
     d3.select("#viz-title").text("Carte des zones de mort des caribous")
-
+    d3.select("#viz-description").text("Sur cette visualisation nous avons regroupé les zones \"à risques\" pour les caribous. On constate que le territoire des Kennedy vu précédemment contient une grande zone de disparitions. En plaçant votre curseur sur un cercle, vous pouvez voir précisément les différents lieux. On constate que le sud de leur territoire est propice aux attaques par des prédateurs. Cette information permet d'apporter une explication à la migration de ce troupeau.")
     let legend = d3.select("#viz-legend").append("div")
         .attr("class","alert alert-dark")
     const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
