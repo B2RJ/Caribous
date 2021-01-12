@@ -39,17 +39,17 @@ function displayTrajectory(
     // Affiche un spinner
     d3.select("#viz-description")
         .append("div")
-        .attr("id","traj-loading")
-        .attr("class","spinner-border")
-        .attr("role","status")
+        .attr("id", "traj-loading")
+        .attr("class", "spinner-border")
+        .attr("role", "status")
         .append("span")
-        .attr("class","visually-hidden")
+        .attr("class", "visually-hidden")
         .text("Loading...")
 
-    if (modePresentation){
-        main.select("#slider").attr("hidden","")
-        main.select("#herd-names").attr("hidden","")
-    } 
+    if (modePresentation) {
+        main.select("#slider").attr("hidden", "")
+        main.select("#herd-names").attr("hidden", "")
+    }
     /*----- D3JS Setup (params, events, etc.) -----*/
 
     // Setup de la projection (mercator, coordonnées polaires --> coordonnées cartésiennes)
@@ -103,7 +103,13 @@ function displayTrajectory(
         fetchedData = data.map((dataframe, i) => {
             const data = dataframe.reduce((result, elem) => {
                 const year = new Date(elem.date).getFullYear() //TODO: check if split("-") is fastest
-                result[year] = [...result[year] || [], elem]
+
+                if (year in result) result[year][elem.date] = [...result[year][elem.date] || [], elem]
+                else {
+                    result[year] = []
+                    result[year][elem.date] = [elem]
+                }
+
                 return result
             }, {})
 
@@ -146,11 +152,11 @@ function displayTrajectory(
                 new Promise(resolve => {
                     d3.select("#traj-loading")
                         .append("div")
-                        .attr("id","traj-loading")
-                        .attr("class","spinner-border")
-                        .attr("role","status")
+                        .attr("id", "traj-loading")
+                        .attr("class", "spinner-border")
+                        .attr("role", "status")
                         .append("span")
-                        .attr("class","visually-hidden")
+                        .attr("class", "visually-hidden")
                         .text("Loading...")
                     setTimeout(() => resolve(1), 1)
                 }).then(d => {
@@ -165,6 +171,20 @@ function displayTrajectory(
     // Update data from current selected herdname
     function updateDataFromSelectedHerdName() {
         herdNameData = fetchedData.find(obj => obj.herdName === herdList.node().value)
+    }
+
+    // Update data from current slider range
+    function updateDataFromSlider() {
+        sliderData = Object.values(herdNameData.data).map(dates => {
+            return Object.entries(dates).map(date => {
+                const individualCoords = date[1].map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
+                return {
+                    date: new Date(date[0]),
+                    individuals: individualCoords,
+                    center: getCenterFromCoords(individualCoords)
+                }
+            })
+        })
     }
 
     // Initialize or update the slider when zooming/moving on map
@@ -216,18 +236,6 @@ function displayTrajectory(
             sliderSvg
                 .call(slider)
         }
-    }
-
-    // Update data from current slider range
-    function updateDataFromSlider() {
-        sliderData = herdNameData.years.map(year => {
-            const individualCoords = getIndividualCoordsByDate(year)
-            return {
-                date: new Date(year),
-                individuals: individualCoords,
-                center: getCenterFromCoords(individualCoords)
-            }
-        })
     }
 
     // Initialize or update the map when zooming/moving on map
@@ -314,7 +322,7 @@ function displayTrajectory(
             .attr("stroke", "blue")
             .attr("stroke-width", 2)
             .attr("fill", "blue")
-            .attr("opacity", 0.3)
+            .attr("opacity", 0.25)
     }
 
 
@@ -351,10 +359,6 @@ function displayTrajectory(
 
     /*----- Date slider related functions -----*/
 
-    function getIndividualCoordsByDate(date) {
-        return herdNameData.data[date].map(row => [parseFloat(row.longitude), parseFloat(row.latitude)])
-    }
-
     function getCenterFromCoords(coords) {
         const longitudes = coords.map(c => c[0])
         const latitudes = coords.map(c => c[1])
@@ -364,13 +368,13 @@ function displayTrajectory(
     }
 
     function getUniqueYears() {
-        return sliderData.map(row => row.date.getFullYear()).distinct()
+        return herdNameData.years.map(year => parseInt(year))
     }
 
     function getDatesByYear() {
-        return getUniqueYears().withFakeYear().map(year => [
+        return getUniqueYears().withFakeYear().map((year, i) => [
             new Date(year, 0, 1), //fake date, just for slider display
-            sliderData.filter(row => row.date.getFullYear() === year).map(row => row.date) //all true dates of the year
+            (sliderData[i] || []) //all true dates of the year
         ])
     }
 
@@ -388,21 +392,9 @@ function displayTrajectory(
     function getUsefulData() {
         return getDatesByYearRange().map(dates => {
             return {
-                range: [getOneRelatedData(dates[0]), getOneRelatedData(dates[dates.length - 1])],
-                all: getManyRelatedData(dates)
+                range: [dates[0], dates[dates.length - 1]],
+                all: dates
             }
         })
-    }
-
-    function getManyRelatedData(dates) {
-        return dates.map(date => getOneRelatedData(date))
-    }
-
-    function getOneRelatedData(date) {
-        return sliderData.find(row => isSameDates(row.date, date))
-    }
-
-    function isSameDates(first, second) {
-        return first.getTime() === second.getTime()
     }
 }
