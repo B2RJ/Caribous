@@ -7,6 +7,11 @@ function displayDeathMap(
     initialCenter = [-122, 55],
 ) {
     d3.select("#viz-title").text("Carte des zones de mort des caribous")
+
+    let legend = d3.select("#viz-legend").append("div")
+        .attr("class","alert alert-dark")
+    const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
+    legend.append("p").html("Survole les zones de danger ( "+reddot+" ) pour obtenir plus d'informations")
     /*----- Graphical global components -----*/
 
     const svg = d3.select("#viz-body")
@@ -119,33 +124,33 @@ function displayDeathMap(
                 .style("fill", "rgba(255,0,0,0.1)")
                 .on("mouseover", () => {
                     let p = 0, v = 0, o = 0
+                    const pcol = "black", vcol = "purple", ocol = "blue"
                     svg.selectAll(".deaths_" + i).style("fill", d => {
                         switch (d[0]) {
-                            case "Predation": p++; return "black"
-                            case "Vehicle Collision": v++; return "purple"
-                            case "Other": o++; return "blue"
+                            case "Predation": p++; return pcol
+                            case "Vehicle Collision": v++; return vcol
+                            case "Other": o++; return ocol
                         }
                     })
 
                     // TODO: use legend...
-                    let legend = d3.select("#viz-legend")
-                    legend.text("Survole les données pour obtenir plus d'informations")
-                    legend = legend.append("div").attr("class","alert alert-dark")
-                    legend.append("h5").text("Pour la zone de danger survolée :")
                     let list = legend.append("ul")
                     if (p > 0) {
-                        list.append("li").text(p + " caribous ont été tués par un prédateur (Loup, Ours, Carcajou...)")
+                        const pdot = "<div class='small dot' style='background-color:"+pcol+";'></div>"
+                        list.append("li").html(p + " caribous ont été tués par un prédateur ( "+pdot+" Loup, Ours, Carcajou...)")
                     }
                     if (v > 0) {
-                        list.append("li").text(v + " caribous ont été renversés par un véhicule (Voiture, Train...)")
+                        const vdot = "<div class='small dot' style='background-color:"+vcol+";'></div>"
+                        list.append("li").html(v + " caribous ont été renversés par un véhicule ( "+vdot+" Voiture, Train...)")
                     }
                     if (o > 0) {
-                        list.append("li").text(o + " caribous sont morts pour une autre raison (Accident, Cause inconnue...)")
+                        const odot = "<div class='small dot' style='background-color:"+ocol+";'></div>"
+                        list.append("li").html(o + " caribous sont morts pour une autre raison ( "+odot+" Accident, Cause inconnue...)")
                     }
                 })
                 .on("mouseleave", () => {
                     svg.selectAll(".deaths_" + i).style("fill", "None")
-                    d3.select("#viz-legend").html("Survole les données pour obtenir plus d'informations")
+                    legend.select("ul").remove()
                 })
         }
     }
