@@ -260,6 +260,8 @@ function displayMovement(
                     .default([new Date(startYear), new Date(endYear)])
                 )
         } else {
+            let oldSliderRange
+
             slider = d3
                 .sliderBottom()
                 .domain([minYear, maxYear])
@@ -270,9 +272,21 @@ function displayMovement(
                 .fill("grey")
                 .value([minYear, maxYear])
                 .default([new Date(startYear), new Date(endYear)])
-                .on("end", () => {
+                .on("start", () => {
+                    oldSliderRange = slider.value().map(value => new Date(value))
+                })
+                .on("end", (newSliderRange) => {
+                    const sliderRange = newSliderRange.map(value => new Date(value))
+                    if (sliderRange[0].getTime() === sliderRange[1].getTime()) {
+                        sliderSvg
+                            .call(slider.value(oldSliderRange))
+
+                        throw ": YOU CAN'T SET SLIDER TICKS WITH SAME VALUES !"
+                    }
+
                     svg.call(zoom.transform, zoomTransform)
                 })
+
 
             sliderSvg
                 .call(slider)
