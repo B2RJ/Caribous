@@ -65,21 +65,9 @@ function displayTemperature(
                 })
                 .attr("d", temperatureLine(d.value));
         });
-        let names = ["Été","Hiver"]
-        for (let i = 0; i < 2; i++){
-            legende
-                .append("p")
-                .text("-")
-                .style("color",color(i))
-                .style("font-weight", "bolder")
-                .style("font-size", "3em")
-                .append("span")
-                .style("color", "black")
-                .style("position", "relative")
-                .style("top", "-9px")
-                .style("font-size", "1rem")
-                .style("font-weight", "normal")
-                .text(" : "+names[i]);
+        let names = ["Température moyenne estivale","Température moyenne hivernale"]
+        for (let i = 0; i < names.length; i++){
+            legende.append("p").html("<b style='font-size: 36px; position:relative;top:5px; color:"+color(i)+"'>—</b> "+names[i])
         }
 
         // Add the X Axis

@@ -23,6 +23,8 @@
 .big.dot {
     height: 25px;
     width: 25px;
+    position: relative;
+    top: 5px;
 }
 .small.dot {
     height: 10px;
