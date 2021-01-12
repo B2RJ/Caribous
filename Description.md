@@ -11,7 +11,7 @@ Afin de mesurer l'impact du réchauffement climatique sur la population de carib
 
 ### Analyse de la réaction des caribous
 
-Ce vecteur représente la tendance de déplacement des caribous, ici les caribous ont eu, fortement en raison de la taille du vecteur, tendance à se déplacer vers le nord. On constate sur la carte que le déplacement croisait le chemin d'une route, ce qui peut être source d'accidents. Par chance, cette année là, aucune collision avec un véhicule a été relevée, mais regardons cela de plus près.
+Ces vecteurs représentent la tendance de déplacement des caribous, ici les caribous ont eu, fortement en raison de la taille du vecteur, tendance à se déplacer vers le nord. On constate sur la carte que le déplacement croisait le chemin d'une route, ce qui peut être source d'accidents. Par chance, cette année là, aucune collision avec un véhicule a été relevée, mais regardons cela de plus près.
 
 ### Répartition des causes de mortalité
 

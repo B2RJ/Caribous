@@ -1,0 +1,56 @@
+
+/* Temperature visualisation */
+.line_tmp {
+    stroke: steelblue;
+    stroke-width: 2;
+    fill: none;
+}
+.axis path,
+.axis .line_tmp {
+    fill: none;
+    stroke: grey;
+    stroke-width: 1;
+    shape-rendering: crispEdges;
+}
+/* Death map visualisation*/
+#death {
+    position: relative
+}
+.dot {
+    border-radius: 50%;
+    display: inline-block;
+}
+.big.dot {
+    height: 25px;
+    width: 25px;
+}
+.small.dot {
+    height: 10px;
+    width: 10px;
+}
+
+/*slide visualisation*/
+.container {
+    padding: 0;
+    margin: 0 2vw;
+    width: 96vw !important;
+    max-width: none;
+}
+svg {
+    border-radius: .25rem;
+    background-color: white;
+}
+
+.d-flex{
+    margin-bottom: 0!important;
+}
+
+#viz-description{
+    text-align: justify;
+}
+#viz-body{
+
+}
+body{
+    background-color: rgb(97, 97, 97);
+}

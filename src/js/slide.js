@@ -1,16 +1,23 @@
 const listFunction = []
-$(_=>{ // Appelé quand le doc et load en entié
-    // Initialise la visualisation
-    $("#prev").hide();  
-    displayTemperature($("#viz-body").width(),$("#viz-body").height())
-    listFunction.push(displayTemperature)
-    listFunction.push(displayMovement)
-    listFunction.push(displayDeathRepartition)
-    listFunction.push(displayTrajectory)
-    listFunction.push(displayDeathMap)
-    $(".card").height($("#viz-body").height())
-
-    $("#advanced").on("click", _=> loadVisu());
+const listViz = ["temprature","movement","repartition_death","trajectory","death_map"]
+const urlTexts = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/src/texts.json"
+let texts;
+$(async _ =>{ // Appelé quand le doc et load en entié
+    $.getJSON(urlTexts, function(json) {
+        // console.log(json); // this will show the info it in firebug console
+        texts = json
+        // Initialise la visualisation
+        $("#prev").hide();  
+        // displayTemperature($("#viz-body").width(),$("#viz-body").height())
+        listFunction.push(displayTemperature)
+        listFunction.push(displayMovement)
+        listFunction.push(displayDeathRepartition)
+        listFunction.push(displayTrajectory)
+        listFunction.push(displayDeathMap)
+        $(".card").height($("#viz-body").height())
+        $("#advanced").on("click", _=> loadVisu());
+        loadVisu()
+    });
 })
 
 let index_vizu = 0
@@ -41,6 +48,7 @@ function loadVisu(){
     $("#viz-body").empty()
     $("#viz-legend").empty()
     // On charge le prog
+    $("#viz-description").text(texts.description[listViz[index_vizu]]);
     listFunction[index_vizu](
         $("#viz-body").width(),
         $("#viz-body").height(),
