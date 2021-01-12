@@ -28,6 +28,12 @@
     height: 10px;
     width: 10px;
 }
+.trapezoid {
+    width: 50px;
+    height: 33px;
+    transform: skew(-20deg);
+    display: inline-block;
+}
 
 /*slide visualisation*/
 .container {
