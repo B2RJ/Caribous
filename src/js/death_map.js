@@ -129,7 +129,7 @@ function displayDeathMap(
 
                     // TODO: use legend...
                     let legend = d3.select("#viz-legend")
-                    legend.html("")
+                    legend.text("Survole les données pour obtenir plus d'informations")
                     legend = legend.append("div").attr("class","alert alert-dark")
                     legend.append("h5").text("Pour la zone de danger survolée :")
                     let list = legend.append("ul")
@@ -145,7 +145,7 @@ function displayDeathMap(
                 })
                 .on("mouseleave", () => {
                     svg.selectAll(".deaths_" + i).style("fill", "None")
-                    d3.select("#viz-legend").html("")
+                    d3.select("#viz-legend").html("Survole les données pour obtenir plus d'informations")
                 })
         }
     }
