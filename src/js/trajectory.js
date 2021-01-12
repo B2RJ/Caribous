@@ -12,6 +12,12 @@ function displayTrajectory(
     const main = d3.select("#viz-body")
     // title component
     d3.select("#viz-title").text("Trajectoires des caribous")
+    // legend component
+    let legend = d3.select("#viz-legend").append("div")
+        .attr("class","alert alert-dark")
+    legend.append("p").html("<b style='color: rgba(0,0,255,1); font-size: 36px;'>&rarr;</b> Trajectoire médiane du troupeau")
+    legend.append("p").html("<b><div class='trapezoid' style='background: rgba(0,0,255,0.25)'></div></b> Zone couverte par le troupeau")
+
 
     // map component
     const svg = main.append("div")
