@@ -14,7 +14,7 @@ function displayTrajectory(
     d3.select("#viz-title").text("Trajectoires des caribous")
     // legend component
     let legend = d3.select("#viz-legend").append("div")
-        .attr("class","alert alert-dark")
+        .attr("class", "alert alert-dark")
     legend.append("p").html("<b style='color: rgba(0,0,255,1); font-size: 36px;'>&rarr;</b> Trajectoire médiane du troupeau")
     legend.append("p").html("<b><div class='trapezoid' style='background: rgba(0,0,255,0.25)'></div></b> Zone couverte par le troupeau")
 
@@ -335,13 +335,9 @@ function displayTrajectory(
 
     /*_______________ UTILS FUNCTIONS _______________*/
 
-    Array.prototype.distinct = function () {
-        return this.filter((elem, index, self) => self.indexOf(elem) === index)
-    }
-
     // works only with year array !
-    Array.prototype.withFakeYear = function () {
-        return this.concat(this[this.length - 1] + 1)
+    function concatFakeYear(array) {
+        return array.concat(array[array.length - 1] + 1)
     }
 
     function url(x, y, z) {
@@ -378,7 +374,7 @@ function displayTrajectory(
     }
 
     function getDatesByYear() {
-        return getUniqueYears().withFakeYear().map((year, i) => [
+        return concatFakeYear(getUniqueYears()).map((year, i) => [
             new Date(year, 0, 1), //fake date, just for slider display
             (sliderData[i] || []) //all true dates of the year
         ])
