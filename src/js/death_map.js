@@ -11,7 +11,7 @@ function displayDeathMap(
     let legend = d3.select("#viz-legend").append("div")
         .attr("class","alert alert-dark")
     const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
-    legend.append("p").html("Survole les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations")
+    legend.append("p").html("Survolez les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations")
     /*----- Graphical global components -----*/
 
     const svg = d3.select("#viz-body")
