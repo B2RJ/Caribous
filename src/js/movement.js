@@ -54,7 +54,7 @@ function displayMovement(
     //     .attr("for","all")
     //     .text("All")
 
-    d3.select("#viz-title").text("Tendances des déplacement d'un troupeau des caribous d'Hart Ranges")
+    d3.select("#viz-title").text("Tendances des déplacement d'un troupeau des caribous de Kennedy")
     const svg = d3.select("#movement")
         .append("svg")
         .attr("viewBox", [0, 0, width, height])

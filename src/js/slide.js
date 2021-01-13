@@ -46,7 +46,7 @@ function prevVisu() {
 // Charge une vizu
 function loadVisu() {
     $("#viz-body").empty()
-    $("#viz-legend").empty()
+    $("#viz-legend").html("")
     // On charge le prog
     $("#viz-description").text(texts.description[listViz[index_vizu]]);
     listFunction[index_vizu](
