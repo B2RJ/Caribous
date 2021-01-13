@@ -11,7 +11,7 @@ function displayDeathMap(
     let legend = d3.select("#viz-legend").append("div")
         .attr("class","alert alert-dark")
     const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
-    legend.append("p").html("Survolez les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations")
+    legend.append("p").html("Survolez les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations.")
     /*----- Graphical global components -----*/
 
     const svg = d3.select("#viz-body")
@@ -137,15 +137,15 @@ function displayDeathMap(
                     let list = legend.append("ul")
                     if (p > 0) {
                         const pdot = "<div class='small dot' style='background-color:"+pcol+";'></div>"
-                        list.append("li").html("<b>"+p+"</b> caribous ont été tués par un prédateur ( "+pdot+" Loup, Ours, Carcajou...)")
+                        list.append("li").html("<b>"+p+"</b> caribous ont été tués par un prédateur ( "+pdot+" loup, ours, carcajou...).")
                     }
                     if (v > 0) {
                         const vdot = "<div class='small dot' style='background-color:"+vcol+";'></div>"
-                        list.append("li").html("<b>"+v+"</b> caribous ont été renversés par un véhicule ( "+vdot+" Voiture, Train...)")
+                        list.append("li").html("<b>"+v+"</b> caribous ont été renversés par un véhicule ( "+vdot+" voiture, train...).")
                     }
                     if (o > 0) {
                         const odot = "<div class='small dot' style='background-color:"+ocol+";'></div>"
-                        list.append("li").html("<b>"+o+"</b> caribous sont morts pour une autre raison ( "+odot+" Accident, Cause inconnue...)")
+                        list.append("li").html("<b>"+o+"</b> caribous sont morts pour une autre raison ( "+odot+" accident, cause inconnue...).")
                     }
                 })
                 .on("mouseleave", () => {
