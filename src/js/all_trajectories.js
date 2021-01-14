@@ -11,7 +11,7 @@ function displayAllTrajectories(
     // main component
     const main = d3.select("#viz-body")
     // title component
-    d3.select("#viz-title").text("Trajectoires des caribous")
+    d3.select("#viz-title").text("Mise en contexte")
     // legend component
     let legend = d3.select("#viz-legend").append("div")
         .attr("class", "alert alert-dark")
