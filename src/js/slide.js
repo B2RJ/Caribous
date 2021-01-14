@@ -9,10 +9,10 @@ $(async _ => { // Appelé quand le doc et load en entié
         // Initialise la visualisation
         $("#prev").hide();
         // displayTemperature($("#viz-body").width(),$("#viz-body").height())
+        listFunction.push(displayAllTrajectories)
         listFunction.push(displayTemperature)
         listFunction.push(displayMovement)
         listFunction.push(displayDeathRepartition)
-        listFunction.push(displayAllTrajectories)
         listFunction.push(displayTrajectory)
         listFunction.push(displayDeathMap)
         $(".card").height($("#viz-body").height())

@@ -15,8 +15,6 @@ function displayAllTrajectories(
     // legend component
     let legend = d3.select("#viz-legend").append("div")
         .attr("class", "alert alert-dark")
-    legend.append("p").html("<b style='color: rgba(0,0,255,1); font-size: 36px;position:relative;top:5px;'>&rarr;</b> Trajectoire médiane du troupeau")
-    legend.append("p").html("<b><div class='trapezoid' style='background: rgba(0,0,255,0.25);position:relative;top:5px;'></div></b> Zone couverte par le troupeau")
 
     // map component
     const svg = main.append("div")
@@ -136,6 +134,23 @@ function displayAllTrajectories(
             .translate([transform.x, transform.y])
 
 
+        // legend html
+        let arrowsIcons = "<div style='width: 50px;display:inline-block;position:relative;'>"
+        let trapezoidIcons = "<div style='width: 50px;display:inline-block;position:relative;'>"
+
+        for(let i = 0; i < 2; i++) {
+            const color = d3.schemeCategory10[i]
+            const polystroke = d3.color(color).copy({ opacity: 0.75 })
+            const polyfill = d3.color(color).copy({ opacity: 0.25 })
+            const ecartArrowLeft = 8*i
+            const ecartArrowTop = ecartArrowLeft - 40
+            const ecartPolyLeft = 3*i - 5
+            const ecartPolyTop = 3*i - 25
+            let ardir = "&rarr;"
+            if(i === 1) ardir = "&larr;"
+            arrowsIcons += "<b style='color:"+color+";font-size:36px;position:absolute;top:"+ecartArrowTop+"px;left:"+ecartArrowLeft+"px;'>"+ardir+"</b>"
+            trapezoidIcons += "<b><div class='trapezoid' style='border:1px solid "+polystroke+";background:"+polyfill+";position:absolute;top:"+ecartPolyTop+"px;left:"+ecartPolyLeft+"px;'></div></b>"
+        }
 
         // display data on map
         fetchedData.forEach((herdData, i) => {
@@ -143,6 +158,8 @@ function displayAllTrajectories(
             // get color from color scheme
             //const color = d3.interpolateSpectral(i / fetchedData.length)
             const color = d3.schemeCategory10[i]
+            const polystroke = d3.color(color).copy({ opacity: 0.75 })
+            const polyfill = d3.color(color).copy({ opacity: 0.25 })
 
             // data for polygon (all dates)
             const individuals = herdData.individuals
@@ -154,8 +171,8 @@ function displayAllTrajectories(
                 .append("polygon")
                 .attr("id", "area-" + i)
                 .attr("points", area)
-                .style("stroke", d3.color(color).copy({ opacity: 0.75 }))
-                .style("fill", d3.color(color).copy({ opacity: 0.25 }))
+                .style("stroke", polystroke)
+                .style("fill", polyfill)
 
             // display arrow heads
             svg
@@ -185,6 +202,10 @@ function displayAllTrajectories(
                 .style("stroke", color)
                 .style("stroke-linecap", "round")
         })
+
+        // legend
+        legend.append("p").html(arrowsIcons + "</div> Trajectoire médiane des troupeaux")
+        legend.append("p").html(trapezoidIcons + "</div> Zone couverte par les troupeaux")
     }
 
 

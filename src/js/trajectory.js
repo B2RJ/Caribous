@@ -19,7 +19,7 @@ function displayTrajectory(
     let legend = d3.select("#viz-legend").append("div")
         .attr("class", "alert alert-dark")
     legend.append("p").html("<b style='color: rgba(0,0,255,1); font-size: 36px;position:relative;top:5px;'>&rarr;</b> Trajectoire médiane du troupeau")
-    legend.append("p").html("<b><div class='trapezoid' style='background: rgba(0,0,255,0.25);position:relative;top:5px;'></div></b> Zone couverte par le troupeau")
+    legend.append("p").html("<b><div class='trapezoid' style='border:1px solid rgba(0,0,255,0.75);background: rgba(0,0,255,0.25);position:relative;top:5px;left:-5px;'></div></b> Zone couverte par le troupeau")
 
 
     // map component
@@ -280,6 +280,11 @@ function displayTrajectory(
             .map(coords => projection(coords).join(","))
             .join(" ")
 
+        // colors
+        const color = "blue"
+        const polystroke = d3.color(color).copy({ opacity: 0.75 })
+        const polyfill = d3.color(color).copy({ opacity: 0.25 })
+
         // other updates
         if (alreadyInitZoomed) {
             lines
@@ -314,7 +319,7 @@ function displayTrajectory(
                 .attr("orient", "auto")
                 .append("path")
                 .attr("d", d3.line()(arrowPoints))
-                .style("fill", "blue")
+                .style("fill", color)
 
             alreadyInitZoomed = true
         }
@@ -327,10 +332,8 @@ function displayTrajectory(
         svg
             .append("polygon")
             .attr("points", secondArea)
-            .attr("stroke", "blue")
-            .attr("stroke-width", 2)
-            .attr("fill", "blue")
-            .attr("opacity", 0.25)
+            .style("stroke", polystroke)
+            .style("fill", polyfill)
     }
 
 
