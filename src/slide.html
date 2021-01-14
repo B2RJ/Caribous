@@ -21,6 +21,7 @@
     <script src="./js/temperature.js"></script>
     <script src="./js/movement.js"></script>
     <script src="./js/death_repartition.js"></script>
+    <script src="./js/all_trajectories.js"></script>
     <script src="./js/trajectory.js"></script>
     <script src="./js/death_map.js"></script>
 
@@ -45,7 +46,8 @@
     <br>
     <div class="container">
         <div class="row">
-            <div id="viz-body" style="width: 70%;height: 75vh;" aria-roledescription="visualisation" alt="Sélectionnez le bouton nommé synthèse vocale">
+            <div id="viz-body" style="width: 70%;height: 75vh;" aria-roledescription="visualisation"
+                alt="Sélectionnez le bouton nommé synthèse vocale">
             </div>
             <div style="width: 30%;">
                 <div class="card" style="height: 400px!important">
@@ -56,14 +58,15 @@
                         <div id="viz-legend"></div>
                         <br>
                     </div>
-                    <button id="vocal" type="button" class="btn btn-warning" role="synthèse vocale" aria-roledescription="Appuyez sur entrée pour activer l'audio-description"
+                    <button id="vocal" type="button" class="btn btn-warning" role="synthèse vocale"
+                        aria-roledescription="Appuyez sur entrée pour activer l'audio-description"
                         onclick="speechSynth()">Synthèse vocale</button>
                     <div class="card-footer">
                         <div class="d-grid gap-2 d-md-flex justify-content-md-center">
-                            <button id="prev" type="button" class="btn btn-secondary"
-                                onclick="prevVisu()" aria-roledescription="Passez à la visualisation précédente">Précédent</button>
-                            <button id="next" type="button" class="btn btn-secondary"
-                                onclick="nextVisu()" aria-roledescription="Passez à la visualisation suivante">Suivant</button>
+                            <button id="prev" type="button" class="btn btn-secondary" onclick="prevVisu()"
+                                aria-roledescription="Passez à la visualisation précédente">Précédent</button>
+                            <button id="next" type="button" class="btn btn-secondary" onclick="nextVisu()"
+                                aria-roledescription="Passez à la visualisation suivante">Suivant</button>
                         </div>
                     </div>
                 </div>
@@ -73,7 +76,8 @@
     </div>
     <nav class="navbar fixed-bottom navbar-dark bg-dark" style="padding:0;">
         <div class="container-fluid">
-            <a class="navbar-brand" style="font-size: smaller;text-decoration: underline;" href="https://b2rj.github.io/Data-Visualization-Anthropocene/">
+            <a class="navbar-brand" style="font-size: smaller;text-decoration: underline;"
+                href="https://b2rj.github.io/Data-Visualization-Anthropocene/">
                 Projet data-visualisation : sources
             </a>
         </div>

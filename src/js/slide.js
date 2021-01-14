@@ -1,5 +1,5 @@
 const listFunction = []
-const listViz = ["temprature", "movement", "repartition_death", "trajectory", "death_map"]
+const listViz = ["temprature", "movement", "repartition_death", "all_trajectories", "trajectory", "death_map"]
 const urlTexts = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/src/texts.json"
 let texts;
 $(async _ => { // Appelé quand le doc et load en entié
@@ -12,6 +12,7 @@ $(async _ => { // Appelé quand le doc et load en entié
         listFunction.push(displayTemperature)
         listFunction.push(displayMovement)
         listFunction.push(displayDeathRepartition)
+        listFunction.push(displayAllTrajectories)
         listFunction.push(displayTrajectory)
         listFunction.push(displayDeathMap)
         $(".card").height($("#viz-body").height())
@@ -57,11 +58,11 @@ function loadVisu() {
 }
 
 function speechSynth() {
-    if (window.speechSynthesis.getVoices() == undefined || window.speechSynthesis.getVoices().length == 0){
-        window.speechSynthesis.onvoiceschanged = function(){speechSynth()}
-    }else{
+    if (window.speechSynthesis.getVoices() == undefined || window.speechSynthesis.getVoices().length == 0) {
+        window.speechSynthesis.onvoiceschanged = function () { speechSynth() }
+    } else {
         window.speechSynthesis.cancel()
-        console.log( window.speechSynthesis)
+        console.log(window.speechSynthesis)
         window.speechSynthesis.getVoices();
         let voices = speechSynthesis.getVoices()
         selectedVoices = []

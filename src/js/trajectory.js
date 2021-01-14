@@ -9,7 +9,6 @@ function displayTrajectory(
     initialScale = zoomValue,
     initialCenter = [-122, 55]
 ) {
-    console.log(startYear)
     /*----- Graphical global components -----*/
 
     // main component
@@ -217,8 +216,6 @@ function displayTrajectory(
                 )
         } else {
             let oldSliderRange
-            console.log(startYear, new Date(startYear))
-            console.log(endYear, new Date(endYear))
 
             slider = d3
                 .sliderBottom()
