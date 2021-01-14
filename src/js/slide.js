@@ -1,5 +1,5 @@
 const listFunction = []
-const listViz = ["temprature", "movement", "repartition_death", "all_trajectories", "trajectory", "death_map"]
+const listViz = ["all_trajectories", "temperature", "movement", "repartition_death", "trajectory", "death_map"]
 const urlTexts = "https://raw.githubusercontent.com/B2RJ/Data-Visualization-Anthropocene/main/src/texts.json"
 let texts;
 $(async _ => { // Appelé quand le doc et load en entié
