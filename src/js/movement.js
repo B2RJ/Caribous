@@ -19,11 +19,6 @@ function displayMovement(
 
     /*----- Graphical global components -----*/
 
-    // legend component
-    let legend = d3.select("#viz-legend").append("div")
-        .attr("class", "alert alert-dark")
-    legend.append("p").html("<b style='font-size: 36px;position:relative;top:5px;'>&rarr;</b> Vecteur de déplacement")
-
     const body = d3.select("#viz-body")
 
     body.append("div")
@@ -135,6 +130,11 @@ function displayMovement(
             .on("touchmove.zoom", null)
             .on("touchend.zoom", null)
             .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+
+        // legend component
+        let legend = d3.select("#viz-legend").append("div")
+            .attr("class", "alert alert-dark")
+        legend.append("p").html("<b style='font-size: 36px;position:relative;top:5px;'>&rarr;</b> Vecteur de déplacement")
     })
 
 

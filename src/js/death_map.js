@@ -7,11 +7,8 @@ function displayDeathMap(
     initialCenter = [-122, 55],
 ) {
     d3.select("#viz-title").text("Carte des zones de mort des caribous")
-    
-    let legend = d3.select("#viz-legend").append("div")
-        .attr("class","alert alert-dark")
-    const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
-    legend.append("p").html("Survolez les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations.")
+    let legend = d3.select("#viz-legend")
+
     /*----- Graphical global components -----*/
 
     const svg = d3.select("#viz-body")
@@ -78,10 +75,17 @@ function displayDeathMap(
             .on("touchmove.zoom", null)
             .on("touchend.zoom", null)
             .call(zoom.transform, zoomTransform) // Placement de la vue aux coordonnées choisies
+
+        // legend
+        legend = legend.append("div")
+            .attr("class","alert alert-dark")
+        const reddot = "<div class='big dot' style='background-color:rgba(255,0,0,0.1); border:1px solid rgba(255,0,0,0.4);'></div>"
+        legend.append("p").html("Survolez les <b><i>zones de danger</i></b> ( "+reddot+" ) pour obtenir plus d'informations.")
     })
 
     // Initialize or update the map when zooming/moving on map
     function zoomed(transform) {
+
         // On récupère le numéro des pavés en fonction du context de la view (position et niveau de zoom)
         const tiles = tile(transform)
 

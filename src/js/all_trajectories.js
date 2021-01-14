@@ -13,8 +13,7 @@ function displayAllTrajectories(
     // title component
     d3.select("#viz-title").text("Mise en contexte")
     // legend component
-    let legend = d3.select("#viz-legend").append("div")
-        .attr("class", "alert alert-dark")
+    let legend = d3.select("#viz-legend")
 
     // map component
     const svg = main.append("div")
@@ -72,6 +71,9 @@ function displayAllTrajectories(
 
     // Load plain csv data from repo
     getDataLoading().then(data => {
+        legend = legend.append("div")
+            .attr("class", "alert alert-dark")
+
         const displayHerdNames = getHerdNames()
 
         fetchedData = data.map((dataframe, i) => {
