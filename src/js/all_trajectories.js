@@ -144,8 +144,8 @@ function displayAllTrajectories(
             const polyfill = d3.color(color).copy({ opacity: 0.25 })
             const ecartArrowLeft = 8*i
             const ecartArrowTop = ecartArrowLeft - 40
-            const ecartPolyLeft = 3*i - 5
-            const ecartPolyTop = 3*i - 25
+            const ecartPolyLeft = 12*i
+            const ecartPolyTop = 4*i - 20
             let ardir = "&rarr;"
             if(i === 1) ardir = "&larr;"
             arrowsIcons += "<b style='color:"+color+";font-size:36px;position:absolute;top:"+ecartArrowTop+"px;left:"+ecartArrowLeft+"px;'>"+ardir+"</b>"

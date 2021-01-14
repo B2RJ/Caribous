@@ -19,7 +19,7 @@ function displayTrajectory(
     let legend = d3.select("#viz-legend").append("div")
         .attr("class", "alert alert-dark")
     legend.append("p").html("<b style='color: rgba(0,0,255,1); font-size: 36px;position:relative;top:5px;'>&rarr;</b> Trajectoire médiane du troupeau")
-    legend.append("p").html("<b><div class='trapezoid' style='border:1px solid rgba(0,0,255,0.75);background: rgba(0,0,255,0.25);position:relative;top:5px;left:-5px;'></div></b> Zone couverte par le troupeau")
+    legend.append("p").html("<b><div class='trapezoid' style='border:1px solid rgba(0,0,255,0.75);background: rgba(0,0,255,0.25);position:relative;top:5px;'></div></b> Zone couverte par le troupeau")
 
 
     // map component
