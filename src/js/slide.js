@@ -15,7 +15,7 @@ $(async _ => { // Appelé quand le doc et load en entié
         listFunction.push(displayDeathRepartition)
         listFunction.push(displayTrajectory)
         listFunction.push(displayDeathMap)
-        $(".card").height($("#viz-body").height())
+        //$(".card").height($("#viz-body").height())
         $("#advanced").on("click", _ => loadVisu());
         loadVisu()
     });

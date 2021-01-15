@@ -38,33 +38,19 @@
 }
 
 /*slide visualisation*/
-.container {
-    padding: 0;
-    margin: 0 2vw;
-    width: 96vw !important;
-    max-width: none;
-}
 svg {
     border-radius: .25rem;
     background-color: white;
 }
-
-.d-flex{
-    margin-bottom: 0!important;
+#vocal {
+    width: 100%;
 }
-
 #viz-description{
     text-align: justify;
 }
-#viz-body{
-
+#prev, #next {
+    width: 40%;
 }
 body{
     background-color: rgb(97, 97, 97);
-}
-#prev{
-    margin-right: 20px;
-}
-#vocal{
-    margin: 1rem 1rem;
 }
