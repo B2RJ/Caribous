@@ -26,7 +26,8 @@ function displayAllTrajectories(
 
     let herdshover = d3.select("#trajectory").append("div")
         .attr("id", "herds_hover")
-        .attr("class", "btn-group")
+        .attr("class", "btn-group flex-wrap")
+        .style("top", "-37px")
         .style("width", "100%")
     /*----- D3JS Setup (params, events, etc.) -----*/
 
@@ -172,7 +173,6 @@ function displayAllTrajectories(
                 .attr("class", "btn")
                 .style("background-color", polystroke)
                 .style("border", "1px solid " + color)
-                .style("top", "-37px")
                 .text(herdData.herdName)
                 .on("mouseover", () => {
                     svg.selectAll("polygon").style('opacity', 0.3)
