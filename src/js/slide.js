@@ -51,10 +51,10 @@ function loadVisu() {
     // On charge le prog
     $("#viz-description").text(texts.description[listViz[index_vizu]]);
     listFunction[index_vizu](
-        $("#viz-body").width(),
-        $("#viz-body").height(),
         !$('#advanced').is(":checked"),
-        1 << 15)
+        1 << 15,
+        1100,
+        733)
 }
 
 function speechSynth() {

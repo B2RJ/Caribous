@@ -1,13 +1,13 @@
 function displayDeathRepartition(
-    width = 700,
-    height = 400,
     modePresentation = false,
-    zoomValue = 1 << 14
+    zoomValue = 1 << 15,
+    width = 1100,
+    height = 733
 ){
     // set the dimensions and margins of the graph
     var margin = { top: 10, right: 30, bottom: 30, left: 40 },
-        width = width - margin.left - margin.right,
-        height = height - margin.top - margin.bottom,
+        mgw = width - margin.left - margin.right,
+        mgh = height - margin.top - margin.bottom,
         legendCellSize = 20,
         keys = ["Other", "Predation", "Vehicle Collision"],
         trads = ["Autre", "Prédateur", "Collision avec un véhicule"]
@@ -16,8 +16,7 @@ function displayDeathRepartition(
     // Adds the svg canvas
     const svg = d3.select("#viz-body").append("svg")
         .attr("id", "svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", [0, 0, width, height])
         .append("g")
         .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
@@ -35,11 +34,11 @@ function displayDeathRepartition(
         // Set the range
         const x = d3.scaleBand()
             .domain(data.map(d => d.last_known_timestamp))
-            .range([0, width])
+            .range([0, mgw])
             .padding(0.1);
         const y = d3.scaleLinear()
             .domain([0, d3.max(series[series.length - 1], d => d[1])])
-            .range([height, 0]);
+            .range([mgh, 0]);
 
         // Add the X Axis
         const xAxis = d3.axisBottom(x)
@@ -47,7 +46,7 @@ function displayDeathRepartition(
         // Add the Y Axis
         svg.append("g")
             .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + mgh + ")")
             .call(xAxis)
             .selectAll("text")
             .style("text-anchor", "middle");
@@ -77,7 +76,7 @@ function displayDeathRepartition(
             .attr("x", d => x(d.data.last_known_timestamp))
             .attr("width", x.bandwidth())
             .attr("y", d => y(d[1]))
-            .attr("height", d => height - y(d[1] - d[0]));
+            .attr("height", d => mgh - y(d[1] - d[0]));
 
         d3.select("#viz-title").text("Répartition des morts par catégorie et par an")
         // Add the legend

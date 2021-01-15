@@ -1,8 +1,8 @@
 function displayDeathMap(
-    width = 700,
-    height = 400,
     modePresentation = true,
-    zoomValue = 1 << 14, // Zoom dans l'image
+    zoomValue = 1 << 15, // Zoom dans l'image
+    width = 1100,
+    height = 733,
     initialScale = zoomValue,
     initialCenter = [-122, 55],
 ) {
@@ -15,8 +15,6 @@ function displayDeathMap(
         .append("svg")
         .lower()
         .attr("viewBox", [0, 0, width, height])
-        .attr('width', width)
-        .attr('height', height)
     // Création d'un graphique dans le svg
     let image = svg.append("g")
         .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique

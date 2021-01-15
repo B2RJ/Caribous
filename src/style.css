@@ -1,4 +1,8 @@
-
+body, html{
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
 /* Temperature visualisation */
 .line_tmp {
     stroke: steelblue;
@@ -45,7 +49,10 @@ svg {
 #vocal {
     width: 100%;
 }
-#viz-description{
+#viz-body {
+    margin-bottom: 10px;
+}
+#viz-description {
     text-align: justify;
 }
 #prev, #next {

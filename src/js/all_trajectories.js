@@ -1,8 +1,8 @@
 function displayAllTrajectories(
-    width = 700,
-    height = 400,
     modePresentation = true,
-    zoomValue = 1 << 14, // Zoom dans l'image
+    zoomValue = 1 << 15, // Zoom dans l'image
+    width = 1100,
+    height = 733,
     initialScale = zoomValue,
     initialCenter = [-122, 55]
 ) {

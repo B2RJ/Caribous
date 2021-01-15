@@ -1,20 +1,20 @@
 function displayTemperature(
-    width = 700,
-    height = 400,
     modePresentation = false,
-    zoomValue = 1 << 14
+    zoomValue = 1 << 15,
+    width = 1100,
+    height = 733
 ) {
     // set the dimensions and margins of the graph
-    var margin = { top: 10, right: 30, bottom: 30, left: 40 },
-        width = width - margin.left - margin.right,
-        height = height - margin.top - margin.bottom;
+    const margin = { top: 10, right: 30, bottom: 30, left: 40 },
+        mgw = width - margin.left - margin.right,
+        mgh = height - margin.top - margin.bottom;
 
     // For the verification of date
     let startYear = moment().subtract(33, 'year').toDate();
 
     // Set the ranges
-    let x = d3.scaleTime().range([0, width]);
-    let y = d3.scaleLinear().range([height, 0]);
+    let x = d3.scaleTime().range([0, mgw]);
+    let y = d3.scaleLinear().range([mgh, 0]);
 
     // Define the line 
     let temperatureLine = d3.line()
@@ -24,8 +24,7 @@ function displayTemperature(
     // Adds the svg canvas
     let svg = d3.select("#viz-body")
         .append("svg")
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", height + margin.top + margin.bottom)
+        .attr("viewBox", [0, 0, width, height])
         .append("g")
         .attr("transform",
             "translate(" + margin.left + "," + margin.top + ")");
@@ -73,7 +72,7 @@ function displayTemperature(
         // Add the X Axis
         svg.append("g")
             .attr("class", "axis")
-            .attr("transform", "translate(0," + height + ")")
+            .attr("transform", "translate(0," + mgh + ")")
             .call(d3.axisBottom(x));
 
         // Add the Y Axis
