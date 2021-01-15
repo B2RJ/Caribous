@@ -24,7 +24,10 @@ function displayAllTrajectories(
         .attr("pointer-events", "none") // Supprime l'event de clique sur le graphique
         .selectAll("image") // Setup les image mais pas encore créées
 
-
+    let herdshover = d3.select("#trajectory").append("div")
+        .attr("id", "herds_hover")
+        .attr("class", "btn-group")
+        .style("width", "100%")
     /*----- D3JS Setup (params, events, etc.) -----*/
 
     // Setup de la projection (mercator, coordonnées polaires --> coordonnées cartésiennes)
@@ -163,6 +166,22 @@ function displayAllTrajectories(
             const polystroke = d3.color(color).copy({ opacity: 0.75 })
             const polyfill = d3.color(color).copy({ opacity: 0.25 })
 
+            // append to hover
+            herdshover.append("button")
+                .attr("id", "hh"+i)
+                .attr("class", "btn")
+                .style("background-color", polystroke)
+                .style("border", "1px solid " + color)
+                .style("top", "-37px")
+                .text(herdData.herdName)
+                .on("mouseover", () => {
+                    svg.selectAll("polygon").style('opacity', 0.3)
+                    svg.select("#area-"+i).style('opacity', 1)
+                })
+                .on("mouseleave", () => {
+                    svg.selectAll("polygon").style('opacity', 1)
+                })
+
             // data for polygon (all dates)
             const individuals = herdData.individuals
             const area = ((individuals.length > 2) ? d3.polygonHull(individuals) : individuals)
@@ -208,6 +227,8 @@ function displayAllTrajectories(
         // legend
         legend.append("p").html(arrowsIcons + "</div> Trajectoire médiane des troupeaux")
         legend.append("p").html(trapezoidIcons + "</div> Zone couverte par les troupeaux")
+        const square = "<div style='display: inline-block; background:"+d3.schemeCategory10[0]+"; height:20px; width:20px;position:relative;top:5px;'></div>"
+        legend.append("p").html("Survolez les <b><i>boutons de couleur</i></b> ( "+square+" ) pour isoler un troupeau.")
     }
 
 
