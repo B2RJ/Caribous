@@ -23,6 +23,7 @@ Afin d'afficher aisément les données nous avons réalisé pour chaque visualis
 
 ### D3.js
 
+Pour l'initiation à D3.js nous avons utilisé ce [cours](https://lyondataviz.github.io/teaching/lyon1-m2/2020/intro_d3/) d'Aurélien [TABARD](https://www.tabard.fr).
 Pour la représentation en barchart nous nous sommes inspiré de ce [tutoriel](https://www.datavis.fr/index.php?page=stacked-barchart) d'[Eric Frigot](https://twitter.com/eric_frigot).
 Pour la représentation de la température nous nous sommes inspiré de ce [tutoriel](https://blocks.lsecities.net/d3noob/b6a31090595da11536a6d30d63198c1e) disponible sur [https://blocks.lsecities.net/](https://blocks.lsecities.net/).
 
