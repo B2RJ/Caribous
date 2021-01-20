@@ -17,15 +17,15 @@ Nous avons également en notre possession un jeu de [données](https://www.kaggl
 
 ## Traitement des données
 
-Afin d'afficher aisément les données nous avons réalisé pour chaque visualisation une étape de pré-traitement en Python. Cette étape nous a permis de générer des fichiers au format csv très simple à manipuler et afficher à l'aide de D3.js. Dans certain cas, une étape supplémentaire a été effectué en D3.js. C'est le cas pour les données météorologiques où un filtre a été appliqué et sur les affichages des trajectoires où les calculs de moyennes ont été effectué en JavaScript. Nous avons pris le parti de séparer le traitement en deux étapes afin de limiter le nombre de fichier au format csv. Ainsi nous n'avons pas un fichier pour un unique cas et nous limitons le nombre de fichiers chargés.
+Afin d'afficher aisément les données, nous avons réalisé pour chaque visualisation une étape de pré-traitement en Python. Cette étape nous a permis de générer des fichiers au format csv très simple à manipuler et à afficher avec D3.js. Dans certains cas, une étape supplémentaire de traitement en JavaScript était nécessaire. C'est le cas par exemple pour les données météorologiques, où un filtre sur les années a été appliqué ; ou encore le calcul de coordonnées moyennes pour l'affichage des trajectoires. Nous avons pris le parti de séparer le traitement en deux étapes, afin de pouvoir conserver les anciennes comme les nouvelles données, toutes deux indispensables pour certaines visualisations. Ainsi, nous n'avons pas un unique fichier pour l'ensemble des données, mais plusieurs fichiers chargés, dont nous limitons tout de même le nombre.
 
 ## Sources techniques 
 
 ### D3.js
 
-Pour l'initiation à D3.js nous avons utilisé ce [cours](https://lyondataviz.github.io/teaching/lyon1-m2/2020/intro_d3/) d'Aurélien [TABARD](https://www.tabard.fr).
-Pour la représentation en barchart nous nous sommes inspiré de ce [tutoriel](https://www.datavis.fr/index.php?page=stacked-barchart) d'[Eric Frigot](https://twitter.com/eric_frigot).
-Pour la représentation de la température nous nous sommes inspiré de ce [tutoriel](https://blocks.lsecities.net/d3noob/b6a31090595da11536a6d30d63198c1e) disponible sur [https://blocks.lsecities.net/](https://blocks.lsecities.net/).
+Pour l'initiation à D3.js, nous avons utilisé ce [cours](https://lyondataviz.github.io/teaching/lyon1-m2/2020/intro_d3/) d'Aurélien [TABARD](https://www.tabard.fr).
+Pour la représentation en barchart, nous nous sommes inspiré de ce [tutoriel](https://www.datavis.fr/index.php?page=stacked-barchart) d'[Eric Frigot](https://twitter.com/eric_frigot).
+Pour la représentation de la température, nous nous sommes inspiré de ce [tutoriel](https://blocks.lsecities.net/d3noob/b6a31090595da11536a6d30d63198c1e) disponible sur [https://blocks.lsecities.net/](https://blocks.lsecities.net/).
 
 ### Synthèse vocale
 
