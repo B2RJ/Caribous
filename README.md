@@ -1,46 +1,13 @@
-# Présentation
+# Impact of global warming and human activity on Caribou herds
 
-## Présentation du sujet
+Our project visualizations are available [here](https://b2rj.github.io/Caribous/src/slide.html).
 
-La réalisation de notre projet est disponible [ici](https://b2rj.github.io/Caribous/src/slide.html).
+![](https://github.com/B2RJ/Caribous/blob/main/2-teaser.png)
 
-Nous avons à notre disposition des [données](https://www.kaggle.com/jessemostipak/caribou-location-tracking) sur des populations de Caribou en Colombie-Britannique, une province Canadienne. Ces données commencent en 1988 et finissent en 2016. Elles comportent diverses informations comme la géolocalisation régulière des individus ou leur lieu de pose de la balise GPS. Sur certaines périodes nous possédons également des informations à propos des gestations ou de la présence ou non de bébés avec leur mère.
+We have at our disposal a large panel of [data](https://www.kaggle.com/jessemostipak/caribou-location-tracking) about Caribou populations, located in British Columbia, a Canadian province. These data start in 1988 and end in 2016 and include different information like the individual geolocation, deployment and tracking. During certain periods, there is also some information about pregnancy and presence of calves.
 
-Nous avons également en notre possession un jeu de [données](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data?select=GlobalLandTemperaturesByCountry.csv) sur les températures moyennes mensuelles en Colombie Britannique entre 1743 et 2013.
+In addition, we have in our possession a [dataset](https://www.kaggle.com/berkeleyearth/climate-change-earth-surface-temperature-data?select=GlobalLandTemperaturesByCountry.csv) of monthly average temperatures in British Columbia from 1743 to 2013.
 
-## Navigateurs recommandés
+We finally merge these different data together, allowing us to analyze and measure the impact of human activity and global warming which disrupt the Caribou ecosystem.
 
-* Chrome
-* Chromium
-* Edge
-* Firefox (peut avoir des ralentissements)
-
-## Traitement des données
-
-Afin d'afficher aisément les données nous avons réalisé pour chaque visualisation une étape de pré-traitement en Python. Cette étape nous a permis de générer des fichiers au format csv très simple à manipuler et afficher à l'aide de D3.js. Dans certain cas, une étape supplémentaire a été effectué en D3.js. C'est le cas pour les données météorologiques où un filtre a été appliqué et sur les affichages des trajectoires où les calculs de moyennes ont été effectué en JavaScript. Nous avons pris le parti de séparer le traitement en deux étapes afin de limiter le nombre de fichier au format csv. Ainsi nous n'avons pas un fichier pour un unique cas et nous limitons le nombre de fichiers chargés.
-
-## Sources techniques 
-
-### D3.js
-
-Pour la représentation en barchart nous nous sommes inspiré de ce [tutoriel](https://www.datavis.fr/index.php?page=stacked-barchart) d'[Eric Frigot](https://twitter.com/eric_frigot).
-Pour la représentation de la température nous nous sommes inspiré de ce [tutoriel](https://blocks.lsecities.net/d3noob/b6a31090595da11536a6d30d63198c1e) disponible sur [https://blocks.lsecities.net/](https://blocks.lsecities.net/).
-
-### Synthèse vocale
-
-Pour la synthèse vocale, nous avons utilisé Web Speech API et nous nous sommes inspiré de ce [tutoriel](https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API) mis à disposition par [Mozilla](https://developer.mozilla.org/en-US/).
-
-## A propos de nous
-
-### Qui sommes-nous ?
-
-Nous sommes quatre étudiants du Master 2 Intelligence Artificielle.
-
-### Contact
-
-Nous sommes disponible par mail:
-
-* Thomas BOFFY : thomas.boffy@etu.univ-lyon1.fr
-* Richard BRUNEAU : richard.bruneau@etu.univ-lyon1.fr
-* William CHAZOT : william.chazot@etu.univ-lyon1.fr
-* Pierre VASLIN : pierre.vaslin@etu.univ-lyon1.fr
+You can reach this [link](https://b2rj.github.io/Caribous/Presentation.html) for more information about our project (only in french).
