@@ -2,7 +2,7 @@
 
 Our project visualizations are available [here](https://b2rj.github.io/Caribous/src/slide.html).
 
-![](https://github.com/B2RJ/Caribous/blob/main/2-teaser.png)
+![](https://b2rj.github.io/Caribous/2-teaser.png)
 
 We have at our disposal a large panel of [data](https://www.kaggle.com/jessemostipak/caribou-location-tracking) about Caribou populations, located in British Columbia, a Canadian province. These data start in 1988 and end in 2016 and include different information like the individual geolocation, deployment and tracking. During certain periods, there is also some information about pregnancy and presence of calves.
 
